@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Мебельная компания в Аргентине — спальные гарнитуры, кухни, гардеробные, гостиные, офисы. 3D-конструктор мебели, бесплатный проект.">
+    <title>MUEBLES BA — Мебель Премиум-Класса | Аргентина</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <!-- ====== SIDE MENU OVERLAY ====== -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    
+    <!-- ====== SIDE MENU DRAWER ====== -->
+    <nav class="side-menu" id="sideMenu">
+        <div class="side-menu__header">
+            <span class="side-menu__title">Каталог</span>
+            <button class="side-menu__close" id="menuClose" aria-label="Закрыть меню">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <ul class="side-menu__list">
+            <li class="side-menu__item">
+                <a href="#category-bedroom" class="side-menu__link" data-category="bedroom">
+                    <div class="side-menu__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/><path d="M6 8v8"/><path d="M18 8v8"/><rect x="6" y="10" width="12" height="4" rx="1"/>
+                        </svg>
+                    </div>
+                    <div class="side-menu__text">
+                        <span class="side-menu__name">Спальные гарнитуры</span>
+                        <span class="side-menu__desc">Кровати, тумбы, комоды</span>
+                    </div>
+                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+            </li>
+            <li class="side-menu__item">
+                <a href="#category-wardrobe" class="side-menu__link" data-category="wardrobe">
+                    <div class="side-menu__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="2" width="18" height="20" rx="2"/><line x1="12" y1="2" x2="12" y2="22"/><circle cx="8" cy="12" r="1"/><circle cx="16" cy="12" r="1"/>
+                        </svg>
+                    </div>
+                    <div class="side-menu__text">
+                        <span class="side-menu__name">Гардеробные</span>
+                        <span class="side-menu__desc">Системы хранения, шкафы</span>
+                    </div>
+                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+            </li>
+            <li class="side-menu__item">
+                <a href="#category-kitchen" class="side-menu__link" data-category="kitchen">
+                    <div class="side-menu__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="15" rx="2"/><path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/><line x1="2" y1="14" x2="22" y2="14"/><circle cx="8" cy="18" r="1"/><circle cx="16" cy="18" r="1"/>
+                        </svg>
+                    </div>
+                    <div class="side-menu__text">
+                        <span class="side-menu__name">Кухонные гарнитуры</span>
+                        <span class="side-menu__desc">Кухни под ключ</span>
+                    </div>
+                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+            </li>
+            <li class="side-menu__item">
+                <a href="#category-living" class="side-menu__link" data-category="living">
+                    <div class="side-menu__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0Z"/><path d="M4 18v2"/><path d="M20 18v2"/>
+                        </svg>
+                    </div>
+                    <div class="side-menu__text">
+                        <span class="side-menu__name">Гостиные</span>
+                        <span class="side-menu__desc">Стеллажи, ТВ-зоны, столы</span>
+                    </div>
+                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+            </li>
+            <li class="side-menu__item">
+                <a href="#category-hallway" class="side-menu__link" data-category="hallway">
+                    <div class="side-menu__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21V3h18v18"/><path d="M9 21V10h6v11"/><path d="M13 14h1"/>
+                        </svg>
+                    </div>
+                    <div class="side-menu__text">
+                        <span class="side-menu__name">Прихожие</span>
+                        <span class="side-menu__desc">Вешалки, обувницы, зеркала</span>
+                    </div>
+                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+            </li>
+            <li class="side-menu__item">
+                <a href="#category-office" class="side-menu__link" data-category="office">
+                    <div class="side-menu__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 12h20"/><path d="M12 6v12"/><path d="M2 18v2"/><path d="M22 18v2"/>
+                        </svg>
+                    </div>
+                    <div class="side-menu__text">
+                        <span class="side-menu__name">Офисы</span>
+                        <span class="side-menu__desc">Рабочие зоны и кабинеты</span>
+                    </div>
+                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+            </li>
+        </ul>
+        <div class="side-menu__footer">
+            <a href="tel:+541155550100" class="side-menu__contact">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                +54 11 5555-0100
+            </a>
+        </div>
+    </nav>
+
+    <!-- ====== HEADER ====== -->
+    <header class="header" id="header">
+        <div class="header__inner">
+            <button class="header__menu-btn" id="menuBtn" aria-label="Открыть меню">
+                <span class="header__menu-line"></span>
+                <span class="header__menu-line"></span>
+                <span class="header__menu-line"></span>
+            </button>
+            <a href="#" class="header__logo">
+                <span class="header__logo-mark">M</span>
+                <span class="header__logo-text">MUEBLES<span class="header__logo-accent">BA</span></span>
+            </a>
+            <nav class="header__nav">
+                <a href="#constructor" class="header__nav-link">3D Конструктор</a>
+                <a href="#portfolio" class="header__nav-link">Портфолио</a>
+                <a href="#about" class="header__nav-link">О нас</a>
+                <a href="#contacts" class="header__nav-link">Контакты</a>
+            </nav>
+            <a href="tel:+541155550100" class="header__phone">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span class="header__phone-text">+54 11 5555-0100</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- ====== HERO SECTION ====== -->
+    <section class="hero" id="hero">
+        <div class="hero__bg">
+            <div class="hero__gradient"></div>
+        </div>
+        <div class="hero__content">
+            <div class="hero__tag">
+                <span class="hero__tag-dot"></span>
+                Buenos Aires, Argentina
+            </div>
+            <h1 class="hero__title">
+                Мебель, которая<br>
+                <span class="hero__title-accent">создаёт пространство</span>
+            </h1>
+            <p class="hero__subtitle">
+                Проектируем и производим мебель премиум-класса.<br>
+                Индивидуальный дизайн. Собственное производство.
+            </p>
+            <div class="hero__actions">
+                <a href="#constructor" class="btn btn--primary" id="heroCtaPrimary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    3D Конструктор
+                </a>
+                <a href="#categories" class="btn btn--outline" id="heroCtaSecondary">
+                    Смотреть каталог
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+            </div>
+            <div class="hero__stats">
+                <div class="hero__stat">
+                    <span class="hero__stat-number" data-count="12">0</span>
+                    <span class="hero__stat-label">лет опыта</span>
+                </div>
+                <div class="hero__stat-divider"></div>
+                <div class="hero__stat">
+                    <span class="hero__stat-number" data-count="850">0</span>
+                    <span class="hero__stat-suffix">+</span>
+                    <span class="hero__stat-label">проектов</span>
+                </div>
+                <div class="hero__stat-divider"></div>
+                <div class="hero__stat">
+                    <span class="hero__stat-number" data-count="100">0</span>
+                    <span class="hero__stat-suffix">%</span>
+                    <span class="hero__stat-label">гарантия</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero__scroll-hint">
+            <span>Листайте вниз</span>
+            <div class="hero__scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ====== CATEGORIES SECTION ====== -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Каталог</span>
+                <h2 class="section-title">Категории мебели</h2>
+                <p class="section-subtitle">Выберите направление и начните проектировать свой идеальный интерьер</p>
+            </div>
+            <div class="categories__grid">
+                <a href="#" class="category-card category-card--large" id="catBedroom" data-category="bedroom">
+                    <div class="category-card__image" style="background-image: url('images/cat-bedroom.jpg');">
+                        <div class="category-card__overlay"></div>
+                    </div>
+                    <div class="category-card__content">
+                        <span class="category-card__count">24 модели</span>
+                        <h3 class="category-card__title">Спальные гарнитуры</h3>
+                        <p class="category-card__desc">Кровати, тумбы, комоды и туалетные столики</p>
+                        <span class="category-card__link">Открыть каталог →</span>
+                    </div>
+                </a>
+                <a href="#" class="category-card" id="catWardrobe" data-category="wardrobe">
+                    <div class="category-card__image" style="background-image: url('images/cat-wardrobe.jpg');">
+                        <div class="category-card__overlay"></div>
+                    </div>
+                    <div class="category-card__content">
+                        <span class="category-card__count">18 моделей</span>
+                        <h3 class="category-card__title">Гардеробные</h3>
+                        <p class="category-card__desc">Системы хранения и шкафы-купе</p>
+                        <span class="category-card__link">Открыть каталог →</span>
+                    </div>
+                </a>
+                <a href="#" class="category-card" id="catKitchen" data-category="kitchen">
+                    <div class="category-card__image" style="background-image: url('images/cat-kitchen.jpg');">
+                        <div class="category-card__overlay"></div>
+                    </div>
+                    <div class="category-card__content">
+                        <span class="category-card__count">32 модели</span>
+                        <h3 class="category-card__title">Кухонные гарнитуры</h3>
+                        <p class="category-card__desc">Кухни под ключ из лучших материалов</p>
+                        <span class="category-card__link">Открыть каталог →</span>
+                    </div>
+                </a>
+                <a href="#" class="category-card" id="catLiving" data-category="living">
+                    <div class="category-card__image" style="background-image: url('images/cat-living.jpg');">
+                        <div class="category-card__overlay"></div>
+                    </div>
+                    <div class="category-card__content">
+                        <span class="category-card__count">28 моделей</span>
+                        <h3 class="category-card__title">Гостиные</h3>
+                        <p class="category-card__desc">Стеллажи, ТВ-зоны, журнальные столы</p>
+                        <span class="category-card__link">Открыть каталог →</span>
+                    </div>
+                </a>
+                <a href="#" class="category-card" id="catHallway" data-category="hallway">
+                    <div class="category-card__image" style="background-image: url('images/cat-hallway.jpg');">
+                        <div class="category-card__overlay"></div>
+                    </div>
+                    <div class="category-card__content">
+                        <span class="category-card__count">15 моделей</span>
+                        <h3 class="category-card__title">Прихожие</h3>
+                        <p class="category-card__desc">Вешалки, обувницы, зеркала</p>
+                        <span class="category-card__link">Открыть каталог →</span>
+                    </div>
+                </a>
+                <a href="#" class="category-card" id="catOffice" data-category="office">
+                    <div class="category-card__image" style="background-image: url('images/cat-office.jpg');">
+                        <div class="category-card__overlay"></div>
+                    </div>
+                    <div class="category-card__content">
+                        <span class="category-card__count">20 моделей</span>
+                        <h3 class="category-card__title">Офисы</h3>
+                        <p class="category-card__desc">Рабочие зоны, кабинеты, переговорные</p>
+                        <span class="category-card__link">Открыть каталог →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== 3D CONSTRUCTOR SECTION ====== -->
+    <section class="constructor" id="constructor">
+        <div class="container">
+            <div class="section-header section-header--light">
+                <span class="section-tag section-tag--light">Инновации</span>
+                <h2 class="section-title section-title--light">3D Конструктор мебели</h2>
+                <p class="section-subtitle section-subtitle--light">Спроектируйте, как мебель будет выглядеть в вашем доме. Выбирайте размеры, материалы, цвета — и смотрите результат в реальном времени с помощью нашего 3D движка.</p>
+            </div>
+            <div class="constructor__content">
+                <div class="constructor__viewport" id="constructorViewport">
+                    <!-- Three.js Canvas will be injected here -->
+                    <div id="three-container" style="width: 100%; height: 100%;"></div>
+                    
+                    <div class="constructor__controls">
+                        <button class="constructor__control-btn constructor__control-btn--active" data-model="living">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0Z"/></svg>
+                            Гостиная
+                        </button>
+                        <button class="constructor__control-btn" data-model="bedroom">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/></svg>
+                            Спальня
+                        </button>
+                    </div>
+                    
+                    <div class="constructor__ui" id="constructorUI">
+                        <div class="constructor__badge">
+                            <span class="constructor__badge-dot"></span>
+                            3D Режим активен
+                        </div>
+                        <div class="constructor__tools">
+                            <div class="tool-group">
+                                <label>Материал:</label>
+                                <div class="material-picker">
+                                    <button class="material-btn active" data-color="#B8956A" style="background: #B8956A;" title="Дуб"></button>
+                                    <button class="material-btn" data-color="#4A4A46" style="background: #4A4A46;" title="Венге"></button>
+                                    <button class="material-btn" data-color="#F4F3F0" style="background: #F4F3F0;" title="Белый глянец"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="constructor__overlay-text" id="constructorInitialOverlay">
+                        <div class="constructor__badge">
+                            <span class="constructor__badge-dot"></span>
+                            Интерактивная демонстрация
+                        </div>
+                        <h3 class="constructor__cta-title">Запустите 3D конструктор</h3>
+                        <p class="constructor__cta-desc">Выбирайте модели и меняйте материалы в реальном времени</p>
+                        <button class="btn btn--glow" id="launchConstructor">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                            Запустить 360° просмотр
+                        </button>
+                    </div>
+                </div>
+                <div class="constructor__features">
+                    <div class="constructor__feature">
+                        <div class="constructor__feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        </div>
+                        <h4>Библиотека моделей</h4>
+                        <p>Более 500 моделей мебели в каталоге</p>
+                    </div>
+                    <div class="constructor__feature">
+                        <div class="constructor__feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M4.22 4.22l2.83 2.83m9.9 9.9l2.83 2.83M1 12h4m14 0h4M4.22 19.78l2.83-2.83m9.9-9.9l2.83-2.83"/></svg>
+                        </div>
+                        <h4>Реальные материалы</h4>
+                        <p>Точные текстуры дерева, камня, ткани</p>
+                    </div>
+                    <div class="constructor__feature">
+                        <div class="constructor__feature-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        </div>
+                        <h4>Экспорт проекта</h4>
+                        <p>Скачайте план с размерами в PDF</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PORTFOLIO / COMPLETED WORKS ====== -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Портфолио</span>
+                <h2 class="section-title">Выполненные работы</h2>
+                <p class="section-subtitle">Реальные проекты наших клиентов в Буэнос-Айресе и по всей Аргентине</p>
+            </div>
+            <div class="portfolio__filter">
+                <button class="portfolio__filter-btn portfolio__filter-btn--active" data-filter="all">Все проекты</button>
+                <button class="portfolio__filter-btn" data-filter="bedroom">Спальни</button>
+                <button class="portfolio__filter-btn" data-filter="kitchen">Кухни</button>
+                <button class="portfolio__filter-btn" data-filter="living">Гостиные</button>
+                <button class="portfolio__filter-btn" data-filter="office">Офисы</button>
+            </div>
+            <div class="portfolio__grid" id="portfolioGrid">
+                <div class="portfolio__item" data-type="kitchen">
+                    <div class="portfolio__image" style="background-image: url('images/portfolio-1.jpg');">
+                        <div class="portfolio__image-overlay">
+                            <span class="portfolio__view-btn">Подробнее</span>
+                        </div>
+                    </div>
+                    <div class="portfolio__info">
+                        <span class="portfolio__tag">Кухня</span>
+                        <h3 class="portfolio__title">Кухня «Milano» в Палермо</h3>
+                        <p class="portfolio__meta">Палермо, Буэнос-Айрес • 18 м²</p>
+                    </div>
+                </div>
+                <div class="portfolio__item" data-type="bedroom">
+                    <div class="portfolio__image" style="background-image: url('images/portfolio-2.jpg');">
+                        <div class="portfolio__image-overlay">
+                            <span class="portfolio__view-btn">Подробнее</span>
+                        </div>
+                    </div>
+                    <div class="portfolio__info">
+                        <span class="portfolio__tag">Спальня</span>
+                        <h3 class="portfolio__title">Спальня «Aurora» в Реколете</h3>
+                        <p class="portfolio__meta">Реколета, Буэнос-Айрес • 24 м²</p>
+                    </div>
+                </div>
+                <div class="portfolio__item" data-type="living">
+                    <div class="portfolio__image" style="background-image: url('images/portfolio-3.jpg');">
+                        <div class="portfolio__image-overlay">
+                            <span class="portfolio__view-btn">Подробнее</span>
+                        </div>
+                    </div>
+                    <div class="portfolio__info">
+                        <span class="portfolio__tag">Гостиная</span>
+                        <h3 class="portfolio__title">Гостиная «Сielo» в Пуэрто-Мадеро</h3>
+                        <p class="portfolio__meta">Пуэрто-Мадеро • 40 м²</p>
+                    </div>
+                </div>
+                <div class="portfolio__item" data-type="kitchen">
+                    <div class="portfolio__image" style="background-image: url('images/portfolio-4.jpg');">
+                        <div class="portfolio__image-overlay">
+                            <span class="portfolio__view-btn">Подробнее</span>
+                        </div>
+                    </div>
+                    <div class="portfolio__info">
+                        <span class="portfolio__tag">Кухня</span>
+                        <h3 class="portfolio__title">Кухня «Elegante» в Ла-Плате</h3>
+                        <p class="portfolio__meta">Ла-Плата • 22 м²</p>
+                    </div>
+                </div>
+                <div class="portfolio__item" data-type="office">
+                    <div class="portfolio__image" style="background-image: url('images/portfolio-5.jpg');">
+                        <div class="portfolio__image-overlay">
+                            <span class="portfolio__view-btn">Подробнее</span>
+                        </div>
+                    </div>
+                    <div class="portfolio__info">
+                        <span class="portfolio__tag">Офис</span>
+                        <h3 class="portfolio__title">Офис «Capital» в Микроцентро</h3>
+                        <p class="portfolio__meta">Микроцентро • 55 м²</p>
+                    </div>
+                </div>
+                <div class="portfolio__item" data-type="bedroom">
+                    <div class="portfolio__image" style="background-image: url('images/portfolio-6.jpg');">
+                        <div class="portfolio__image-overlay">
+                            <span class="portfolio__view-btn">Подробнее</span>
+                        </div>
+                    </div>
+                    <div class="portfolio__info">
+                        <span class="portfolio__tag">Спальня</span>
+                        <h3 class="portfolio__title">Спальня «Luna» в Сан-Тельмо</h3>
+                        <p class="portfolio__meta">Сан-Тельмо • 20 м²</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ABOUT SECTION ====== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about__grid">
+                <div class="about__info">
+                    <span class="section-tag">О компании</span>
+                    <h2 class="section-title">MUEBLES BA — ваш партнёр в создании идеального интерьера</h2>
+                    <p class="about__text">
+                        Мы — команда профессиональных дизайнеров и мастеров с более чем 12-летним опытом производства мебели. Наше производство расположено в Буэнос-Айресе, что позволяет контролировать каждый этап — от проекта до установки.
+                    </p>
+                    <p class="about__text">
+                        Используем только сертифицированные материалы европейского и аргентинского производства. Каждый проект проходит трёхступенчатый контроль качества.
+                    </p>
+                    <div class="about__badges">
+                        <div class="about__badge">
+                            <div class="about__badge-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                            </div>
+                            <div>
+                                <h4>Гарантия 5 лет</h4>
+                                <p>На все изделия и фурнитуру</p>
+                            </div>
+                        </div>
+                        <div class="about__badge">
+                            <div class="about__badge-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>
+                            </div>
+                            <div>
+                                <h4>Сертификаты ISO</h4>
+                                <p>Стандарты качества ISO 9001</p>
+                            </div>
+                        </div>
+                        <div class="about__badge">
+                            <div class="about__badge-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            </div>
+                            <div>
+                                <h4>Рейтинг 4.9</h4>
+                                <p>По отзывам более 850 клиентов</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about__visual">
+                    <div class="about__image-wrap">
+                        <div class="about__image" style="background-image: url('images/about-workshop.jpg');"></div>
+                        <div class="about__image-float">
+                            <span class="about__image-float-number">12+</span>
+                            <span class="about__image-float-text">лет<br>опыта</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== GUARANTEES SECTION ====== -->
+    <section class="guarantees" id="guarantees">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Надёжность</span>
+                <h2 class="section-title">Наши гарантии</h2>
+                <p class="section-subtitle">Мы уверены в качестве и готовы подкрепить это реальными обязательствами</p>
+            </div>
+            <div class="guarantees__grid">
+                <div class="guarantee-card" id="guarantee1">
+                    <div class="guarantee-card__number">01</div>
+                    <div class="guarantee-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="guarantee-card__title">Гарантия 5 лет</h3>
+                    <p class="guarantee-card__text">Полная гарантия на все изделия, включая фурнитуру и покрытия. Бесплатный выезд мастера в гарантийный период.</p>
+                </div>
+                <div class="guarantee-card" id="guarantee2">
+                    <div class="guarantee-card__number">02</div>
+                    <div class="guarantee-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                    </div>
+                    <h3 class="guarantee-card__title">Фиксированная цена</h3>
+                    <p class="guarantee-card__text">Стоимость проекта фиксируется после утверждения и не меняется в процессе производства.</p>
+                </div>
+                <div class="guarantee-card" id="guarantee3">
+                    <div class="guarantee-card__number">03</div>
+                    <div class="guarantee-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3 class="guarantee-card__title">Точные сроки</h3>
+                    <p class="guarantee-card__text">Производство и установка строго по срокам. При задержке по нашей вине — компенсация 1% за каждый день.</p>
+                </div>
+                <div class="guarantee-card" id="guarantee4">
+                    <div class="guarantee-card__number">04</div>
+                    <div class="guarantee-card__icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <h3 class="guarantee-card__title">Официальный договор</h3>
+                    <p class="guarantee-card__text">Работаем только по договору с полной спецификацией материалов, размеров и сроков.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CONTACTS SECTION ====== -->
+    <section class="contacts" id="contacts">
+        <div class="container">
+            <div class="contacts__grid">
+                <div class="contacts__info">
+                    <span class="section-tag section-tag--light">Контакты</span>
+                    <h2 class="section-title section-title--light">Свяжитесь с нами</h2>
+                    <p class="contacts__text">Расскажите нам о вашем проекте — мы подготовим бесплатный расчёт и 3D-визуализацию в течение 48 часов.</p>
+                    <div class="contacts__details">
+                        <div class="contacts__detail">
+                            <div class="contacts__detail-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div>
+                                <span class="contacts__detail-label">Адрес шоурума</span>
+                                <span class="contacts__detail-value">Av. Libertador 4500, Palermo, Buenos Aires</span>
+                            </div>
+                        </div>
+                        <div class="contacts__detail">
+                            <div class="contacts__detail-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            </div>
+                            <div>
+                                <span class="contacts__detail-label">Телефон</span>
+                                <a href="tel:+541155550100" class="contacts__detail-value contacts__detail-value--link">+54 11 5555-0100</a>
+                            </div>
+                        </div>
+                        <div class="contacts__detail">
+                            <div class="contacts__detail-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            </div>
+                            <div>
+                                <span class="contacts__detail-label">E-mail</span>
+                                <a href="mailto:info@mueblesba.com.ar" class="contacts__detail-value contacts__detail-value--link">info@mueblesba.com.ar</a>
+                            </div>
+                        </div>
+                        <div class="contacts__detail">
+                            <div class="contacts__detail-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            </div>
+                            <div>
+                                <span class="contacts__detail-label">График работы</span>
+                                <span class="contacts__detail-value">Пн-Пт: 9:00 — 19:00 | Cб: 10:00 — 15:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contacts__socials">
+                        <a href="#" class="contacts__social" aria-label="WhatsApp">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        </a>
+                        <a href="#" class="contacts__social" aria-label="Instagram">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="contacts__social" aria-label="Facebook">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="contacts__form-wrap">
+                    <form class="contacts__form" id="contactForm">
+                        <h3 class="contacts__form-title">Бесплатная консультация</h3>
+                        <div class="contacts__form-group">
+                            <input type="text" id="contactName" class="contacts__input" placeholder=" " required>
+                            <label for="contactName" class="contacts__label">Ваше имя</label>
+                        </div>
+                        <div class="contacts__form-group">
+                            <input type="tel" id="contactPhone" class="contacts__input" placeholder=" " required>
+                            <label for="contactPhone" class="contacts__label">Телефон</label>
+                        </div>
+                        <div class="contacts__form-group">
+                            <input type="email" id="contactEmail" class="contacts__input" placeholder=" ">
+                            <label for="contactEmail" class="contacts__label">E-mail</label>
+                        </div>
+                        <div class="contacts__form-group">
+                            <select id="contactCategory" class="contacts__input contacts__select">
+                                <option value="" disabled selected>Выберите категорию</option>
+                                <option value="bedroom">Спальный гарнитур</option>
+                                <option value="wardrobe">Гардеробная</option>
+                                <option value="kitchen">Кухонный гарнитур</option>
+                                <option value="living">Гостиная</option>
+                                <option value="hallway">Прихожая</option>
+                                <option value="office">Офис</option>
+                            </select>
+                        </div>
+                        <div class="contacts__form-group">
+                            <textarea id="contactMessage" class="contacts__input contacts__textarea" placeholder=" " rows="3"></textarea>
+                            <label for="contactMessage" class="contacts__label">Расскажите о проекте</label>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full" id="contactSubmit">
+                            Отправить заявку
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <a href="#" class="footer__logo">
+                        <span class="footer__logo-mark">M</span>
+                        <span class="footer__logo-text">MUEBLES<span class="footer__logo-accent">BA</span></span>
+                    </a>
+                    <p class="footer__tagline">Мебель премиум-класса<br>в Буэнос-Айресе с 2014 года</p>
+                </div>
+                <div class="footer__columns">
+                    <div class="footer__column">
+                        <h4 class="footer__column-title">Каталог</h4>
+                        <ul class="footer__links">
+                            <li><a href="#">Спальные гарнитуры</a></li>
+                            <li><a href="#">Гардеробные</a></li>
+                            <li><a href="#">Кухонные гарнитуры</a></li>
+                            <li><a href="#">Гостиные</a></li>
+                            <li><a href="#">Прихожие</a></li>
+                            <li><a href="#">Офисы</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4 class="footer__column-title">Компания</h4>
+                        <ul class="footer__links">
+                            <li><a href="#about">О нас</a></li>
+                            <li><a href="#portfolio">Выполненные работы</a></li>
+                            <li><a href="#guarantees">Гарантии</a></li>
+                            <li><a href="#">Сертификаты</a></li>
+                            <li><a href="#contacts">Контакты</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4 class="footer__column-title">Сервис</h4>
+                        <ul class="footer__links">
+                            <li><a href="#constructor">3D Конструктор</a></li>
+                            <li><a href="#">Бесплатный замер</a></li>
+                            <li><a href="#">Доставка и монтаж</a></li>
+                            <li><a href="#">Рассрочка</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copy">&copy; 2014–2026 MUEBLES BA. Все права защищены.</p>
+                <div class="footer__bottom-links">
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== MODAL SYSTEM ====== -->
+    <div class="modal" id="genericModal">
+        <div class="modal__overlay" id="modalOverlay"></div>
+        <div class="modal__content">
+            <button class="modal__close" id="modalClose">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="modal__body" id="modalBody">
+                <!-- Dynamic Content Here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
