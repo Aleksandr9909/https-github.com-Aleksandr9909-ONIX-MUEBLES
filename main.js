@@ -4,6 +4,261 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ====== TRANSLATIONS DATA ======
+    const translations = {
+        'es': {
+            'nav_constructor': 'Diseño 3D',
+            'nav_portfolio': 'Portafolio',
+            'nav_about': 'Nosotros',
+            'nav_contacts': 'Contacto',
+            'hero_tag': 'Muebles de Lujo en Argentina',
+            'hero_title': 'Muebles que<br><span class="hero__title-accent">crean espacio</span>',
+            'hero_subtitle': 'Diseñamos y fabricamos muebles premium.<br>Diseño individual. Producción propia.',
+            'btn_constructor': 'Diseño 3D',
+            'btn_catalog': 'Ver Catálogo',
+            'stat_years': 'años de exp.',
+            'stat_projects': 'proyectos',
+            'stat_warranty': 'garantía',
+            'scroll_down': 'Desliza abajo',
+            'tag_catalog': 'Nuestro surtido',
+            'title_catalog': 'Categorías de muebles',
+            'subtitle_catalog': 'Creamos muebles para cualquier espacio, combinando estética y practicidad.',
+            'cat_bedroom': 'Dormitorios',
+            'cat_bedroom_desc': 'Confort para tu descanso',
+            'cat_wardrobe': 'Vestidores',
+            'cat_wardrobe_desc': 'Sistemas de guardado',
+            'cat_kitchen': 'Cocinas',
+            'cat_kitchen_desc': 'Estilo y función',
+            'cat_living': 'Living',
+            'cat_living_desc': 'El centro de tu hogar',
+            'cat_hallway': 'Recibidores',
+            'cat_hallway_desc': 'La primera impresión',
+            'cat_office': 'Oficinas',
+            'cat_office_desc': 'Zonas de trabajo',
+            'tag_innovations': 'Innovación',
+            'title_constructor': 'Constructor 3D',
+            'subtitle_constructor': 'Diseñá cómo se verán los muebles en tu casa. Elegí medidas, materiales y colores en tiempo real.',
+            'ctrl_living': 'Living',
+            'ctrl_bedroom': 'Dormitorio',
+            'badge_3d_active': 'Modo 3D Activo',
+            'lbl_material': 'Material:',
+            'badge_demo': 'Demo interactiva',
+            'cta_constructor_title': 'Iniciá el constructor 3D',
+            'cta_constructor_desc': 'Elegí modelos y cambiá materiales al instante',
+            'btn_launch_360': 'Ver en 360°',
+            'tag_portfolio': 'Nuestros trabajos',
+            'title_portfolio': 'Proyectos realizados',
+            'filter_all': 'Todos',
+            'filter_kitchen': 'Cocinas',
+            'filter_bedroom': 'Dormitorios',
+            'filter_living': 'Living',
+            'tag_about': 'Sobre nosotros',
+            'title_about': 'Artesanía y Calidad',
+            'about_desc': 'Somos un taller en Buenos Aires dedicado a la creación de muebles únicos. Fusionamos técnicas tradicionales con tecnología moderna para lograr resultados excepcionales.',
+            'tag_guarantees': 'Garantías',
+            'title_guarantees': '¿Por qué elegirnos?',
+            'guard_1_title': '5 años de garantía',
+            'guard_1_desc': 'Aseguramos la durabilidad de cada pieza.',
+            'guard_2_title': 'Entrega puntual',
+            'guard_2_desc': 'Respetamos los plazos acordados.',
+            'guard_3_title': 'Precios de fábrica',
+            'guard_3_desc': 'Sin intermediarios, directo del taller.',
+            'tag_contacts': 'Contacto',
+            'title_contacts': '¿Tenés un proyecto?',
+            'form_name': 'Tu nombre',
+            'form_phone': 'Tu teléfono',
+            'form_message': 'Contanos tu idea...',
+            'btn_send': 'Enviar solicitud',
+            'form_success': '¡Solicitud enviada!',
+            'loading_3d': 'Cargando motor 3D...'
+        },
+        'en': {
+            'nav_constructor': '3D Design',
+            'nav_portfolio': 'Portfolio',
+            'nav_about': 'About Us',
+            'nav_contacts': 'Contacts',
+            'hero_tag': 'Premium Furniture in Argentina',
+            'hero_title': 'Furniture that<br><span class="hero__title-accent">creates space</span>',
+            'hero_subtitle': 'We design and manufacture premium furniture.<br>Individual design. Own production.',
+            'btn_constructor': '3D Constructor',
+            'btn_catalog': 'View Catalog',
+            'stat_years': 'years of exp.',
+            'stat_projects': 'projects',
+            'stat_warranty': 'warranty',
+            'scroll_down': 'Scroll down',
+            'tag_catalog': 'Our assortment',
+            'title_catalog': 'Furniture Categories',
+            'subtitle_catalog': 'We create furniture for any space, combining aesthetics and practicality.',
+            'cat_bedroom': 'Bedrooms',
+            'cat_bedroom_desc': 'Comfort for your rest',
+            'cat_wardrobe': 'Wardrobes',
+            'cat_wardrobe_desc': 'Storage systems',
+            'cat_kitchen': 'Kitchens',
+            'cat_kitchen_desc': 'Style and function',
+            'cat_living': 'Living Rooms',
+            'cat_living_desc': 'Center of your home',
+            'cat_hallway': 'Hallways',
+            'cat_hallway_desc': 'The first impression',
+            'cat_office': 'Offices',
+            'cat_office_desc': 'Work zones',
+            'tag_innovations': 'Innovation',
+            'title_constructor': '3D Constructor',
+            'subtitle_constructor': 'Design how the furniture will look in your home. Choose sizes, materials, and colors in real-time.',
+            'ctrl_living': 'Living Room',
+            'ctrl_bedroom': 'Bedroom',
+            'badge_3d_active': '3D Mode Active',
+            'lbl_material': 'Material:',
+            'badge_demo': 'Interactive Demo',
+            'cta_constructor_title': 'Launch 3D Constructor',
+            'cta_constructor_desc': 'Choose models and change materials in real-time',
+            'btn_launch_360': 'Launch 360° View',
+            'tag_portfolio': 'Our Works',
+            'title_portfolio': 'Completed Projects',
+            'filter_all': 'All',
+            'filter_kitchen': 'Kitchens',
+            'filter_bedroom': 'Bedrooms',
+            'filter_living': 'Living Rooms',
+            'tag_about': 'About Us',
+            'title_about': 'Craftmanship & Quality',
+            'about_desc': 'We are a Buenos Aires based workshop dedicated to creating unique furniture. We fuse traditional techniques with modern technology to achieve exceptional results.',
+            'tag_guarantees': 'Guarantees',
+            'title_guarantees': 'Why choose us?',
+            'guard_1_title': '5 Year Warranty',
+            'guard_1_desc': 'We ensure the durability of every piece.',
+            'guard_2_title': 'On-time Delivery',
+            'guard_2_desc': 'We respect agreed deadlines.',
+            'guard_3_title': 'Factory Prices',
+            'guard_3_desc': 'No intermediaries, direct from workshop.',
+            'tag_contacts': 'Contacts',
+            'title_contacts': 'Have a project?',
+            'form_name': 'Your name',
+            'form_phone': 'Your phone',
+            'form_message': 'Tell us your idea...',
+            'btn_send': 'Send Request',
+            'form_success': 'Request sent!',
+            'loading_3d': '3D Engine loading...'
+        },
+        'ru': {
+            'nav_constructor': '3D Конструктор',
+            'nav_portfolio': 'Портфолио',
+            'nav_about': 'О нас',
+            'nav_contacts': 'Контакты',
+            'hero_tag': 'Премиальная мебель в Аргентине',
+            'hero_title': 'Мебель, которая<br><span class="hero__title-accent">создаёт пространство</span>',
+            'hero_subtitle': 'Проектируем и производим мебель премиум-класса.<br>Индивидуальный дизайн. Собственное производство.',
+            'btn_constructor': '3D Конструктор',
+            'btn_catalog': 'Смотреть каталог',
+            'stat_years': 'лет опыта',
+            'stat_projects': 'проектов',
+            'stat_warranty': 'гарантия',
+            'scroll_down': 'Листайте вниз',
+            'tag_catalog': 'Наш ассортимент',
+            'title_catalog': 'Категории мебели',
+            'subtitle_catalog': 'Мы создаем мебель для любого пространства, сочетая эстетику и практичность.',
+            'cat_bedroom': 'Спальные гарнитуры',
+            'cat_bedroom_desc': 'Уют для вашего сна',
+            'cat_wardrobe': 'Гардеробные',
+            'cat_wardrobe_desc': 'Системы хранения',
+            'cat_kitchen': 'Кухонные гарнитуры',
+            'cat_kitchen_desc': 'Стиль и функциональность',
+            'cat_living': 'Гостиные',
+            'cat_living_desc': 'Центр вашего дома',
+            'cat_hallway': 'Прихожие',
+            'cat_hallway_desc': 'Первое впечатление',
+            'cat_office': 'Офисы',
+            'cat_office_desc': 'Рабочие зоны',
+            'tag_innovations': 'Инновации',
+            'title_constructor': '3D Конструктор',
+            'subtitle_constructor': 'Спроектируйте мебель для вашего дома. Выбирайте размеры, материалы и цвета в реальном времени.',
+            'ctrl_living': 'Гостиная',
+            'ctrl_bedroom': 'Спальня',
+            'badge_3d_active': '3D Режим активен',
+            'lbl_material': 'Материал:',
+            'badge_demo': 'Интерактивная демо',
+            'cta_constructor_title': 'Запустить конструктор',
+            'cta_constructor_desc': 'Выбирайте модели и меняйте материалы',
+            'btn_launch_360': 'Просмотр 360°',
+            'tag_portfolio': 'Наши работы',
+            'title_portfolio': 'Выполненные проекты',
+            'filter_all': 'Все',
+            'filter_kitchen': 'Кухни',
+            'filter_bedroom': 'Спальни',
+            'filter_living': 'Гостиные',
+            'tag_about': 'О компании',
+            'title_about': 'Мастерство и Качество',
+            'about_desc': 'Мы — мастерская в Буэнос-Айресе, создающая уникальную мебель. Мы объединяем классические техники и современные технологии для лучших результатов.',
+            'tag_guarantees': 'Гарантии',
+            'title_guarantees': 'Почему выбирают нас?',
+            'guard_1_title': '5 лет гарантии',
+            'guard_1_desc': 'Мы уверены в долговечности каждого изделия.',
+            'guard_2_title': 'Сдача в срок',
+            'guard_2_desc': 'Соблюдаем оговоренные дедлайны.',
+            'guard_3_title': 'Цены от фабрики',
+            'guard_3_desc': 'Без посредников, напрямую из цеха.',
+            'tag_contacts': 'Контакты',
+            'title_contacts': 'Есть проект?',
+            'form_name': 'Ваше имя',
+            'form_phone': 'Ваш телефон',
+            'form_message': 'Опишите вашу идею...',
+            'btn_send': 'Отправить заявку',
+            'form_success': 'Заявка отправлена!',
+            'loading_3d': '3D Engine загружается...'
+        }
+    };
+
+    // ====== LANGUAGE SWITCHER LOGIC ======
+    const langBtn = document.getElementById('langBtn');
+    const langSwitcher = document.getElementById('langSwitcher');
+    const currentLangText = document.getElementById('currentLang');
+    const langOptions = document.querySelectorAll('.lang-switcher__dropdown button');
+
+    function setLanguage(lang) {
+        localStorage.setItem('preferred_lang', lang);
+        currentLangText.textContent = lang.toUpperCase();
+        document.documentElement.lang = lang;
+        
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                el.innerHTML = translations[lang][key];
+            }
+        });
+
+        // Update active state in dropdown
+        langOptions.forEach(opt => {
+            opt.classList.toggle('active', opt.dataset.lang === lang);
+        });
+    }
+
+    if (langBtn) {
+        langBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langSwitcher.classList.toggle('active');
+            const isActive = langSwitcher.classList.contains('active');
+            langBtn.setAttribute('aria-expanded', isActive);
+        });
+    }
+
+    langOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+            const lang = opt.dataset.lang;
+            setLanguage(lang);
+            langSwitcher.classList.remove('active');
+            langBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    document.addEventListener('click', () => {
+        if (langSwitcher) {
+            langSwitcher.classList.remove('active');
+            if(langBtn) langBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // Initialize Language
+    const savedLang = localStorage.getItem('preferred_lang') || 'ru';
+    setLanguage(savedLang);
+
     // ====== SIDE MENU ======
     const menuBtn = document.getElementById('menuBtn');
     const menuClose = document.getElementById('menuClose');
@@ -577,4 +832,347 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     console.log('✅ MUEBLES BA website initialized.');
+
+    // ====== DYNAMIC CATALOG & ADMIN SYSTEM ======
+    const adminLoginBtn = document.getElementById('adminLoginBtn');
+    const adminAuthModal = document.getElementById('adminAuthModal');
+    const adminDashboardModal = document.getElementById('adminDashboardModal');
+    const adminAuthClose = document.getElementById('adminAuthClose');
+    const adminAuthOverlay = document.getElementById('adminAuthOverlay');
+    const adminDashboardClose = document.getElementById('adminDashboardClose');
+    const adminDashboardOverlay = document.getElementById('adminDashboardOverlay');
+    
+    const adminPasswordInput = document.getElementById('adminPassword');
+    const adminLoginSubmit = document.getElementById('adminLoginSubmit');
+    const adminAuthError = document.getElementById('adminAuthError');
+    const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+
+    // Admin Access Configuration
+    const ADMIN_PASSWORD = "Bueno2028";
+    
+    // State
+    const STORAGE_KEY = 'muebles_catalog_products';
+    let products = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+    // Modals Handlers
+    function closeAdminModals() {
+        adminAuthModal.classList.remove('active');
+        adminDashboardModal.classList.remove('active');
+        adminPasswordInput.value = '';
+        adminAuthError.style.display = 'none';
+        resetAdminForm();
+    }
+
+    if (adminLoginBtn) {
+        adminLoginBtn.addEventListener('click', () => {
+            // Check if already authenticated via session
+            if (sessionStorage.getItem('admin_auth') === 'true') {
+                openAdminDashboard();
+            } else {
+                adminAuthModal.classList.add('active');
+            }
+        });
+    }
+
+    if (adminAuthClose) adminAuthClose.addEventListener('click', closeAdminModals);
+    if (adminAuthOverlay) adminAuthOverlay.addEventListener('click', closeAdminModals);
+    if (adminDashboardClose) adminDashboardClose.addEventListener('click', closeAdminModals);
+    if (adminDashboardOverlay) adminDashboardOverlay.addEventListener('click', closeAdminModals);
+
+    // Escape listener for admin modals
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeAdminModals();
+        }
+    });
+
+    // Login Logic
+    function handleLogin() {
+        if (adminPasswordInput.value === ADMIN_PASSWORD) {
+            sessionStorage.setItem('admin_auth', 'true');
+            adminAuthModal.classList.remove('active');
+            openAdminDashboard();
+        } else {
+            adminAuthError.style.display = 'block';
+            adminPasswordInput.value = '';
+            adminPasswordInput.focus();
+            // Shake animation
+            adminPasswordInput.style.animation = 'shake 0.5s ease';
+            setTimeout(() => { adminPasswordInput.style.animation = ''; }, 500);
+        }
+    }
+
+    if (adminLoginSubmit) adminLoginSubmit.addEventListener('click', handleLogin);
+    if (adminPasswordInput) adminPasswordInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleLogin();
+    });
+
+    if (adminLogoutBtn) {
+        adminLogoutBtn.addEventListener('click', () => {
+            sessionStorage.removeItem('admin_auth');
+            closeAdminModals();
+        });
+    }
+
+    function openAdminDashboard() {
+        adminDashboardModal.classList.add('active');
+        renderAdminProducts();
+    }
+
+    // ====== PRODUCT FORM HANDLING ======
+    const adminProductForm = document.getElementById('adminProductForm');
+    const adminProductId = document.getElementById('adminProductId');
+    const adminProductCategory = document.getElementById('adminProductCategory');
+    const adminProductName = document.getElementById('adminProductName');
+    const adminProductPrice = document.getElementById('adminProductPrice');
+    const adminProductDesc = document.getElementById('adminProductDesc');
+    const adminProductPhotoUrl = document.getElementById('adminProductPhotoUrl');
+    const adminProductPhotoFile = document.getElementById('adminProductPhotoFile');
+    const adminProductPhotoPreview = document.getElementById('adminProductPhotoPreview');
+    const adminFormTitle = document.getElementById('adminFormTitle');
+    const adminSubmitBtn = document.getElementById('adminSubmitBtn');
+    const adminCancelEditBtn = document.getElementById('adminCancelEditBtn');
+    const adminViewCategory = document.getElementById('adminViewCategory');
+
+    let currentPhotoData = '';
+
+    // Handle File Upload (FileReader)
+    if (adminProductPhotoFile) {
+        adminProductPhotoFile.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentPhotoData = e.target.result;
+                    adminProductPhotoPreview.style.backgroundImage = `url('${currentPhotoData}')`;
+                    adminProductPhotoPreview.style.display = 'block';
+                    adminProductPhotoUrl.value = ''; // clear URL if file picked
+                }
+                reader.readAsDataURL(file);
+            } else {
+                currentPhotoData = '';
+                adminProductPhotoPreview.style.display = 'none';
+            }
+        });
+    }
+
+    if (adminProductPhotoUrl) {
+        adminProductPhotoUrl.addEventListener('input', function() {
+            if (this.value.trim() !== '') {
+                currentPhotoData = this.value.trim();
+                adminProductPhotoPreview.style.backgroundImage = `url('${currentPhotoData}')`;
+                adminProductPhotoPreview.style.display = 'block';
+                adminProductPhotoFile.value = ''; // clear file if URL entered
+            } else if (!adminProductPhotoFile.value) {
+                currentPhotoData = '';
+                adminProductPhotoPreview.style.display = 'none';
+            }
+        });
+    }
+
+    function saveProducts() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+        renderAdminProducts();
+        renderPublicCatalog();
+    }
+
+    function resetAdminForm() {
+        if(adminProductForm) adminProductForm.reset();
+        if(adminProductId) adminProductId.value = '';
+        currentPhotoData = '';
+        if(adminProductPhotoPreview) {
+            adminProductPhotoPreview.style.backgroundImage = 'none';
+            adminProductPhotoPreview.style.display = 'none';
+        }
+        if(adminFormTitle) adminFormTitle.textContent = 'Добавить товар';
+        if(adminSubmitBtn) adminSubmitBtn.textContent = 'Добавить';
+        if(adminCancelEditBtn) adminCancelEditBtn.style.display = 'none';
+    }
+
+    if (adminCancelEditBtn) {
+        adminCancelEditBtn.addEventListener('click', resetAdminForm);
+    }
+
+    if (adminProductForm) {
+        adminProductForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const id = adminProductId.value;
+            const product = {
+                id: id ? id : Date.now().toString(),
+                category: adminProductCategory.value,
+                name: adminProductName.value.trim(),
+                price: adminProductPrice.value,
+                desc: adminProductDesc.value.trim(),
+                photo: currentPhotoData
+            };
+
+            if (!product.photo) {
+                alert('Пожалуйста, добавьте фотографию (URL или файл)');
+                return;
+            }
+
+            if (id) {
+                // Edit
+                const index = products.findIndex(p => p.id === id);
+                if (index !== -1) {
+                    products[index] = product;
+                }
+            } else {
+                // Add
+                products.push(product);
+            }
+
+            saveProducts();
+            resetAdminForm();
+        });
+    }
+
+    // Expose edit/delete global functions for injected HTML
+    window.editProduct = function(id) {
+        const product = products.find(p => p.id === id);
+        if (!product) return;
+        
+        adminProductId.value = product.id;
+        adminProductCategory.value = product.category;
+        adminProductName.value = product.name;
+        adminProductPrice.value = product.price;
+        adminProductDesc.value = product.desc;
+        
+        currentPhotoData = product.photo;
+        
+        // Is it base64 or URL?
+        if (product.photo.startsWith('data:image')) {
+            adminProductPhotoUrl.value = '';
+        } else {
+            adminProductPhotoUrl.value = product.photo;
+        }
+        
+        adminProductPhotoPreview.style.backgroundImage = `url('${product.photo}')`;
+        adminProductPhotoPreview.style.display = 'block';
+        
+        adminFormTitle.textContent = 'Редактировать товар';
+        adminSubmitBtn.textContent = 'Сохранить';
+        adminCancelEditBtn.style.display = 'block';
+    };
+
+    window.deleteProduct = function(id) {
+        if (confirm('Вы уверены, что хотите удалить этот товар?')) {
+            products = products.filter(p => p.id !== id);
+            saveProducts();
+            
+            // If editing the deleted product, reset form
+            if (adminProductId.value === id) {
+                resetAdminForm();
+            }
+        }
+    };
+
+    function renderAdminProducts() {
+        const list = document.getElementById('adminProductsList');
+        if (!list) return;
+
+        const filter = adminViewCategory.value;
+        const filteredProducts = filter === 'all' 
+            ? products 
+            : products.filter(p => p.category === filter);
+
+        if (filteredProducts.length === 0) {
+            list.innerHTML = '<p style="color: var(--color-text-muted); grid-column: 1/-1; text-align: center; padding: 20px;">В этой категории пока нет товаров.</p>';
+            return;
+        }
+
+        const categoryNames = {
+            'bedroom': 'Спальные гарнитуры',
+            'wardrobe': 'Гардеробные',
+            'kitchen': 'Кухонные гарнитуры',
+            'living': 'Гостиные',
+            'hallway': 'Прихожие',
+            'office': 'Офисы'
+        };
+
+        list.innerHTML = filteredProducts.map(p => `
+            <div class="admin-product-item">
+                <img src="${p.photo}" alt="${p.name}">
+                <h5>${p.name}</h5>
+                <span class="price">$${p.price}</span>
+                <span style="font-size: 11px; color: var(--color-text-muted); margin-bottom: 8px;">${categoryNames[p.category]}</span>
+                <div class="admin-product-actions">
+                    <button class="admin-btn-edit" onclick="editProduct('${p.id}')">Изменить</button>
+                    <button class="admin-btn-delete" onclick="deleteProduct('${p.id}')">Удалить</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    if (adminViewCategory) {
+        adminViewCategory.addEventListener('change', renderAdminProducts);
+    }
+
+    // ====== RENDERING DYNAMIC CATALOG (PUBLIC) ======
+    const catalogGrid = document.getElementById('catalogGrid');
+    const catalogSection = document.getElementById('catalog-products');
+    const catalogFiltersBtn = document.querySelectorAll('#catalogFilter .portfolio__filter-btn');
+
+    function renderPublicCatalog(filter = 'all') {
+        if (!catalogGrid || !catalogSection) return;
+
+        if (products.length === 0) {
+            catalogSection.style.display = 'none';
+            return;
+        }
+
+        catalogSection.style.display = 'block';
+
+        const filteredProducts = filter === 'all' 
+            ? products 
+            : products.filter(p => p.category === filter);
+            
+        // Setup empty state check if needed
+        if (filteredProducts.length === 0 && filter !== 'all') {
+             catalogGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--color-text-muted);">Товаров в этой категории пока нет.</div>';
+             return;
+        }
+
+        const categoryNames = {
+            'bedroom': 'Спальные гарнитуры',
+            'wardrobe': 'Гардеробные',
+            'kitchen': 'Кухонные гарнитуры',
+            'living': 'Гостиные',
+            'hallway': 'Прихожие',
+            'office': 'Офисы'
+        };
+
+        catalogGrid.innerHTML = filteredProducts.map(p => `
+            <div class="catalog-product-card reveal visible">
+                <div class="catalog-product-card__image" style="background-image: url('${p.photo}')"></div>
+                <div class="catalog-product-card__content">
+                    <span class="catalog-product-card__category">${categoryNames[p.category]}</span>
+                    <h3 class="catalog-product-card__title">${p.name}</h3>
+                    <div class="catalog-product-card__price">$${p.price}</div>
+                    <p class="catalog-product-card__desc">${p.desc}</p>
+                    <div class="catalog-product-card__actions">
+                        <button class="btn btn--outline btn--full" onclick="window.location.href='#contacts'" style="padding: 10px;">Заказать</button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    if (catalogFiltersBtn.length > 0) {
+        catalogFiltersBtn.forEach(btn => {
+            btn.addEventListener('click', () => {
+                catalogFiltersBtn.forEach(b => b.classList.remove('portfolio__filter-btn--active'));
+                btn.classList.add('portfolio__filter-btn--active');
+                
+                // Get filter properly considering 'catalogFilter' might use dataset.filter
+                const filter = btn.dataset.filter || 'all';
+                renderPublicCatalog(filter);
+            });
+        });
+    }
+
+    // Initial render for public catalog
+    renderPublicCatalog();
+
 });

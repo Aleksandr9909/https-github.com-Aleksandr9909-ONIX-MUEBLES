@@ -135,15 +135,29 @@
                 <span class="header__logo-text">MUEBLES<span class="header__logo-accent">BA</span></span>
             </a>
             <nav class="header__nav">
-                <a href="#constructor" class="header__nav-link">3D Конструктор</a>
-                <a href="#portfolio" class="header__nav-link">Портфолио</a>
-                <a href="#about" class="header__nav-link">О нас</a>
-                <a href="#contacts" class="header__nav-link">Контакты</a>
+                <a href="#constructor" class="header__nav-link" data-i18n="nav_constructor">3D Конструктор</a>
+                <a href="#portfolio" class="header__nav-link" data-i18n="nav_portfolio">Портфолио</a>
+                <a href="#about" class="header__nav-link" data-i18n="nav_about">О нас</a>
+                <a href="#contacts" class="header__nav-link" data-i18n="nav_contacts">Контакты</a>
             </nav>
-            <a href="tel:+541155550100" class="header__phone">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <span class="header__phone-text">+54 11 5555-0100</span>
-            </a>
+            <div class="header__actions">
+                <div class="lang-switcher" id="langSwitcher">
+                    <button class="lang-switcher__btn" id="langBtn" aria-expanded="false">
+                        <span id="currentLang">RU</span>
+                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor"><path d="m1 1 4 4 4-4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="lang-switcher__dropdown">
+                        <button data-lang="es">ES</button>
+                        <button data-lang="en">EN</button>
+                        <button data-lang="ru">RU</button>
+                    </div>
+                </div>
+                <div class="header__divider"></div>
+                <a href="tel:+541155550100" class="header__phone">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span class="header__phone-text">+54 11 5555-0100</span>
+                </a>
+            </div>
         </div>
     </header>
 
@@ -153,49 +167,49 @@
             <div class="hero__gradient"></div>
         </div>
         <div class="hero__content">
-            <div class="hero__tag">
+            <div class="hero__tag" data-i18n="hero_tag">
                 <span class="hero__tag-dot"></span>
                 Buenos Aires, Argentina
             </div>
-            <h1 class="hero__title">
+            <h1 class="hero__title" data-i18n="hero_title">
                 Мебель, которая<br>
                 <span class="hero__title-accent">создаёт пространство</span>
             </h1>
-            <p class="hero__subtitle">
+            <p class="hero__subtitle" data-i18n="hero_subtitle">
                 Проектируем и производим мебель премиум-класса.<br>
                 Индивидуальный дизайн. Собственное производство.
             </p>
             <div class="hero__actions">
                 <a href="#constructor" class="btn btn--primary" id="heroCtaPrimary">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                    3D Конструктор
+                    <span data-i18n="btn_constructor">3D Конструктор</span>
                 </a>
                 <a href="#categories" class="btn btn--outline" id="heroCtaSecondary">
-                    Смотреть каталог
+                    <span data-i18n="btn_catalog">Смотреть каталог</span>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
             </div>
             <div class="hero__stats">
                 <div class="hero__stat">
                     <span class="hero__stat-number" data-count="12">0</span>
-                    <span class="hero__stat-label">лет опыта</span>
+                    <span class="hero__stat-label" data-i18n="stat_years">лет опыта</span>
                 </div>
                 <div class="hero__stat-divider"></div>
                 <div class="hero__stat">
                     <span class="hero__stat-number" data-count="850">0</span>
                     <span class="hero__stat-suffix">+</span>
-                    <span class="hero__stat-label">проектов</span>
+                    <span class="hero__stat-label" data-i18n="stat_projects">проектов</span>
                 </div>
                 <div class="hero__stat-divider"></div>
                 <div class="hero__stat">
                     <span class="hero__stat-number" data-count="100">0</span>
                     <span class="hero__stat-suffix">%</span>
-                    <span class="hero__stat-label">гарантия</span>
+                    <span class="hero__stat-label" data-i18n="stat_warranty">гарантия</span>
                 </div>
             </div>
         </div>
         <div class="hero__scroll-hint">
-            <span>Листайте вниз</span>
+            <span data-i18n="scroll_down">Листайте вниз</span>
             <div class="hero__scroll-line"></div>
         </div>
     </section>
@@ -279,13 +293,36 @@
         </div>
     </section>
 
+    <!-- ====== DYNAMIC CATALOG SECTION ====== -->
+    <section class="catalog-products" id="catalog-products" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="tag_products">Наши товары</span>
+                <h2 class="section-title" data-i18n="title_products">Каталог изделий</h2>
+                <p class="section-subtitle" data-i18n="subtitle_products">Выберите мебель из нашего актуального ассортимента</p>
+            </div>
+            <div class="portfolio__filter" id="catalogFilter">
+                <button class="portfolio__filter-btn portfolio__filter-btn--active" data-filter="all">Все</button>
+                <button class="portfolio__filter-btn" data-filter="bedroom">Спальни</button>
+                <button class="portfolio__filter-btn" data-filter="wardrobe">Гардеробные</button>
+                <button class="portfolio__filter-btn" data-filter="kitchen">Кухни</button>
+                <button class="portfolio__filter-btn" data-filter="living">Гостиные</button>
+                <button class="portfolio__filter-btn" data-filter="hallway">Прихожие</button>
+                <button class="portfolio__filter-btn" data-filter="office">Офисы</button>
+            </div>
+            <div class="catalog-products__grid" id="catalogGrid">
+                <!-- Products will be generated here from JS -->
+            </div>
+        </div>
+    </section>
+
     <!-- ====== 3D CONSTRUCTOR SECTION ====== -->
     <section class="constructor" id="constructor">
         <div class="container">
             <div class="section-header section-header--light">
-                <span class="section-tag section-tag--light">Инновации</span>
-                <h2 class="section-title section-title--light">3D Конструктор мебели</h2>
-                <p class="section-subtitle section-subtitle--light">Спроектируйте, как мебель будет выглядеть в вашем доме. Выбирайте размеры, материалы, цвета — и смотрите результат в реальном времени с помощью нашего 3D движка.</p>
+                <span class="section-tag section-tag--light" data-i18n="tag_innovations">Инновации</span>
+                <h2 class="section-title section-title--light" data-i18n="title_constructor">3D Конструктор мебели</h2>
+                <p class="section-subtitle section-subtitle--light" data-i18n="subtitle_constructor">Спроектируйте, как мебель будет выглядеть в вашем доме. Выбирайте размеры, материалы, цвета — и смотрите результат в реальном времени с помощью нашего 3D движка.</p>
             </div>
             <div class="constructor__content">
                 <div class="constructor__viewport" id="constructorViewport">
@@ -293,11 +330,11 @@
                     <div id="three-container" style="width: 100%; height: 100%;"></div>
                     
                     <div class="constructor__controls">
-                        <button class="constructor__control-btn constructor__control-btn--active" data-model="living">
+                        <button class="constructor__control-btn constructor__control-btn--active" data-model="living" data-i18n="ctrl_living">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0Z"/></svg>
                             Гостиная
                         </button>
-                        <button class="constructor__control-btn" data-model="bedroom">
+                        <button class="constructor__control-btn" data-model="bedroom" data-i18n="ctrl_bedroom">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/></svg>
                             Спальня
                         </button>
@@ -306,11 +343,11 @@
                     <div class="constructor__ui" id="constructorUI">
                         <div class="constructor__badge">
                             <span class="constructor__badge-dot"></span>
-                            3D Режим активен
+                            <span data-i18n="badge_3d_active">3D Режим активен</span>
                         </div>
                         <div class="constructor__tools">
                             <div class="tool-group">
-                                <label>Материал:</label>
+                                <label data-i18n="lbl_material">Материал:</label>
                                 <div class="material-picker">
                                     <button class="material-btn active" data-color="#B8956A" style="background: #B8956A;" title="Дуб"></button>
                                     <button class="material-btn" data-color="#4A4A46" style="background: #4A4A46;" title="Венге"></button>
@@ -323,13 +360,13 @@
                     <div class="constructor__overlay-text" id="constructorInitialOverlay">
                         <div class="constructor__badge">
                             <span class="constructor__badge-dot"></span>
-                            Интерактивная демонстрация
+                            <span data-i18n="badge_demo">Интерактивная демонстрация</span>
                         </div>
-                        <h3 class="constructor__cta-title">Запустите 3D конструктор</h3>
-                        <p class="constructor__cta-desc">Выбирайте модели и меняйте материалы в реальном времени</p>
+                        <h3 class="constructor__cta-title" data-i18n="cta_constructor_title">Запустите 3D конструктор</h3>
+                        <p class="constructor__cta-desc" data-i18n="cta_constructor_desc">Выбирайте модели и меняйте материалы в реальном времени</p>
                         <button class="btn btn--glow" id="launchConstructor">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                            Запустить 360° просмотр
+                            <span data-i18n="btn_launch_360">Запустить 360° просмотр</span>
                         </button>
                     </div>
                 </div>
@@ -364,16 +401,16 @@
     <section class="portfolio" id="portfolio">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Портфолио</span>
-                <h2 class="section-title">Выполненные работы</h2>
-                <p class="section-subtitle">Реальные проекты наших клиентов в Буэнос-Айресе и по всей Аргентине</p>
+                <span class="section-tag" data-i18n="tag_portfolio">Портфолио</span>
+                <h2 class="section-title" data-i18n="title_portfolio">Выполненные работы</h2>
+                <p class="section-subtitle" data-i18n="subtitle_portfolio">Реальные проекты наших клиентов в Буэнос-Айресе и по всей Аргентине</p>
             </div>
             <div class="portfolio__filter">
-                <button class="portfolio__filter-btn portfolio__filter-btn--active" data-filter="all">Все проекты</button>
-                <button class="portfolio__filter-btn" data-filter="bedroom">Спальни</button>
-                <button class="portfolio__filter-btn" data-filter="kitchen">Кухни</button>
-                <button class="portfolio__filter-btn" data-filter="living">Гостиные</button>
-                <button class="portfolio__filter-btn" data-filter="office">Офисы</button>
+                <button class="portfolio__filter-btn portfolio__filter-btn--active" data-filter="all" data-i18n="filter_all">Все проекты</button>
+                <button class="portfolio__filter-btn" data-filter="bedroom" data-i18n="filter_bedroom">Спальни</button>
+                <button class="portfolio__filter-btn" data-filter="kitchen" data-i18n="filter_kitchen">Кухни</button>
+                <button class="portfolio__filter-btn" data-filter="living" data-i18n="filter_living">Гостиные</button>
+                <button class="portfolio__filter-btn" data-filter="office" data-i18n="filter_office">Офисы</button>
             </div>
             <div class="portfolio__grid" id="portfolioGrid">
                 <div class="portfolio__item" data-type="kitchen">
@@ -457,12 +494,12 @@
         <div class="container">
             <div class="about__grid">
                 <div class="about__info">
-                    <span class="section-tag">О компании</span>
-                    <h2 class="section-title">MUEBLES BA — ваш партнёр в создании идеального интерьера</h2>
-                    <p class="about__text">
+                    <span class="section-tag" data-i18n="tag_about">О компании</span>
+                    <h2 class="section-title" data-i18n="title_about">MUEBLES BA — ваш партнёр в создании идеального интерьера</h2>
+                    <p class="about__text" data-i18n="about_desc_1">
                         Мы — команда профессиональных дизайнеров и мастеров с более чем 12-летним опытом производства мебели. Наше производство расположено в Буэнос-Айресе, что позволяет контролировать каждый этап — от проекта до установки.
                     </p>
-                    <p class="about__text">
+                    <p class="about__text" data-i18n="about_desc_2">
                         Используем только сертифицированные материалы европейского и аргентинского производства. Каждый проект проходит трёхступенчатый контроль качества.
                     </p>
                     <div class="about__badges">
@@ -512,9 +549,9 @@
     <section class="guarantees" id="guarantees">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Надёжность</span>
-                <h2 class="section-title">Наши гарантии</h2>
-                <p class="section-subtitle">Мы уверены в качестве и готовы подкрепить это реальными обязательствами</p>
+                <span class="section-tag" data-i18n="tag_guarantees">Надёжность</span>
+                <h2 class="section-title" data-i18n="title_guarantees">Наши гарантии</h2>
+                <p class="section-subtitle" data-i18n="subtitle_guarantees">Мы уверены в качестве и готовы подкрепить это реальными обязательствами</p>
             </div>
             <div class="guarantees__grid">
                 <div class="guarantee-card" id="guarantee1">
@@ -522,8 +559,8 @@
                     <div class="guarantee-card__icon">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <h3 class="guarantee-card__title">Гарантия 5 лет</h3>
-                    <p class="guarantee-card__text">Полная гарантия на все изделия, включая фурнитуру и покрытия. Бесплатный выезд мастера в гарантийный период.</p>
+                    <h3 class="guarantee-card__title" data-i18n="guard_1_title">Гарантия 5 лет</h3>
+                    <p class="guarantee-card__text" data-i18n="guard_1_desc">Полная гарантия на все изделия, включая фурнитуру и покрытия. Бесплатный выезд мастера в гарантийный период.</p>
                 </div>
                 <div class="guarantee-card" id="guarantee2">
                     <div class="guarantee-card__number">02</div>
@@ -558,9 +595,9 @@
         <div class="container">
             <div class="contacts__grid">
                 <div class="contacts__info">
-                    <span class="section-tag section-tag--light">Контакты</span>
-                    <h2 class="section-title section-title--light">Свяжитесь с нами</h2>
-                    <p class="contacts__text">Расскажите нам о вашем проекте — мы подготовим бесплатный расчёт и 3D-визуализацию в течение 48 часов.</p>
+                    <span class="section-tag section-tag--light" data-i18n="tag_contacts">Контакты</span>
+                    <h2 class="section-title section-title--light" data-i18n="title_contacts">Свяжитесь с нами</h2>
+                    <p class="contacts__text" data-i18n="contacts_intro">Расскажите нам о вашем проекте — мы подготовим бесплатный расчёт и 3D-визуализацию в течение 48 часов.</p>
                     <div class="contacts__details">
                         <div class="contacts__detail">
                             <div class="contacts__detail-icon">
@@ -613,18 +650,18 @@
                 </div>
                 <div class="contacts__form-wrap">
                     <form class="contacts__form" id="contactForm">
-                        <h3 class="contacts__form-title">Бесплатная консультация</h3>
+                        <h3 class="contacts__form-title" data-i18n="form_title">Бесплатная консультация</h3>
                         <div class="contacts__form-group">
                             <input type="text" id="contactName" class="contacts__input" placeholder=" " required>
-                            <label for="contactName" class="contacts__label">Ваше имя</label>
+                            <label for="contactName" class="contacts__label" data-i18n="form_name">Ваше имя</label>
                         </div>
                         <div class="contacts__form-group">
                             <input type="tel" id="contactPhone" class="contacts__input" placeholder=" " required>
-                            <label for="contactPhone" class="contacts__label">Телефон</label>
+                            <label for="contactPhone" class="contacts__label" data-i18n="form_phone">Телефон</label>
                         </div>
                         <div class="contacts__form-group">
                             <input type="email" id="contactEmail" class="contacts__input" placeholder=" ">
-                            <label for="contactEmail" class="contacts__label">E-mail</label>
+                            <label for="contactEmail" class="contacts__label" data-i18n="form_email">E-mail</label>
                         </div>
                         <div class="contacts__form-group">
                             <select id="contactCategory" class="contacts__input contacts__select">
@@ -642,7 +679,7 @@
                             <label for="contactMessage" class="contacts__label">Расскажите о проекте</label>
                         </div>
                         <button type="submit" class="btn btn--primary btn--full" id="contactSubmit">
-                            Отправить заявку
+                            <span data-i18n="btn_send">Отправить заявку</span>
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                         </button>
                     </form>
@@ -698,6 +735,10 @@
             <div class="footer__bottom">
                 <p class="footer__copy">&copy; 2014–2026 MUEBLES BA. Все права защищены.</p>
                 <div class="footer__bottom-links">
+                    <button class="footer__admin-btn" id="adminLoginBtn" title="Вход в админ-панель">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        Админ-панель
+                    </button>
                     <a href="#">Политика конфиденциальности</a>
                     <a href="#">Условия использования</a>
                 </div>
@@ -714,6 +755,100 @@
             </button>
             <div class="modal__body" id="modalBody">
                 <!-- Dynamic Content Here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== ADMIN PANEL SYSTEM ====== -->
+    <div class="admin-modal" id="adminAuthModal">
+        <div class="admin-modal__overlay" id="adminAuthOverlay"></div>
+        <div class="admin-modal__content admin-modal__content--small">
+            <button class="admin-modal__close" id="adminAuthClose">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="admin-auth">
+                <h3 class="admin-auth__title">Вход в панель управления</h3>
+                <input type="password" id="adminPassword" class="admin-auth__input" placeholder="Введите пароль">
+                <button id="adminLoginSubmit" class="btn btn--primary btn--full">Войти</button>
+                <p id="adminAuthError" class="admin-auth__error" style="color: #ff4d4f; font-size: 14px; margin-top: 10px; display: none; text-align: center;">Неверный пароль</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="admin-modal" id="adminDashboardModal">
+        <div class="admin-modal__overlay" id="adminDashboardOverlay"></div>
+        <div class="admin-modal__content admin-modal__content--large">
+            <button class="admin-modal__close" id="adminDashboardClose">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="admin-dashboard">
+                <div class="admin-dashboard__header">
+                    <h2 class="admin-dashboard__title">Управление товарами</h2>
+                    <button id="adminLogoutBtn" class="btn btn--outline" style="padding: 8px 16px;">Выйти</button>
+                </div>
+                
+                <div class="admin-dashboard__layout">
+                    <div class="admin-dashboard__sidebar">
+                        <h4 class="admin-dashboard__subtitle" id="adminFormTitle">Добавить товар</h4>
+                        <form id="adminProductForm" class="admin-form">
+                            <input type="hidden" id="adminProductId">
+                            <div class="admin-form__group">
+                                <label>Категория</label>
+                                <select id="adminProductCategory" required class="admin-auth__input">
+                                    <option value="bedroom">Спальные гарнитуры</option>
+                                    <option value="wardrobe">Гардеробные</option>
+                                    <option value="kitchen">Кухонные гарнитуры</option>
+                                    <option value="living">Гостиные</option>
+                                    <option value="hallway">Прихожие</option>
+                                    <option value="office">Офисы</option>
+                                </select>
+                            </div>
+                            <div class="admin-form__group">
+                                <label>Название</label>
+                                <input type="text" id="adminProductName" required class="admin-auth__input" placeholder="Например: Спальня Aurora">
+                            </div>
+                            <div class="admin-form__group">
+                                <label>Цена ($)</label>
+                                <input type="number" id="adminProductPrice" required class="admin-auth__input" placeholder="Например: 1500">
+                            </div>
+                            <div class="admin-form__group">
+                                <label>Фотография</label>
+                                <div style="display: flex; gap: 10px; margin-bottom: 5px;">
+                                    <input type="text" id="adminProductPhotoUrl" class="admin-auth__input" placeholder="URL картинки (http...)">
+                                </div>
+                                <div style="font-size: 12px; color: var(--color-text-muted); margin-bottom: 5px; text-align: center;">ИЛИ</div>
+                                <input type="file" id="adminProductPhotoFile" accept="image/*" class="admin-auth__input" style="padding: 10px;">
+                                <div id="adminProductPhotoPreview" class="admin-photo-preview" style="display: none; margin-top: 10px;"></div>
+                            </div>
+                            <div class="admin-form__group">
+                                <label>Описание</label>
+                                <textarea id="adminProductDesc" required class="admin-auth__input" placeholder="Короткое описание..." rows="3"></textarea>
+                            </div>
+                            <div style="display: flex; gap: 10px;">
+                                <button type="submit" class="btn btn--primary" style="flex: 1;" id="adminSubmitBtn">Добавить</button>
+                                <button type="button" class="btn btn--outline" style="display: none;" id="adminCancelEditBtn">Отмена</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="admin-dashboard__main">
+                        <div class="admin-dashboard__filters">
+                            <label style="color: var(--color-text); font-weight: 500;">Категория: </label>
+                            <select id="adminViewCategory" class="admin-auth__input" style="width: auto; display: inline-block; margin-left: 10px; padding: 6px 12px;">
+                                <option value="all">Все категории</option>
+                                <option value="bedroom">Спальные гарнитуры</option>
+                                <option value="wardrobe">Гардеробные</option>
+                                <option value="kitchen">Кухонные гарнитуры</option>
+                                <option value="living">Гостиные</option>
+                                <option value="hallway">Прихожие</option>
+                                <option value="office">Офисы</option>
+                            </select>
+                        </div>
+                        <div class="admin-dashboard__products" id="adminProductsList">
+                            <!-- Products will be generated here -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
