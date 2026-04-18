@@ -2459,3 +2459,38 @@ ul, ol {
         height: 28px;
     }
 }
+/* ==== SOCIAL BADGES ==== */
+.social-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    color: white;
+}
+.social-badge svg {
+    fill: currentColor;
+    transition: transform 0.3s ease;
+}
+.social-badge--whatsapp {
+    background: #25D366;
+}
+.social-badge--whatsapp:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+}
+.social-badge--instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+.social-badge--instagram:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(214, 36, 159, 0.4);
+}
+.header__socials {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}

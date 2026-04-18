@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'pmeta_6': 'San Telmo • 20 m²',
             // — About —
             'tag_about': 'Sobre nosotros',
-            'title_about': 'MUEBLES BA — tu socio en la creación del interior ideal',
+            'title_about': 'Onyx Muebles — tu socio en la creación del interior ideal',
             'about_desc_1': 'Somos un equipo de diseñadores y artesanos profesionales con más de 12 años de experiencia en la fabricación de muebles. Nuestra producción está en Buenos Aires, lo que nos permite controlar cada etapa — desde el diseño hasta la instalación.',
             'about_desc_2': 'Usamos solo materiales certificados de producción europea y argentina. Cada proyecto pasa por un control de calidad de tres niveles.',
             'badge_warranty': 'Garantía 5 años',
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'footer_measure': 'Medición gratuita',
             'footer_delivery': 'Entrega e instalación',
             'footer_installments': 'Cuotas',
-            'footer_copy': '© 2014–2026 MUEBLES BA. Todos los derechos reservados.',
+            'footer_copy': '© 2014–2026 Onyx Muebles. Todos los derechos reservados.',
             'footer_admin': 'Panel admin',
             'footer_privacy': 'Política de privacidad',
             'footer_terms': 'Términos de uso'
@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'pmeta_6': 'San Telmo • 20 m²',
             // — About —
             'tag_about': 'About Us',
-            'title_about': 'MUEBLES BA — your partner in creating the ideal interior',
+            'title_about': 'Onyx Muebles — your partner in creating the ideal interior',
             'about_desc_1': 'We are a team of professional designers and craftsmen with over 12 years of experience in furniture manufacturing. Our production is based in Buenos Aires, allowing us to control every stage — from design to installation.',
             'about_desc_2': 'We use only certified materials from European and Argentine production. Every project goes through a three-stage quality control.',
             'badge_warranty': '5-Year Warranty',
@@ -333,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'footer_measure': 'Free Measurement',
             'footer_delivery': 'Delivery & Installation',
             'footer_installments': 'Installments',
-            'footer_copy': '© 2014–2026 MUEBLES BA. All rights reserved.',
+            'footer_copy': '© 2014–2026 Onyx Muebles. All rights reserved.',
             'footer_admin': 'Admin Panel',
             'footer_privacy': 'Privacy Policy',
             'footer_terms': 'Terms of Use'
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'pmeta_6': 'Сан-Тельмо • 20 м²',
             // — About —
             'tag_about': 'О компании',
-            'title_about': 'MUEBLES BA — ваш партнёр в создании идеального интерьера',
+            'title_about': 'Onyx Muebles — ваш партнёр в создании идеального интерьера',
             'about_desc_1': 'Мы — команда профессиональных дизайнеров и мастеров с более чем 12-летним опытом производства мебели. Наше производство расположено в Буэнос-Айресе, что позволяет контролировать каждый этап — от проекта до установки.',
             'about_desc_2': 'Используем только сертифицированные материалы европейского и аргентинского производства. Каждый проект проходит трёхступенчатый контроль качества.',
             'badge_warranty': 'Гарантия 5 лет',
@@ -499,7 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'footer_measure': 'Бесплатный замер',
             'footer_delivery': 'Доставка и монтаж',
             'footer_installments': 'Рассрочка',
-            'footer_copy': '© 2014–2026 MUEBLES BA. Все права защищены.',
+            'footer_copy': '© 2014–2026 Onyx Muebles. Все права защищены.',
             'footer_admin': 'Админ-панель',
             'footer_privacy': 'Политика конфиденциальности',
             'footer_terms': 'Условия использования'
@@ -526,9 +526,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update page title
         const pageTitles = {
-            'es': 'MUEBLES BA — Muebles Premium en Argentina',
-            'en': 'MUEBLES BA — Premium Furniture in Argentina',
-            'ru': 'MUEBLES BA — Мебель Премиум-Класса | Аргентина'
+            'es': 'Onyx Muebles — Muebles Premium en Argentina',
+            'en': 'Onyx Muebles — Premium Furniture in Argentina',
+            'ru': 'Onyx Muebles — Мебель Премиум-Класса | Аргентина'
         };
         document.title = pageTitles[lang] || pageTitles['ru'];
 
@@ -581,7 +581,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initialize Language
-    const savedLang = localStorage.getItem('preferred_lang') || 'ru';
+    const savedLang = localStorage.getItem('preferred_lang') || 'es';
     setLanguage(savedLang);
 
     // ====== SIDE MENU ======
