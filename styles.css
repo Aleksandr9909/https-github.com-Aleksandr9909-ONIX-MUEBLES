@@ -416,13 +416,14 @@ ul, ol {
     bottom: 0;
     width: 380px;
     max-width: 90vw;
-    background: var(--color-surface);
+    background: var(--color-bg-dark);
+    color: var(--color-text-light);
     z-index: 201;
     transform: translateX(-102%);
     transition: transform var(--duration-slow) var(--ease-out);
     display: flex;
     flex-direction: column;
-    box-shadow: var(--shadow-xl);
+    box-shadow: 20px 0 60px rgba(0,0,0,0.5);
 }
 
 .side-menu.active {
@@ -434,7 +435,7 @@ ul, ol {
     align-items: center;
     justify-content: space-between;
     padding: var(--space-xl) var(--space-2xl);
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border-light);
 }
 
 .side-menu__title {
@@ -451,12 +452,12 @@ ul, ol {
     height: 40px;
     border-radius: var(--radius-md);
     transition: all var(--duration-fast) ease;
-    color: var(--color-text-secondary);
+    color: var(--color-text-light-secondary);
 }
 
 .side-menu__close:hover {
-    background: var(--color-bg-alt);
-    color: var(--color-text);
+    background: rgba(255,255,255,0.05);
+    color: var(--color-text-light);
 }
 
 .side-menu__list {
@@ -479,12 +480,12 @@ ul, ol {
 }
 
 .side-menu__link:hover {
-    background: var(--color-primary-bg);
+    background: rgba(255,255,255,0.03);
 }
 
 .side-menu__link:hover .side-menu__icon {
-    color: var(--color-primary);
-    background: rgba(184, 149, 106, 0.15);
+    color: var(--color-primary-light);
+    background: rgba(184, 149, 106, 0.2);
 }
 
 .side-menu__link:hover .side-menu__arrow {
@@ -500,8 +501,8 @@ ul, ol {
     width: 44px;
     height: 44px;
     border-radius: var(--radius-md);
-    background: var(--color-bg-alt);
-    color: var(--color-text-secondary);
+    background: rgba(255,255,255,0.03);
+    color: var(--color-primary-light);
     flex-shrink: 0;
     transition: all var(--duration-fast) ease;
 }
@@ -514,14 +515,14 @@ ul, ol {
     display: block;
     font-weight: 600;
     font-size: var(--text-sm);
-    color: var(--color-text);
+    color: var(--color-text-light);
     margin-bottom: 2px;
 }
 
 .side-menu__desc {
     display: block;
     font-size: var(--text-xs);
-    color: var(--color-text-muted);
+    color: var(--color-text-light-secondary);
 }
 
 .side-menu__arrow {
@@ -533,7 +534,7 @@ ul, ol {
 
 .side-menu__footer {
     padding: var(--space-xl) var(--space-2xl);
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border-light);
 }
 
 .side-menu__contact {
