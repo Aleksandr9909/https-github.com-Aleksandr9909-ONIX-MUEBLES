@@ -827,13 +827,27 @@
                                 <input type="number" id="adminProductPrice" required class="admin-auth__input" placeholder="Например: 1500">
                             </div>
                             <div class="admin-form__group">
-                                <label>Фотография</label>
+                                <label>Главная фотография</label>
                                 <div style="display: flex; gap: 10px; margin-bottom: 5px;">
                                     <input type="text" id="adminProductPhotoUrl" class="admin-auth__input" placeholder="URL картинки (http...)">
                                 </div>
                                 <div style="font-size: 12px; color: var(--color-text-muted); margin-bottom: 5px; text-align: center;">ИЛИ</div>
                                 <input type="file" id="adminProductPhotoFile" accept="image/*" class="admin-auth__input" style="padding: 10px;">
                                 <div id="adminProductPhotoPreview" class="admin-photo-preview" style="display: none; margin-top: 10px;"></div>
+                            </div>
+                            <div class="admin-form__group">
+                                <label>Дополнительные фото (до 9 шт.)</label>
+                                <div style="display: flex; gap: 10px; margin-bottom: 5px; align-items: center;">
+                                    <input type="file" id="adminProductAdditionalPhotosFile" accept="image/*" multiple class="admin-auth__input" style="display: none;">
+                                    <button type="button" class="btn btn--outline" style="flex: 1; padding: 10px; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="document.getElementById('adminProductAdditionalPhotosFile').click()">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                        Добавить фото
+                                    </button>
+                                    <button type="button" id="adminClearAdditionalPhotosBtn" class="btn btn--outline" style="padding: 10px;" title="Очистить дополнительные фото">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                    </button>
+                                </div>
+                                <div id="adminProductAdditionalPhotosPreview" style="display: none; margin-top: 10px; grid-template-columns: repeat(3, 1fr); gap: 10px;"></div>
                             </div>
                             <div class="admin-form__group">
                                 <label>Описание</label>

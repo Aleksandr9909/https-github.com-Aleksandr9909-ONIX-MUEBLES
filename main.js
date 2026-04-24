@@ -1091,11 +1091,13 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
+    window.openModal = openModal;
 
     function closeModal() {
         modal.classList.remove('active');
         document.body.style.overflow = '';
     }
+    window.closeModal = closeModal;
 
     if (modalClose) modalClose.addEventListener('click', closeModal);
     if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
@@ -1260,6 +1262,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminViewCategory = document.getElementById('adminViewCategory');
 
     let currentPhotoData = '';
+    let currentAdditionalPhotosData = [];
+
+    const adminProductAdditionalPhotosFile = document.getElementById('adminProductAdditionalPhotosFile');
+    const adminProductAdditionalPhotosPreview = document.getElementById('adminProductAdditionalPhotosPreview');
+    const adminClearAdditionalPhotosBtn = document.getElementById('adminClearAdditionalPhotosBtn');
 
     // Handle File Upload (FileReader)
     if (adminProductPhotoFile) {
@@ -1295,6 +1302,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    if (adminProductAdditionalPhotosFile) {
+        adminProductAdditionalPhotosFile.addEventListener('change', function() {
+            const files = Array.from(this.files);
+            
+            if (files.length > 0) {
+                adminProductAdditionalPhotosPreview.style.display = 'grid';
+                files.forEach((file) => {
+                    if (currentAdditionalPhotosData.length >= 9) return;
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        if (currentAdditionalPhotosData.length >= 9) return;
+                        
+                        currentAdditionalPhotosData.push(e.target.result);
+                        const imgDiv = document.createElement('div');
+                        imgDiv.style.backgroundImage = `url('${e.target.result}')`;
+                        imgDiv.style.backgroundSize = 'cover';
+                        imgDiv.style.backgroundPosition = 'center';
+                        imgDiv.style.height = '60px';
+                        imgDiv.style.borderRadius = 'var(--radius-sm)';
+                        adminProductAdditionalPhotosPreview.appendChild(imgDiv);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+            
+            this.value = '';
+        });
+    }
+
+    if (adminClearAdditionalPhotosBtn) {
+        adminClearAdditionalPhotosBtn.addEventListener('click', function() {
+            currentAdditionalPhotosData = [];
+            if (adminProductAdditionalPhotosFile) adminProductAdditionalPhotosFile.value = '';
+            if (adminProductAdditionalPhotosPreview) {
+                adminProductAdditionalPhotosPreview.innerHTML = '';
+                adminProductAdditionalPhotosPreview.style.display = 'none';
+            }
+        });
+    }
+
     function saveProducts() {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
         renderAdminProducts();
@@ -1305,9 +1353,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if(adminProductForm) adminProductForm.reset();
         if(adminProductId) adminProductId.value = '';
         currentPhotoData = '';
+        currentAdditionalPhotosData = [];
         if(adminProductPhotoPreview) {
             adminProductPhotoPreview.style.backgroundImage = 'none';
             adminProductPhotoPreview.style.display = 'none';
+        }
+        if(adminProductAdditionalPhotosPreview) {
+            adminProductAdditionalPhotosPreview.innerHTML = '';
+            adminProductAdditionalPhotosPreview.style.display = 'none';
         }
         if(adminFormTitle) adminFormTitle.textContent = 'Добавить товар';
         if(adminSubmitBtn) adminSubmitBtn.textContent = 'Добавить';
@@ -1329,7 +1382,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: adminProductName.value.trim(),
                 price: adminProductPrice.value,
                 desc: adminProductDesc.value.trim(),
-                photo: currentPhotoData
+                photo: currentPhotoData,
+                additionalPhotos: currentAdditionalPhotosData.filter(Boolean)
             };
 
             if (!product.photo) {
@@ -1365,16 +1419,39 @@ document.addEventListener('DOMContentLoaded', () => {
         adminProductDesc.value = product.desc;
         
         currentPhotoData = product.photo;
+        currentAdditionalPhotosData = product.additionalPhotos || [];
         
         // Is it base64 or URL?
-        if (product.photo.startsWith('data:image')) {
+        if (product.photo && product.photo.startsWith('data:image')) {
             adminProductPhotoUrl.value = '';
         } else {
-            adminProductPhotoUrl.value = product.photo;
+            adminProductPhotoUrl.value = product.photo || '';
         }
         
-        adminProductPhotoPreview.style.backgroundImage = `url('${product.photo}')`;
-        adminProductPhotoPreview.style.display = 'block';
+        if (product.photo) {
+            adminProductPhotoPreview.style.backgroundImage = `url('${product.photo}')`;
+            adminProductPhotoPreview.style.display = 'block';
+        } else {
+            adminProductPhotoPreview.style.display = 'none';
+        }
+
+        if (adminProductAdditionalPhotosPreview) {
+            adminProductAdditionalPhotosPreview.innerHTML = '';
+            if (currentAdditionalPhotosData.length > 0) {
+                adminProductAdditionalPhotosPreview.style.display = 'grid';
+                currentAdditionalPhotosData.forEach(photoData => {
+                    const imgDiv = document.createElement('div');
+                    imgDiv.style.backgroundImage = `url('${photoData}')`;
+                    imgDiv.style.backgroundSize = 'cover';
+                    imgDiv.style.backgroundPosition = 'center';
+                    imgDiv.style.height = '60px';
+                    imgDiv.style.borderRadius = 'var(--radius-sm)';
+                    adminProductAdditionalPhotosPreview.appendChild(imgDiv);
+                });
+            } else {
+                adminProductAdditionalPhotosPreview.style.display = 'none';
+            }
+        }
         
         adminFormTitle.textContent = 'Редактировать товар';
         adminSubmitBtn.textContent = 'Сохранить';
@@ -1434,6 +1511,116 @@ document.addEventListener('DOMContentLoaded', () => {
         adminViewCategory.addEventListener('change', renderAdminProducts);
     }
 
+    // ====== CART LOGIC ======
+    let cart = JSON.parse(localStorage.getItem('muebles_cart')) || [];
+    const cartBadge = document.getElementById('cartBadge');
+
+    function updateCartBadge() {
+        if (cartBadge) {
+            cartBadge.textContent = cart.length;
+        }
+    }
+
+    window.addToCart = function(id) {
+        const product = products.find(p => p.id === id);
+        if (product) {
+            cart.push(product);
+            localStorage.setItem('muebles_cart', JSON.stringify(cart));
+            updateCartBadge();
+            
+            const toast = document.createElement('div');
+            toast.textContent = 'Товар добавлен в корзину!';
+            toast.style.position = 'fixed';
+            toast.style.bottom = '20px';
+            toast.style.right = '20px';
+            toast.style.background = 'var(--color-primary)';
+            toast.style.color = '#fff';
+            toast.style.padding = '12px 24px';
+            toast.style.borderRadius = 'var(--radius-md)';
+            toast.style.boxShadow = 'var(--shadow-lg)';
+            toast.style.zIndex = '10000';
+            toast.style.fontFamily = 'var(--font-primary)';
+            toast.style.fontWeight = '500';
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(20px)';
+            toast.style.transition = 'all 0.3s ease';
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateY(0)';
+            }, 10);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(20px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    };
+
+    updateCartBadge();
+
+    window.removeFromCart = function(index) {
+        cart.splice(index, 1);
+        localStorage.setItem('muebles_cart', JSON.stringify(cart));
+        updateCartBadge();
+        window.openCart(); // refresh modal
+    };
+
+    window.openCart = function() {
+        if (cart.length === 0) {
+            window.openModal(`
+                <h3 style="margin-bottom: 20px;">Ваша корзина</h3>
+                <div class="cart-modal__empty">
+                    В корзине пока ничего нет
+                </div>
+                <button class="btn btn--outline btn--full" onclick="window.closeModal()">Продолжить покупки</button>
+            `);
+            return;
+        }
+
+        let total = 0;
+        const itemsHtml = cart.map((item, index) => {
+            const price = parseFloat(item.price) || 0;
+            total += price;
+            return `
+                <div class="cart-item">
+                    <div class="cart-item__img" style="background-image: url('${item.photo}')"></div>
+                    <div class="cart-item__info">
+                        <div class="cart-item__title">${item.name}</div>
+                        <div class="cart-item__price">$${price}</div>
+                    </div>
+                    <button class="cart-item__remove" onclick="window.removeFromCart(${index})" title="Удалить">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                </div>
+            `;
+        }).join('');
+
+        window.openModal(`
+            <h3 style="margin-bottom: 20px;">Ваша корзина</h3>
+            <div class="cart-modal">
+                <div class="cart-modal__items">
+                    ${itemsHtml}
+                </div>
+                <div class="cart-modal__footer">
+                    <div class="cart-modal__total">
+                        <span>Итого:</span>
+                        <span>$${total}</span>
+                    </div>
+                    <button class="btn btn--primary btn--full" onclick="window.closeModal(); window.location.href='#contacts'">Оформить заказ</button>
+                </div>
+            </div>
+        `);
+    };
+
+    const cartOpenBtn = document.getElementById('cartOpenBtn');
+    if (cartOpenBtn) {
+        cartOpenBtn.addEventListener('click', window.openCart);
+    }
+
     // ====== RENDERING DYNAMIC CATALOG (PUBLIC) ======
     const catalogGrid = document.getElementById('catalogGrid');
     const catalogSection = document.getElementById('catalog-products');
@@ -1469,15 +1656,16 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         catalogGrid.innerHTML = filteredProducts.map(p => `
-            <div class="catalog-product-card reveal visible">
+            <div class="catalog-product-card reveal visible" onclick="window.openProductModal('${p.id}')" style="cursor: pointer;">
                 <div class="catalog-product-card__image" style="background-image: url('${p.photo}')"></div>
                 <div class="catalog-product-card__content">
                     <span class="catalog-product-card__category">${categoryNames[p.category]}</span>
                     <h3 class="catalog-product-card__title">${p.name}</h3>
                     <div class="catalog-product-card__price">$${p.price}</div>
                     <p class="catalog-product-card__desc">${p.desc}</p>
-                    <div class="catalog-product-card__actions">
-                        <button class="btn btn--outline btn--full" onclick="window.location.href='#contacts'" style="padding: 10px;">Заказать</button>
+                    <div class="catalog-product-card__actions" style="display: flex; gap: 8px; flex-direction: column;">
+                        <button class="btn btn--primary btn--full" onclick="event.stopPropagation(); window.addToCart('${p.id}')" style="padding: 10px;">В корзину</button>
+                        <button class="btn btn--outline btn--full" onclick="event.stopPropagation(); window.location.href='#contacts'" style="padding: 10px;">Заказать проект</button>
                     </div>
                 </div>
             </div>
@@ -1499,5 +1687,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial render for public catalog
     renderPublicCatalog();
+
+    window.openProductModal = function(id) {
+        const product = products.find(p => p.id === id);
+        if (!product) return;
+
+        const categoryNames = {
+            'bedroom': 'Спальные гарнитуры',
+            'wardrobe': 'Гардеробные',
+            'kitchen': 'Кухонные гарнитуры',
+            'living': 'Гостиные',
+            'hallway': 'Прихожие',
+            'office': 'Офисы'
+        };
+
+        const allPhotos = [product.photo];
+        if (product.additionalPhotos && product.additionalPhotos.length > 0) {
+            allPhotos.push(...product.additionalPhotos);
+        }
+
+        const thumbnailsHtml = allPhotos.map((photo, index) => `
+            <div class="product-modal__thumb ${index === 0 ? 'active' : ''}" 
+                 style="background-image: url('${photo}')" 
+                 onclick="
+                    document.getElementById('productModalMainImg').style.backgroundImage = 'url(\\'${photo}\\')';
+                    document.querySelectorAll('.product-modal__thumb').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                 ">
+            </div>
+        `).join('');
+
+        const content = `
+            <div class="product-modal">
+                <div class="product-modal__gallery">
+                    <div class="product-modal__main-img" id="productModalMainImg" style="background-image: url('${product.photo}')"></div>
+                    ${allPhotos.length > 1 ? `<div class="product-modal__thumbnails">${thumbnailsHtml}</div>` : ''}
+                </div>
+                <div class="product-modal__info">
+                    <div class="product-modal__category">${categoryNames[product.category]}</div>
+                    <h2 class="product-modal__title">${product.name}</h2>
+                    <div class="product-modal__price">$${product.price}</div>
+                    <p class="product-modal__desc">${product.desc}</p>
+                    <div style="display: flex; gap: 10px; margin-top: auto;">
+                        <button class="btn btn--primary btn--full" onclick="window.addToCart('${product.id}')">В корзину</button>
+                        <button class="btn btn--outline btn--full" onclick="window.closeModal(); window.location.href='#contacts'">Заказать проект</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        openModal(content);
+    };
 
 });
