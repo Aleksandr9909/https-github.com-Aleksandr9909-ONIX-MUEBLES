@@ -170,7 +170,17 @@ document.addEventListener('DOMContentLoaded', () => {
             'footer_copy': '© 2014–2026 Onyx Muebles. Todos los derechos reservados.',
             'footer_admin': 'Panel admin',
             'footer_privacy': 'Política de privacidad',
-            'footer_terms': 'Términos de uso'
+            'footer_terms': 'Términos de uso',
+            'filter_cat_all': 'Todos',
+            'filter_cat_bedroom': 'Dormitorios',
+            'filter_cat_wardrobe': 'Vestidores',
+            'filter_cat_kitchen': 'Cocinas',
+            'filter_cat_living': 'Living',
+            'filter_cat_hallway': 'Recibidores',
+            'filter_cat_office': 'Oficinas',
+            'btn_add_to_cart': 'Agregar al carrito',
+            'btn_order_project': 'Solicitar proyecto',
+            'empty_category': 'Todavía no hay productos en esta categoría.'
         },
         'en': {
             // — Nav —
@@ -336,7 +346,17 @@ document.addEventListener('DOMContentLoaded', () => {
             'footer_copy': '© 2014–2026 Onyx Muebles. All rights reserved.',
             'footer_admin': 'Admin Panel',
             'footer_privacy': 'Privacy Policy',
-            'footer_terms': 'Terms of Use'
+            'footer_terms': 'Terms of Use',
+            'filter_cat_all': 'All',
+            'filter_cat_bedroom': 'Bedrooms',
+            'filter_cat_wardrobe': 'Wardrobes',
+            'filter_cat_kitchen': 'Kitchens',
+            'filter_cat_living': 'Living Rooms',
+            'filter_cat_hallway': 'Hallways',
+            'filter_cat_office': 'Offices',
+            'btn_add_to_cart': 'Add to Cart',
+            'btn_order_project': 'Order Project',
+            'empty_category': 'There are no products in this category yet.'
         },
         'ru': {
             // — Nav —
@@ -502,9 +522,35 @@ document.addEventListener('DOMContentLoaded', () => {
             'footer_copy': '© 2014–2026 Onyx Muebles. Все права защищены.',
             'footer_admin': 'Админ-панель',
             'footer_privacy': 'Политика конфиденциальности',
-            'footer_terms': 'Условия использования'
+            'footer_terms': 'Условия использования',
+            'filter_cat_all': 'Все',
+            'filter_cat_bedroom': 'Спальни',
+            'filter_cat_wardrobe': 'Гардеробные',
+            'filter_cat_kitchen': 'Кухни',
+            'filter_cat_living': 'Гостиные',
+            'filter_cat_hallway': 'Прихожие',
+            'filter_cat_office': 'Офисы',
+            'btn_add_to_cart': 'В корзину',
+            'btn_order_project': 'Заказать проект',
+            'empty_category': 'Товаров в этой категории пока нет.'
         }
     };
+
+    // ====== PRODUCT NAME/DESC TRANSLATION MAP ======
+    const productTranslations = {
+        'КУХНЯ ГОЛДЕН ГУСЬ': { 'es': 'COCINA GOLDEN GOOSE', 'en': 'GOLDEN GOOSE KITCHEN' },
+        'Хорошая кухня, огонь': { 'es': 'Buena cocina, espectacular', 'en': 'Great kitchen, amazing' },
+        'Спальня "Аврора"': { 'es': 'Dormitorio "Aurora"', 'en': 'Bedroom "Aurora"' },
+        'Брилиантовая кухня "Золотой гусь"': { 'es': 'Cocina brillante "Ganso Dorado"', 'en': 'Brilliant kitchen "Golden Goose"' }
+    };
+
+    function translateProduct(text, lang) {
+        if (lang === 'ru') return text;
+        if (productTranslations[text] && productTranslations[text][lang]) {
+            return productTranslations[text][lang];
+        }
+        return text;
+    }
 
     // ====== LANGUAGE SWITCHER LOGIC ======
     const langBtn = document.getElementById('langBtn');
@@ -553,6 +599,15 @@ document.addEventListener('DOMContentLoaded', () => {
         langOptions.forEach(opt => {
             opt.classList.toggle('active', opt.dataset.lang === lang);
         });
+
+        // Re-render dynamic catalog with new language
+        try {
+            const activeBtn = document.querySelector('#catalogFilter .portfolio__filter-btn--active');
+            const currentFilter = activeBtn ? (activeBtn.dataset.filter || 'all') : 'all';
+            renderPublicCatalog(currentFilter);
+        } catch (e) {
+            // Catalog not yet initialized, will render later
+        }
     }
 
     if (langBtn) {
@@ -1639,33 +1694,39 @@ document.addEventListener('DOMContentLoaded', () => {
         const filteredProducts = filter === 'all' 
             ? products 
             : products.filter(p => p.category === filter);
-            
+
+        const lang = document.documentElement.lang || 'es';
+        const t = translations[lang] || translations['es'];
+
         // Setup empty state check if needed
         if (filteredProducts.length === 0 && filter !== 'all') {
-             catalogGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--color-text-muted);">Товаров в этой категории пока нет.</div>';
+             catalogGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--color-text-muted);">${t['empty_category'] || 'Товаров в этой категории пока нет.'}</div>`;
              return;
         }
 
         const categoryNames = {
-            'bedroom': 'Спальные гарнитуры',
-            'wardrobe': 'Гардеробные',
-            'kitchen': 'Кухонные гарнитуры',
-            'living': 'Гостиные',
-            'hallway': 'Прихожие',
-            'office': 'Офисы'
+            'bedroom': t['cat_bedroom'] || 'Спальные гарнитуры',
+            'wardrobe': t['cat_wardrobe'] || 'Гардеробные',
+            'kitchen': t['cat_kitchen'] || 'Кухонные гарнитуры',
+            'living': t['cat_living'] || 'Гостиные',
+            'hallway': t['cat_hallway'] || 'Прихожие',
+            'office': t['cat_office'] || 'Офисы'
         };
+
+        const btnCart = t['btn_add_to_cart'] || 'В корзину';
+        const btnOrder = t['btn_order_project'] || 'Заказать проект';
 
         catalogGrid.innerHTML = filteredProducts.map(p => `
             <div class="catalog-product-card reveal visible" onclick="window.openProductModal('${p.id}')" style="cursor: pointer;">
                 <div class="catalog-product-card__image" style="background-image: url('${p.photo}')"></div>
                 <div class="catalog-product-card__content">
                     <span class="catalog-product-card__category">${categoryNames[p.category]}</span>
-                    <h3 class="catalog-product-card__title">${p.name}</h3>
+                    <h3 class="catalog-product-card__title">${translateProduct(p.name, lang)}</h3>
                     <div class="catalog-product-card__price">$${p.price}</div>
-                    <p class="catalog-product-card__desc">${p.desc}</p>
+                    <p class="catalog-product-card__desc">${translateProduct(p.desc, lang)}</p>
                     <div class="catalog-product-card__actions" style="display: flex; gap: 8px; flex-direction: column;">
-                        <button class="btn btn--primary btn--full" onclick="event.stopPropagation(); window.addToCart('${p.id}')" style="padding: 10px;">В корзину</button>
-                        <button class="btn btn--outline btn--full" onclick="event.stopPropagation(); window.location.href='#contacts'" style="padding: 10px;">Заказать проект</button>
+                        <button class="btn btn--primary btn--full" onclick="event.stopPropagation(); window.addToCart('${p.id}')" style="padding: 10px;">${btnCart}</button>
+                        <button class="btn btn--outline btn--full" onclick="event.stopPropagation(); window.location.href='#contacts'" style="padding: 10px;">${btnOrder}</button>
                     </div>
                 </div>
             </div>
@@ -1692,14 +1753,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const product = products.find(p => p.id === id);
         if (!product) return;
 
+        const lang = document.documentElement.lang || 'es';
+        const t = translations[lang] || translations['es'];
+
         const categoryNames = {
-            'bedroom': 'Спальные гарнитуры',
-            'wardrobe': 'Гардеробные',
-            'kitchen': 'Кухонные гарнитуры',
-            'living': 'Гостиные',
-            'hallway': 'Прихожие',
-            'office': 'Офисы'
+            'bedroom': t['cat_bedroom'] || 'Спальные гарнитуры',
+            'wardrobe': t['cat_wardrobe'] || 'Гардеробные',
+            'kitchen': t['cat_kitchen'] || 'Кухонные гарнитуры',
+            'living': t['cat_living'] || 'Гостиные',
+            'hallway': t['cat_hallway'] || 'Прихожие',
+            'office': t['cat_office'] || 'Офисы'
         };
+
+        const btnCart = t['btn_add_to_cart'] || 'В корзину';
+        const btnOrder = t['btn_order_project'] || 'Заказать проект';
 
         const allPhotos = [product.photo];
         if (product.additionalPhotos && product.additionalPhotos.length > 0) {
@@ -1725,12 +1792,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="product-modal__info">
                     <div class="product-modal__category">${categoryNames[product.category]}</div>
-                    <h2 class="product-modal__title">${product.name}</h2>
+                    <h2 class="product-modal__title">${translateProduct(product.name, lang)}</h2>
                     <div class="product-modal__price">$${product.price}</div>
-                    <p class="product-modal__desc">${product.desc}</p>
+                    <p class="product-modal__desc">${translateProduct(product.desc, lang)}</p>
                     <div style="display: flex; gap: 10px; margin-top: auto;">
-                        <button class="btn btn--primary btn--full" onclick="window.addToCart('${product.id}')">В корзину</button>
-                        <button class="btn btn--outline btn--full" onclick="window.closeModal(); window.location.href='#contacts'">Заказать проект</button>
+                        <button class="btn btn--primary btn--full" onclick="window.addToCart('${product.id}')">${btnCart}</button>
+                        <button class="btn btn--outline btn--full" onclick="window.closeModal(); window.location.href='#contacts'">${btnOrder}</button>
                     </div>
                 </div>
             </div>
