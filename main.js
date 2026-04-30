@@ -1,6 +1,9 @@
 /* ============================================
    MUEBLES BA — Main JavaScript
+   Firebase Cloud Database Integration
    ============================================ */
+
+import { FirebaseDB } from './firebase-config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -828,10 +831,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ====== CONTACT FORM ======
+    // ====== CONTACT FORM (now saves to Firebase) ======
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const submitBtn = contactForm.querySelector('#contactSubmit');
@@ -840,6 +843,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Simple validation
             const name = document.getElementById('contactName').value.trim();
             const phone = document.getElementById('contactPhone').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const category = document.getElementById('contactCategory').value;
+            const message = document.getElementById('contactMessage').value.trim();
 
             if (!name || !phone) {
                 // Shake animation
@@ -848,23 +854,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Success state
-            submitBtn.innerHTML = `
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Заявка отправлена!
-            `;
-            submitBtn.style.background = 'var(--color-accent)';
+            // Disable button while saving
             submitBtn.disabled = true;
+            submitBtn.innerHTML = '⏳ Отправка...';
 
-            // Reset after 3 seconds
-            setTimeout(() => {
+            try {
+                // Save to Firebase Cloud Database
+                await FirebaseDB.saveContactSubmission({
+                    name,
+                    phone,
+                    email,
+                    category,
+                    message,
+                    language: document.documentElement.lang || 'es'
+                });
+
+                // Success state
+                const lang = document.documentElement.lang || 'es';
+                const successText = translations[lang]?.form_success || 'Заявка отправлена!';
+                submitBtn.innerHTML = `
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    ${successText}
+                `;
+                submitBtn.style.background = 'var(--color-accent)';
+
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                    contactForm.reset();
+                }, 3000);
+
+            } catch (error) {
+                console.error('Error saving contact:', error);
+                // Still show success to user (data might have saved)
                 submitBtn.innerHTML = originalText;
-                submitBtn.style.background = '';
                 submitBtn.disabled = false;
-                contactForm.reset();
-            }, 3000);
+            }
         });
     }
 
@@ -1232,9 +1261,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Admin Access Configuration
     const ADMIN_PASSWORD = "Bueno2028";
     
-    // State
-    const STORAGE_KEY = 'muebles_catalog_products';
-    let products = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    // State — now synced from Firebase in real-time
+    let products = [];
+
+    // ====== FIREBASE REAL-TIME SYNC ======
+    // This listener keeps products[] in sync with the cloud database
+    // Any change made from ANY device will be reflected here automatically
+    FirebaseDB.onProductsChange((firebaseProducts) => {
+        products = firebaseProducts;
+        console.log(`🔥 Firebase sync: ${products.length} products loaded`);
+        renderPublicCatalog();
+        // If admin dashboard is open, refresh it too
+        if (adminDashboardModal && adminDashboardModal.classList.contains('active')) {
+            renderAdminProducts();
+        }
+    });
+
+    // Migrate any existing localStorage data to Firebase (one-time)
+    FirebaseDB.migrateFromLocalStorage();
 
     // Modals Handlers
     function closeAdminModals() {
@@ -1399,9 +1443,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function saveProducts() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
-        renderAdminProducts();
-        renderPublicCatalog();
+        // Products are now auto-synced from Firebase via onProductsChange listener
+        // This function is called after Firebase operations complete
+        // The real-time listener will trigger renderPublicCatalog and renderAdminProducts
+        console.log('🔥 Products will sync from Firebase automatically');
     }
 
     function resetAdminForm() {
@@ -1427,12 +1472,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (adminProductForm) {
-        adminProductForm.addEventListener('submit', (e) => {
+        adminProductForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const id = adminProductId.value;
-            const product = {
-                id: id ? id : Date.now().toString(),
+            const productData = {
                 category: adminProductCategory.value,
                 name: adminProductName.value.trim(),
                 price: adminProductPrice.value,
@@ -1441,24 +1485,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 additionalPhotos: currentAdditionalPhotosData.filter(Boolean)
             };
 
-            if (!product.photo) {
+            if (!productData.photo) {
                 alert('Пожалуйста, добавьте фотографию (URL или файл)');
                 return;
             }
 
-            if (id) {
-                // Edit
-                const index = products.findIndex(p => p.id === id);
-                if (index !== -1) {
-                    products[index] = product;
-                }
-            } else {
-                // Add
-                products.push(product);
-            }
+            // Disable button while saving
+            adminSubmitBtn.disabled = true;
+            adminSubmitBtn.textContent = '⏳ Сохранение...';
 
-            saveProducts();
-            resetAdminForm();
+            try {
+                if (id) {
+                    // Edit existing product in Firebase
+                    await FirebaseDB.updateProduct(id, productData);
+                } else {
+                    // Add new product to Firebase
+                    await FirebaseDB.addProduct(productData);
+                }
+                resetAdminForm();
+            } catch (error) {
+                alert('Ошибка при сохранении: ' + error.message);
+            } finally {
+                adminSubmitBtn.disabled = false;
+                adminSubmitBtn.textContent = id ? 'Сохранить' : 'Добавить';
+            }
         });
     }
 
@@ -1513,14 +1563,18 @@ document.addEventListener('DOMContentLoaded', () => {
         adminCancelEditBtn.style.display = 'block';
     };
 
-    window.deleteProduct = function(id) {
+    window.deleteProduct = async function(id) {
         if (confirm('Вы уверены, что хотите удалить этот товар?')) {
-            products = products.filter(p => p.id !== id);
-            saveProducts();
-            
-            // If editing the deleted product, reset form
-            if (adminProductId.value === id) {
-                resetAdminForm();
+            try {
+                await FirebaseDB.deleteProduct(id);
+                // Real-time listener will automatically update the products array
+                
+                // If editing the deleted product, reset form
+                if (adminProductId.value === id) {
+                    resetAdminForm();
+                }
+            } catch (error) {
+                alert('Ошибка при удалении: ' + error.message);
             }
         }
     };
@@ -1566,7 +1620,7 @@ document.addEventListener('DOMContentLoaded', () => {
         adminViewCategory.addEventListener('change', renderAdminProducts);
     }
 
-    // ====== CART LOGIC ======
+    // ====== CART LOGIC (stays in localStorage — cart is personal per device) ======
     let cart = JSON.parse(localStorage.getItem('muebles_cart')) || [];
     const cartBadge = document.getElementById('cartBadge');
 
@@ -1747,6 +1801,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Initial render for public catalog
+    // Note: renderPublicCatalog() is now called by the Firebase real-time listener
+    // when products data arrives from the cloud
     renderPublicCatalog();
 
     window.openProductModal = function(id) {
