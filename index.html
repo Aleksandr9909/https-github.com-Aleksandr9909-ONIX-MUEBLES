@@ -819,7 +819,7 @@
                                 </select>
                             </div>
                             <div class="admin-form__group">
-                                <label>Название</label>
+                                <label>Название (RU)</label>
                                 <input type="text" id="adminProductName" required class="admin-auth__input" placeholder="Например: Спальня Aurora">
                             </div>
                             <div class="admin-form__group">
@@ -850,9 +850,30 @@
                                 <div id="adminProductAdditionalPhotosPreview" style="display: none; margin-top: 10px; grid-template-columns: repeat(3, 1fr); gap: 10px;"></div>
                             </div>
                             <div class="admin-form__group">
-                                <label>Описание</label>
+                                <label>Описание (RU)</label>
                                 <textarea id="adminProductDesc" required class="admin-auth__input" placeholder="Короткое описание..." rows="3"></textarea>
                             </div>
+                            <details style="margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 12px; background: rgba(255,255,255,0.03);">
+                                <summary style="cursor: pointer; font-weight: 600; color: var(--color-text); font-size: 14px;">🌐 Переводы (ES / EN)</summary>
+                                <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 10px;">
+                                    <div class="admin-form__group" style="margin-bottom: 0;">
+                                        <label style="font-size: 12px; color: var(--color-primary);">🇪🇸 Nombre (ES)</label>
+                                        <input type="text" id="adminProductNameES" class="admin-auth__input" placeholder="Ej: Cocina «Noche Oscura»">
+                                    </div>
+                                    <div class="admin-form__group" style="margin-bottom: 0;">
+                                        <label style="font-size: 12px; color: var(--color-primary);">🇪🇸 Descripción (ES)</label>
+                                        <textarea id="adminProductDescES" class="admin-auth__input" placeholder="Descripción en español..." rows="2"></textarea>
+                                    </div>
+                                    <div class="admin-form__group" style="margin-bottom: 0;">
+                                        <label style="font-size: 12px; color: #3b82f6;">🇬🇧 Name (EN)</label>
+                                        <input type="text" id="adminProductNameEN" class="admin-auth__input" placeholder="E.g.: Kitchen «Dark Night»">
+                                    </div>
+                                    <div class="admin-form__group" style="margin-bottom: 0;">
+                                        <label style="font-size: 12px; color: #3b82f6;">🇬🇧 Description (EN)</label>
+                                        <textarea id="adminProductDescEN" class="admin-auth__input" placeholder="Description in English..." rows="2"></textarea>
+                                    </div>
+                                </div>
+                            </details>
                             <div style="display: flex; gap: 10px;">
                                 <button type="submit" class="btn btn--primary" style="flex: 1;" id="adminSubmitBtn">Добавить</button>
                                 <button type="button" class="btn btn--outline" style="display: none;" id="adminCancelEditBtn">Отмена</button>

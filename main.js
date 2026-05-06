@@ -632,19 +632,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // ====== PRODUCT NAME/DESC TRANSLATION MAP ======
-    const productTranslations = {
+    // ====== PRODUCT NAME/DESC TRANSLATION MAP (legacy fallback) ======
+    const productTranslationsLegacy = {
         'КУХНЯ ГОЛДЕН ГУСЬ': { 'es': 'COCINA GOLDEN GOOSE', 'en': 'GOLDEN GOOSE KITCHEN' },
         'Хорошая кухня, огонь': { 'es': 'Buena cocina, espectacular', 'en': 'Great kitchen, amazing' },
         'Спальня "Аврора"': { 'es': 'Dormitorio "Aurora"', 'en': 'Bedroom "Aurora"' },
         'Брилиантовая кухня "Золотой гусь"': { 'es': 'Cocina brillante "Ganso Dorado"', 'en': 'Brilliant kitchen "Golden Goose"' }
     };
 
-    function translateProduct(text, lang) {
+    // Translate a product's name or desc using stored i18n data first, then legacy map
+    function translateProduct(text, lang, product, field) {
         if (lang === 'ru') return text;
-        if (productTranslations[text] && productTranslations[text][lang]) {
-            return productTranslations[text][lang];
+        // 1. Check if the product has stored translations (from admin panel)
+        if (product && product.i18n && product.i18n[lang] && product.i18n[lang][field]) {
+            return product.i18n[lang][field];
         }
+        // 2. Fallback to legacy hardcoded map
+        if (productTranslationsLegacy[text] && productTranslationsLegacy[text][lang]) {
+            return productTranslationsLegacy[text][lang];
+        }
+        // 3. Return original text
         return text;
     }
 
@@ -1714,6 +1721,9 @@ document.addEventListener('DOMContentLoaded', () => {
             adminProductAdditionalPhotosPreview.innerHTML = '';
             adminProductAdditionalPhotosPreview.style.display = 'none';
         }
+        // Clear translation fields
+        const i18nFields = ['adminProductNameES', 'adminProductDescES', 'adminProductNameEN', 'adminProductDescEN'];
+        i18nFields.forEach(fid => { const el = document.getElementById(fid); if (el) el.value = ''; });
         if(adminFormTitle) adminFormTitle.textContent = 'Добавить товар';
         if(adminSubmitBtn) adminSubmitBtn.textContent = 'Добавить';
         if(adminCancelEditBtn) adminCancelEditBtn.style.display = 'none';
@@ -1728,13 +1738,33 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             
             const id = adminProductId.value;
+            
+            // Collect translations
+            const nameES = document.getElementById('adminProductNameES')?.value?.trim() || '';
+            const descES = document.getElementById('adminProductDescES')?.value?.trim() || '';
+            const nameEN = document.getElementById('adminProductNameEN')?.value?.trim() || '';
+            const descEN = document.getElementById('adminProductDescEN')?.value?.trim() || '';
+
+            const i18n = {};
+            if (nameES || descES) {
+                i18n.es = {};
+                if (nameES) i18n.es.name = nameES;
+                if (descES) i18n.es.desc = descES;
+            }
+            if (nameEN || descEN) {
+                i18n.en = {};
+                if (nameEN) i18n.en.name = nameEN;
+                if (descEN) i18n.en.desc = descEN;
+            }
+
             const productData = {
                 category: adminProductCategory.value,
                 name: adminProductName.value.trim(),
                 price: adminProductPrice.value,
                 desc: adminProductDesc.value.trim(),
                 photo: currentPhotoData,
-                additionalPhotos: currentAdditionalPhotosData.filter(Boolean)
+                additionalPhotos: currentAdditionalPhotosData.filter(Boolean),
+                i18n: Object.keys(i18n).length > 0 ? i18n : null
             };
 
             if (!productData.photo) {
@@ -1809,6 +1839,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 adminProductAdditionalPhotosPreview.style.display = 'none';
             }
         }
+
+        // Pre-fill translation fields
+        const nameESEl = document.getElementById('adminProductNameES');
+        const descESEl = document.getElementById('adminProductDescES');
+        const nameENEl = document.getElementById('adminProductNameEN');
+        const descENEl = document.getElementById('adminProductDescEN');
+        if (nameESEl) nameESEl.value = product.i18n?.es?.name || '';
+        if (descESEl) descESEl.value = product.i18n?.es?.desc || '';
+        if (nameENEl) nameENEl.value = product.i18n?.en?.name || '';
+        if (descENEl) descENEl.value = product.i18n?.en?.desc || '';
         
         adminFormTitle.textContent = 'Редактировать товар';
         adminSubmitBtn.textContent = 'Сохранить';
@@ -2032,9 +2072,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="catalog-product-card__image" style="background-image: url('${p.photo}')"></div>
                 <div class="catalog-product-card__content">
                     <span class="catalog-product-card__category">${categoryNames[p.category]}</span>
-                    <h3 class="catalog-product-card__title">${translateProduct(p.name, lang)}</h3>
+                    <h3 class="catalog-product-card__title">${translateProduct(p.name, lang, p, 'name')}</h3>
                     <div class="catalog-product-card__price">$${p.price}</div>
-                    <p class="catalog-product-card__desc">${translateProduct(p.desc, lang)}</p>
+                    <p class="catalog-product-card__desc">${translateProduct(p.desc, lang, p, 'desc')}</p>
                     <div class="catalog-product-card__actions" style="display: flex; gap: 8px; flex-direction: column;">
                         <button class="btn btn--primary btn--full" onclick="event.stopPropagation(); window.addToCart('${p.id}')" style="padding: 10px;">${btnCart}</button>
                         <button class="btn btn--outline btn--full" onclick="event.stopPropagation(); window.location.href='#contacts'" style="padding: 10px;">${btnOrder}</button>
@@ -2105,9 +2145,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="product-modal__info">
                     <div class="product-modal__category">${categoryNames[product.category]}</div>
-                    <h2 class="product-modal__title">${translateProduct(product.name, lang)}</h2>
+                    <h2 class="product-modal__title">${translateProduct(product.name, lang, product, 'name')}</h2>
                     <div class="product-modal__price">$${product.price}</div>
-                    <p class="product-modal__desc">${translateProduct(product.desc, lang)}</p>
+                    <p class="product-modal__desc">${translateProduct(product.desc, lang, product, 'desc')}</p>
                     <div style="display: flex; gap: 10px; margin-top: auto;">
                         <button class="btn btn--primary btn--full" onclick="window.addToCart('${product.id}')">${btnCart}</button>
                         <button class="btn btn--outline btn--full" onclick="window.closeModal(); window.location.href='#contacts'">${btnOrder}</button>
