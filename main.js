@@ -183,7 +183,38 @@ document.addEventListener('DOMContentLoaded', () => {
             'filter_cat_office': 'Oficinas',
             'btn_add_to_cart': 'Agregar al carrito',
             'btn_order_project': 'Solicitar proyecto',
-            'empty_category': 'Todavía no hay productos en esta categoría.'
+            'empty_category': 'Todavía no hay productos en esta categoría.',
+            // — Cart —
+            'cart_title': 'Tu carrito',
+            'cart_empty': 'El carrito está vacío',
+            'cart_continue': 'Seguir comprando',
+            'cart_total': 'Total:',
+            'cart_checkout': 'Realizar pedido',
+            'cart_added': '¡Producto agregado al carrito!',
+            // — Form feedback —
+            'form_sending': '⏳ Enviando...',
+            'form_sent_alert': '¡Tu solicitud fue enviada! Nos pondremos en contacto pronto.',
+            // — Certificates Modal —
+            'cert_title': 'Certificados de calidad',
+            'cert_desc': 'Usamos solo materiales certificados de máxima calidad. Todos nuestros productos pasan un estricto control de calidad.',
+            'cert_iso': 'ISO 9001:2015',
+            'cert_iso_desc': 'Gestión de calidad',
+            'cert_e1': 'Estándar E1',
+            'cert_e1_desc': 'Materiales ecológicos',
+            'cert_blum': 'Blum Expert',
+            'cert_blum_desc': 'Socio oficial',
+            'cert_warranty': '5 Años de Garantía',
+            'cert_warranty_desc': 'Certificado de confiabilidad',
+            // — Project Modal —
+            'project_default_title': 'Nuestro proyecto',
+            'project_default_desc': 'Información detallada del trabajo realizado.',
+            'btn_close': 'Cerrar',
+            // — Materials —
+            'mat_oak': 'Roble',
+            'mat_wenge': 'Wengué',
+            'mat_white': 'Blanco brillante',
+            // — Meta —
+            'meta_description': 'Fábrica de muebles premium en Argentina — dormitorios, cocinas, vestidores, living, oficinas. Constructor 3D de muebles, proyecto gratuito.'
         },
         'en': {
             // — Nav —
@@ -359,7 +390,38 @@ document.addEventListener('DOMContentLoaded', () => {
             'filter_cat_office': 'Offices',
             'btn_add_to_cart': 'Add to Cart',
             'btn_order_project': 'Order Project',
-            'empty_category': 'There are no products in this category yet.'
+            'empty_category': 'There are no products in this category yet.',
+            // — Cart —
+            'cart_title': 'Your Cart',
+            'cart_empty': 'Your cart is empty',
+            'cart_continue': 'Continue Shopping',
+            'cart_total': 'Total:',
+            'cart_checkout': 'Place Order',
+            'cart_added': 'Product added to cart!',
+            // — Form feedback —
+            'form_sending': '⏳ Sending...',
+            'form_sent_alert': 'Your request has been sent! We will contact you shortly.',
+            // — Certificates Modal —
+            'cert_title': 'Quality Certificates',
+            'cert_desc': 'We use only certified materials of the highest quality. All our products pass strict quality control.',
+            'cert_iso': 'ISO 9001:2015',
+            'cert_iso_desc': 'Quality Management',
+            'cert_e1': 'E1 Standard',
+            'cert_e1_desc': 'Eco-friendly Materials',
+            'cert_blum': 'Blum Expert',
+            'cert_blum_desc': 'Official Partner',
+            'cert_warranty': '5-Year Warranty',
+            'cert_warranty_desc': 'Reliability Certificate',
+            // — Project Modal —
+            'project_default_title': 'Our Project',
+            'project_default_desc': 'Detailed information about the completed work.',
+            'btn_close': 'Close',
+            // — Materials —
+            'mat_oak': 'Oak',
+            'mat_wenge': 'Wenge',
+            'mat_white': 'White Gloss',
+            // — Meta —
+            'meta_description': 'Premium furniture factory in Argentina — bedroom sets, kitchens, wardrobes, living rooms, offices. 3D furniture constructor, free project design.'
         },
         'ru': {
             // — Nav —
@@ -535,7 +597,38 @@ document.addEventListener('DOMContentLoaded', () => {
             'filter_cat_office': 'Офисы',
             'btn_add_to_cart': 'В корзину',
             'btn_order_project': 'Заказать проект',
-            'empty_category': 'Товаров в этой категории пока нет.'
+            'empty_category': 'Товаров в этой категории пока нет.',
+            // — Cart —
+            'cart_title': 'Ваша корзина',
+            'cart_empty': 'В корзине пока ничего нет',
+            'cart_continue': 'Продолжить покупки',
+            'cart_total': 'Итого:',
+            'cart_checkout': 'Оформить заказ',
+            'cart_added': 'Товар добавлен в корзину!',
+            // — Form feedback —
+            'form_sending': '⏳ Отправка...',
+            'form_sent_alert': 'Ваша заявка отправлена! Мы скоро свяжемся с вами.',
+            // — Certificates Modal —
+            'cert_title': 'Сертификаты качества',
+            'cert_desc': 'Мы используем только сертифицированные материалы высшего качества. Все наши изделия проходят строгий контроль качества.',
+            'cert_iso': 'ISO 9001:2015',
+            'cert_iso_desc': 'Качество менеджмента',
+            'cert_e1': 'Стандарт E1',
+            'cert_e1_desc': 'Экологичность материалов',
+            'cert_blum': 'Blum Expert',
+            'cert_blum_desc': 'Официальный партнер',
+            'cert_warranty': '5 Лет Гарантии',
+            'cert_warranty_desc': 'Сертификат надежности',
+            // — Project Modal —
+            'project_default_title': 'Наш проект',
+            'project_default_desc': 'Детальная информация о выполненной работе.',
+            'btn_close': 'Закрыть',
+            // — Materials —
+            'mat_oak': 'Дуб',
+            'mat_wenge': 'Венге',
+            'mat_white': 'Белый глянец',
+            // — Meta —
+            'meta_description': 'Мебельная компания в Аргентине — спальные гарнитуры, кухни, гардеробные, гостиные, офисы. 3D-конструктор мебели, бесплатный проект.'
         }
     };
 
@@ -566,10 +659,12 @@ document.addEventListener('DOMContentLoaded', () => {
         currentLangText.textContent = lang.toUpperCase();
         document.documentElement.lang = lang;
         
+        const t = translations[lang] || translations['es'];
+
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (translations[lang][key]) {
-                el.innerHTML = translations[lang][key];
+            if (t[key]) {
+                el.innerHTML = t[key];
             }
         });
 
@@ -579,7 +674,13 @@ document.addEventListener('DOMContentLoaded', () => {
             'en': 'Onyx Muebles — Premium Furniture in Argentina',
             'ru': 'Onyx Muebles — Мебель Премиум-Класса | Аргентина'
         };
-        document.title = pageTitles[lang] || pageTitles['ru'];
+        document.title = pageTitles[lang] || pageTitles['es'];
+
+        // Update meta description
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc && t['meta_description']) {
+            metaDesc.setAttribute('content', t['meta_description']);
+        }
 
         // Update contact form select options
         const selectOpts = {
@@ -598,6 +699,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // Update material button tooltips
+        const materialMap = {
+            '#B8956A': 'mat_oak',
+            '#4A4A46': 'mat_wenge',
+            '#F4F3F0': 'mat_white'
+        };
+        document.querySelectorAll('.material-btn').forEach(btn => {
+            const color = btn.dataset.color;
+            if (color && materialMap[color] && t[materialMap[color]]) {
+                btn.title = t[materialMap[color]];
+            }
+        });
+
         // Update active state in dropdown
         langOptions.forEach(opt => {
             opt.classList.toggle('active', opt.dataset.lang === lang);
@@ -610,6 +724,13 @@ document.addEventListener('DOMContentLoaded', () => {
             renderPublicCatalog(currentFilter);
         } catch (e) {
             // Catalog not yet initialized, will render later
+        }
+
+        // Update category card counts with correct language
+        try {
+            updateCategoryCounts();
+        } catch (e) {
+            // Category counts not yet initialized
         }
     }
 
@@ -874,7 +995,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Disable button while saving
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '⏳ Отправка...';
+            const lang = document.documentElement.lang || 'es';
+            const t = translations[lang] || translations['es'];
+            submitBtn.innerHTML = t['form_sending'];
 
             try {
                 // Save to Firebase Cloud Database
@@ -1308,36 +1431,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Content Generators
     window.showCertificates = function() {
+        const lang = document.documentElement.lang || 'es';
+        const t = translations[lang] || translations['es'];
         const content = `
-            <h3>Сертификаты и Гарантии</h3>
-            <p>Мы используем только сертифицированные материалы высшего качества. Все наши изделия проходят строгий контроль качества.</p>
+            <h3>${t['cert_title']}</h3>
+            <p>${t['cert_desc']}</p>
             <div class="certificate-grid">
-                <div class="certificate-item">ISO 9001:2015<br>Качество менеджмента</div>
-                <div class="certificate-item">E1 Standard<br>Экологичность материалов</div>
-                <div class="certificate-item">Blum Expert<br>Официальный партнер</div>
-                <div class="certificate-item">5 Лет Гарантии<br>Сертификат надежности</div>
+                <div class="certificate-item">${t['cert_iso']}<br>${t['cert_iso_desc']}</div>
+                <div class="certificate-item">${t['cert_e1']}<br>${t['cert_e1_desc']}</div>
+                <div class="certificate-item">${t['cert_blum']}<br>${t['cert_blum_desc']}</div>
+                <div class="certificate-item">${t['cert_warranty']}<br>${t['cert_warranty_desc']}</div>
             </div>
         `;
         openModal(content);
     };
 
     window.showProject = function(projectId) {
-        // Mock project data
-        const projects = {
-            '1': { title: 'Минималистичная спальня', desc: 'Проект реализован в 2023 году. Использована фурнитура Blum и шпон дуба.' },
-            '2': { title: 'Современная кухня', desc: 'Кухня с островом и встроенной техникой. Фасады — белый глянец.' },
-            '3': { title: 'Гардеробная система', desc: 'Индивидуальное решение для хранения вещей с умной подсветкой.' }
+        const lang = document.documentElement.lang || 'es';
+        const t = translations[lang] || translations['es'];
+        const projectsData = {
+            'es': {
+                '1': { title: 'Dormitorio Minimalista', desc: 'Proyecto realizado en 2023. Herraje Blum y chapa de roble.' },
+                '2': { title: 'Cocina Moderna', desc: 'Cocina con isla y electrodom\u00e9sticos empotrados. Frentes en blanco brillante.' },
+                '3': { title: 'Sistema de Vestidor', desc: 'Soluci\u00f3n individual de almacenamiento con iluminaci\u00f3n inteligente.' }
+            },
+            'en': {
+                '1': { title: 'Minimalist Bedroom', desc: 'Project completed in 2023. Blum hardware and oak veneer used.' },
+                '2': { title: 'Modern Kitchen', desc: 'Kitchen with island and built-in appliances. White gloss fronts.' },
+                '3': { title: 'Walk-in Closet System', desc: 'Individual storage solution with smart lighting.' }
+            },
+            'ru': {
+                '1': { title: '\u041c\u0438\u043d\u0438\u043c\u0430\u043b\u0438\u0441\u0442\u0438\u0447\u043d\u0430\u044f \u0441\u043f\u0430\u043b\u044c\u043d\u044f', desc: '\u041f\u0440\u043e\u0435\u043a\u0442 \u0440\u0435\u0430\u043b\u0438\u0437\u043e\u0432\u0430\u043d \u0432 2023 \u0433\u043e\u0434\u0443. \u0418\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0430 \u0444\u0443\u0440\u043d\u0438\u0442\u0443\u0440\u0430 Blum \u0438 \u0448\u043f\u043e\u043d \u0434\u0443\u0431\u0430.' },
+                '2': { title: '\u0421\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u0430\u044f \u043a\u0443\u0445\u043d\u044f', desc: '\u041a\u0443\u0445\u043d\u044f \u0441 \u043e\u0441\u0442\u0440\u043e\u0432\u043e\u043c \u0438 \u0432\u0441\u0442\u0440\u043e\u0435\u043d\u043d\u043e\u0439 \u0442\u0435\u0445\u043d\u0438\u043a\u043e\u0439. \u0424\u0430\u0441\u0430\u0434\u044b \u2014 \u0431\u0435\u043b\u044b\u0439 \u0433\u043b\u044f\u043d\u0435\u0446.' },
+                '3': { title: '\u0413\u0430\u0440\u0434\u0435\u0440\u043e\u0431\u043d\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430', desc: '\u0418\u043d\u0434\u0438\u0432\u0438\u0434\u0443\u0430\u043b\u044c\u043d\u043e\u0435 \u0440\u0435\u0448\u0435\u043d\u0438\u0435 \u0434\u043b\u044f \u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f \u0432\u0435\u0449\u0435\u0439 \u0441 \u0443\u043c\u043d\u043e\u0439 \u043f\u043e\u0434\u0441\u0432\u0435\u0442\u043a\u043e\u0439.' }
+            }
         };
-
-        const project = projects[projectId] || { title: 'Наш проект', desc: 'Детальная информация о выполненной работе.' };
+        const projects = projectsData[lang] || projectsData['es'];
+        const project = projects[projectId] || { title: t['project_default_title'], desc: t['project_default_desc'] };
         
         const content = `
             <h3>${project.title}</h3>
             <p>${project.desc}</p>
             <div style="aspect-ratio: 16/9; background: var(--color-bg-alt); border-radius: var(--radius-md); margin-top: 20px; display: flex; align-items: center; justify-content: center; color: var(--color-text-muted);">
-                [Профессиональные фотографии проекта]
+                \ud83d\udcf7
             </div>
-            <button class="btn btn--primary" style="margin-top: 20px;" onclick="closeModal()">Закрыть</button>
+            <button class="btn btn--primary" style="margin-top: 20px;" onclick="closeModal()">${t['btn_close']}</button>
         `;
         openModal(content);
     };
@@ -1751,8 +1889,10 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('muebles_cart', JSON.stringify(cart));
             updateCartBadge();
             
+            const lang = document.documentElement.lang || 'es';
+            const t = translations[lang] || translations['es'];
             const toast = document.createElement('div');
-            toast.textContent = 'Товар добавлен в корзину!';
+            toast.textContent = t['cart_added'];
             toast.style.position = 'fixed';
             toast.style.bottom = '20px';
             toast.style.right = '20px';
@@ -1793,13 +1933,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.openCart = function() {
+        const lang = document.documentElement.lang || 'es';
+        const t = translations[lang] || translations['es'];
+
         if (cart.length === 0) {
             window.openModal(`
-                <h3 style="margin-bottom: 20px;">Ваша корзина</h3>
+                <h3 style="margin-bottom: 20px;">${t['cart_title']}</h3>
                 <div class="cart-modal__empty">
-                    В корзине пока ничего нет
+                    ${t['cart_empty']}
                 </div>
-                <button class="btn btn--outline btn--full" onclick="window.closeModal()">Продолжить покупки</button>
+                <button class="btn btn--outline btn--full" onclick="window.closeModal()">${t['cart_continue']}</button>
             `);
             return;
         }
@@ -1815,7 +1958,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="cart-item__title">${item.name}</div>
                         <div class="cart-item__price">$${price}</div>
                     </div>
-                    <button class="cart-item__remove" onclick="window.removeFromCart(${index})" title="Удалить">
+                    <button class="cart-item__remove" onclick="window.removeFromCart(${index})" title="✕">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                     </button>
                 </div>
@@ -1830,10 +1973,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="cart-modal__footer">
                     <div class="cart-modal__total">
-                        <span>Итого:</span>
+                        <span>${t['cart_total']}</span>
                         <span>$${total}</span>
                     </div>
-                    <button class="btn btn--primary btn--full" onclick="window.closeModal(); window.location.href='#contacts'">Оформить заказ</button>
+                    <button class="btn btn--primary btn--full" onclick="window.closeModal(); window.location.href='#contacts'">${t['cart_checkout']}</button>
                 </div>
             </div>
         `);
