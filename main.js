@@ -700,12 +700,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // ====== SMOOTH SCROLL FOR ANCHOR LINKS ======
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
+            const href = this.getAttribute('href');
+            // Skip bare '#' to avoid querySelector errors
+            if (!href || href === '#') return;
+            // If this link has a data-category, use navigateToCategory instead
+            if (this.dataset.category) {
                 e.preventDefault();
-                const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'));
-                const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
-                window.scrollTo({ top, behavior: 'smooth' });
+                // navigateToCategory is defined later, use window reference
+                if (window.navigateToCategory) {
+                    window.navigateToCategory(this.dataset.category);
+                }
+                return;
+            }
+            // Skip category cards and side menu links (they have their own handlers)
+            if (this.closest('.category-card') || this.closest('.side-menu__link')) return;
+            try {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'));
+                    const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            } catch(err) {
+                // Invalid selector, ignore
             }
         });
     });
@@ -1102,9 +1120,104 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // ====== NAVIGATE TO CATEGORY (shared function) ======
+    // Used by category cards, side menu links, and footer links
+    function navigateToCategory(category) {
+        const catalogSection = document.getElementById('catalog-products');
+        const catalogFiltersBtn = document.querySelectorAll('#catalogFilter .portfolio__filter-btn');
+        
+        if (!catalogSection) return;
+
+        // Show catalog section first
+        catalogSection.style.display = 'block';
+
+        // Set the correct filter button as active
+        catalogFiltersBtn.forEach(btn => {
+            btn.classList.remove('portfolio__filter-btn--active');
+            if (btn.dataset.filter === category) {
+                btn.classList.add('portfolio__filter-btn--active');
+            }
+        });
+
+        // Render products with the chosen filter
+        renderPublicCatalog(category);
+
+        // Smooth scroll to catalog section
+        setTimeout(() => {
+            const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 80;
+            const top = catalogSection.getBoundingClientRect().top + window.scrollY - headerHeight;
+            window.scrollTo({ top, behavior: 'smooth' });
+        }, 50);
+    }
+    window.navigateToCategory = navigateToCategory;
+
+    // ====== CATEGORY CARDS CLICK HANDLER ======
+    const categoryCards = document.querySelectorAll('.category-card');
+    categoryCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.preventDefault();
+            const category = card.dataset.category;
+            if (category) {
+                navigateToCategory(category);
+            }
+        });
+    });
+
+    // ====== SIDE MENU LINKS CLICK HANDLER ======
+    document.querySelectorAll('.side-menu__link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const category = link.dataset.category;
+            if (category) {
+                closeMenu();
+                // Small delay so menu animation finishes
+                setTimeout(() => navigateToCategory(category), 300);
+            }
+        });
+    });
+
+    // ====== UPDATE CATEGORY CARD COUNTS FROM REAL DATA ======
+    function updateCategoryCounts() {
+        const countMap = {};
+        products.forEach(p => {
+            countMap[p.category] = (countMap[p.category] || 0) + 1;
+        });
+
+        const lang = document.documentElement.lang || 'es';
+        const modelWords = {
+            'es': (n) => n === 1 ? 'modelo' : 'modelos',
+            'en': (n) => n === 1 ? 'model' : 'models',
+            'ru': (n) => {
+                if (n % 10 === 1 && n % 100 !== 11) return 'модель';
+                if ([2,3,4].includes(n % 10) && ![12,13,14].includes(n % 100)) return 'модели';
+                return 'моделей';
+            }
+        };
+        const getWord = modelWords[lang] || modelWords['es'];
+
+        const categoryToCardId = {
+            'bedroom': 'catBedroom',
+            'wardrobe': 'catWardrobe',
+            'kitchen': 'catKitchen',
+            'living': 'catLiving',
+            'hallway': 'catHallway',
+            'office': 'catOffice'
+        };
+
+        Object.entries(categoryToCardId).forEach(([cat, cardId]) => {
+            const card = document.getElementById(cardId);
+            if (card) {
+                const countEl = card.querySelector('.category-card__count');
+                if (countEl) {
+                    const count = countMap[cat] || 0;
+                    countEl.textContent = `${count} ${getWord(count)}`;
+                }
+            }
+        });
+    }
+
     // ====== CATEGORY CARD IMAGE FALLBACKS ======
     // Generate gradient placeholders for category cards without images
-    const categoryCards = document.querySelectorAll('.category-card');
     const gradients = [
         'linear-gradient(135deg, #2C2C2A 0%, #3D3D3A 50%, #4A4A46 100%)',
         'linear-gradient(135deg, #3A352E 0%, #4D463C 50%, #5A5248 100%)',
@@ -1271,6 +1384,7 @@ document.addEventListener('DOMContentLoaded', () => {
         products = firebaseProducts;
         console.log(`🔥 Firebase sync: ${products.length} products loaded`);
         renderPublicCatalog();
+        updateCategoryCounts();
         // If admin dashboard is open, refresh it too
         if (adminDashboardModal && adminDashboardModal.classList.contains('active')) {
             renderAdminProducts();
