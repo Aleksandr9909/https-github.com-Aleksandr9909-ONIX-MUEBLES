@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Мебельная компания в Аргентине — спальные гарнитуры, кухни, гардеробные, гостиные, офисы. 3D-конструктор мебели, бесплатный проект.">
+    <meta name="description"
+        content="Мебельная компания в Аргентине — спальные гарнитуры, кухни, гардеробные, гостиные, офисы. 3D-конструктор мебели, бесплатный проект.">
     <title>Onyx Muebles — Мебель Премиум-Класса | Аргентина</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <!-- Three.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
 </head>
+
 <body>
     <!-- ====== SIDE MENU OVERLAY ====== -->
     <div class="menu-overlay" id="menuOverlay"></div>
-    
+
     <!-- ====== SIDE MENU DRAWER ====== -->
     <nav class="side-menu" id="sideMenu">
         <div class="side-menu__header">
@@ -32,94 +35,149 @@
             <li class="side-menu__item">
                 <a href="#category-bedroom" class="side-menu__link" data-category="bedroom">
                     <div class="side-menu__icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/><path d="M6 8v8"/><path d="M18 8v8"/><rect x="6" y="10" width="12" height="4" rx="1"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 4v16" />
+                            <path d="M22 4v16" />
+                            <path d="M2 8h20" />
+                            <path d="M2 16h20" />
+                            <path d="M6 8v8" />
+                            <path d="M18 8v8" />
+                            <rect x="6" y="10" width="12" height="4" rx="1" />
                         </svg>
                     </div>
                     <div class="side-menu__text">
                         <span class="side-menu__name" data-i18n="side_bedroom">Спальные гарнитуры</span>
                         <span class="side-menu__desc" data-i18n="side_bedroom_desc">Кровати, тумбы, комоды</span>
                     </div>
-                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
                 </a>
             </li>
             <li class="side-menu__item">
                 <a href="#category-wardrobe" class="side-menu__link" data-category="wardrobe">
                     <div class="side-menu__icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="2" width="18" height="20" rx="2"/><line x1="12" y1="2" x2="12" y2="22"/><circle cx="8" cy="12" r="1"/><circle cx="16" cy="12" r="1"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="2" width="18" height="20" rx="2" />
+                            <line x1="12" y1="2" x2="12" y2="22" />
+                            <circle cx="8" cy="12" r="1" />
+                            <circle cx="16" cy="12" r="1" />
                         </svg>
                     </div>
                     <div class="side-menu__text">
                         <span class="side-menu__name" data-i18n="side_wardrobe">Гардеробные</span>
                         <span class="side-menu__desc" data-i18n="side_wardrobe_desc">Системы хранения, шкафы</span>
                     </div>
-                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
                 </a>
             </li>
             <li class="side-menu__item">
                 <a href="#category-kitchen" class="side-menu__link" data-category="kitchen">
                     <div class="side-menu__icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="7" width="20" height="15" rx="2"/><path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/><line x1="2" y1="14" x2="22" y2="14"/><circle cx="8" cy="18" r="1"/><circle cx="16" cy="18" r="1"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="15" rx="2" />
+                            <path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2" />
+                            <line x1="2" y1="14" x2="22" y2="14" />
+                            <circle cx="8" cy="18" r="1" />
+                            <circle cx="16" cy="18" r="1" />
                         </svg>
                     </div>
                     <div class="side-menu__text">
                         <span class="side-menu__name" data-i18n="side_kitchen">Кухонные гарнитуры</span>
                         <span class="side-menu__desc" data-i18n="side_kitchen_desc">Кухни под ключ</span>
                     </div>
-                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
                 </a>
             </li>
             <li class="side-menu__item">
                 <a href="#category-living" class="side-menu__link" data-category="living">
                     <div class="side-menu__icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0Z"/><path d="M4 18v2"/><path d="M20 18v2"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" />
+                            <path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0Z" />
+                            <path d="M4 18v2" />
+                            <path d="M20 18v2" />
                         </svg>
                     </div>
                     <div class="side-menu__text">
                         <span class="side-menu__name" data-i18n="side_living">Гостиные</span>
                         <span class="side-menu__desc" data-i18n="side_living_desc">Стеллажи, ТВ-зоны, столы</span>
                     </div>
-                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
                 </a>
             </li>
             <li class="side-menu__item">
                 <a href="#category-hallway" class="side-menu__link" data-category="hallway">
                     <div class="side-menu__icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 21V3h18v18"/><path d="M9 21V10h6v11"/><path d="M13 14h1"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21V3h18v18" />
+                            <path d="M9 21V10h6v11" />
+                            <path d="M13 14h1" />
                         </svg>
                     </div>
                     <div class="side-menu__text">
                         <span class="side-menu__name" data-i18n="side_hallway">Прихожие</span>
                         <span class="side-menu__desc" data-i18n="side_hallway_desc">Вешалки, обувницы, зеркала</span>
                     </div>
-                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
                 </a>
             </li>
             <li class="side-menu__item">
                 <a href="#category-office" class="side-menu__link" data-category="office">
                     <div class="side-menu__icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 12h20"/><path d="M12 6v12"/><path d="M2 18v2"/><path d="M22 18v2"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="6" width="20" height="12" rx="2" />
+                            <path d="M2 12h20" />
+                            <path d="M12 6v12" />
+                            <path d="M2 18v2" />
+                            <path d="M22 18v2" />
                         </svg>
                     </div>
                     <div class="side-menu__text">
                         <span class="side-menu__name" data-i18n="side_office">Офисы</span>
                         <span class="side-menu__desc" data-i18n="side_office_desc">Рабочие зоны и кабинеты</span>
                     </div>
-                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
                 </a>
             </li>
         </ul>
         <div class="side-menu__footer" style="display: flex; gap: 16px; justify-content: center; padding: 24px;">
-            <a href="https://wa.me/5492233390267?text=%C2%A1Hola!%20Vi%20una%20posici%C3%B3n%20en%20su%20cat%C3%A1logo%20y%20me%20gustar%C3%ADa%20charlarlo" target="_blank" rel="noopener noreferrer" class="social-badge social-badge--whatsapp" aria-label="WhatsApp">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            <a href="https://wa.me/5492233390267?text=%C2%A1Hola!%20Vi%20una%20posici%C3%B3n%20en%20su%20cat%C3%A1logo%20y%20me%20gustar%C3%ADa%20charlarlo"
+                target="_blank" rel="noopener noreferrer" class="social-badge social-badge--whatsapp"
+                aria-label="WhatsApp">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                </svg>
             </a>
-            <a href="https://www.instagram.com/onyxmuebles?igsh=MXd4aXYwYzJ4M2VmMw==" target="_blank" rel="noopener noreferrer" class="social-badge social-badge--instagram" aria-label="Instagram">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.169a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+            <a href="https://www.instagram.com/onyxmuebles?igsh=MXd4aXYwYzJ4M2VmMw==" target="_blank"
+                rel="noopener noreferrer" class="social-badge social-badge--instagram" aria-label="Instagram">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.169a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z" />
+                </svg>
             </a>
         </div>
     </nav>
@@ -144,7 +202,8 @@
             </nav>
             <div class="header__actions">
                 <button class="header__cart-btn" aria-label="Cart" id="cartOpenBtn">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="9" cy="21" r="1.5"></circle>
                         <circle cx="20" cy="21" r="1.5"></circle>
                         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -155,7 +214,9 @@
                 <div class="lang-switcher" id="langSwitcher">
                     <button class="lang-switcher__btn" id="langBtn" aria-expanded="false">
                         <span id="currentLang">ES</span>
-                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor"><path d="m1 1 4 4 4-4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor">
+                            <path d="m1 1 4 4 4-4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
                     </button>
                     <div class="lang-switcher__dropdown">
                         <button data-lang="es">ES</button>
@@ -165,11 +226,20 @@
                 </div>
                 <div class="header__divider"></div>
                 <div class="header__socials" style="display: flex; gap: 12px; align-items: center;">
-                    <a href="https://wa.me/5492233390267?text=%C2%A1Hola!%20Vi%20una%20posici%C3%B3n%20en%20su%20cat%C3%A1logo%20y%20me%20gustar%C3%ADa%20charlarlo" target="_blank" rel="noopener noreferrer" class="social-badge social-badge--whatsapp" aria-label="WhatsApp">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    <a href="https://wa.me/5492233390267?text=%C2%A1Hola!%20Vi%20una%20posici%C3%B3n%20en%20su%20cat%C3%A1logo%20y%20me%20gustar%C3%ADa%20charlarlo"
+                        target="_blank" rel="noopener noreferrer" class="social-badge social-badge--whatsapp"
+                        aria-label="WhatsApp">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                        </svg>
                     </a>
-                    <a href="https://www.instagram.com/onyxmuebles?igsh=MXd4aXYwYzJ4M2VmMw==" target="_blank" rel="noopener noreferrer" class="social-badge social-badge--instagram" aria-label="Instagram">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.169a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+                    <a href="https://www.instagram.com/onyxmuebles?igsh=MXd4aXYwYzJ4M2VmMw==" target="_blank"
+                        rel="noopener noreferrer" class="social-badge social-badge--instagram" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.169a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z" />
+                        </svg>
                     </a>
                 </div>
             </div>
@@ -196,12 +266,20 @@
             </p>
             <div class="hero__actions">
                 <a href="#constructor" class="btn btn--primary" id="heroCtaPrimary">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
                     <span data-i18n="btn_constructor">3D Конструктор</span>
                 </a>
                 <a href="#categories" class="btn btn--outline" id="heroCtaSecondary">
                     <span data-i18n="btn_catalog">Смотреть каталог</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                    </svg>
                 </a>
             </div>
             <div class="hero__stats">
@@ -235,7 +313,8 @@
             <div class="section-header">
                 <span class="section-tag" data-i18n="tag_catalog">Каталог</span>
                 <h2 class="section-title" data-i18n="title_catalog">Категории мебели</h2>
-                <p class="section-subtitle" data-i18n="subtitle_catalog">Выберите направление и начните проектировать свой идеальный интерьер</p>
+                <p class="section-subtitle" data-i18n="subtitle_catalog">Выберите направление и начните проектировать
+                    свой идеальный интерьер</p>
             </div>
             <div class="categories__grid">
                 <a href="#" class="category-card category-card--large" id="catBedroom" data-category="bedroom">
@@ -245,7 +324,8 @@
                     <div class="category-card__content">
                         <span class="category-card__count" data-i18n="cat_bedroom_count">24 модели</span>
                         <h3 class="category-card__title" data-i18n="cat_bedroom">Спальные гарнитуры</h3>
-                        <p class="category-card__desc" data-i18n="cat_bedroom_desc">Кровати, тумбы, комоды и туалетные столики</p>
+                        <p class="category-card__desc" data-i18n="cat_bedroom_desc">Кровати, тумбы, комоды и туалетные
+                            столики</p>
                         <span class="category-card__link" data-i18n="cat_link">Открыть каталог →</span>
                     </div>
                 </a>
@@ -267,7 +347,8 @@
                     <div class="category-card__content">
                         <span class="category-card__count" data-i18n="cat_kitchen_count">32 модели</span>
                         <h3 class="category-card__title" data-i18n="cat_kitchen">Кухонные гарнитуры</h3>
-                        <p class="category-card__desc" data-i18n="cat_kitchen_desc">Кухни под ключ из лучших материалов</p>
+                        <p class="category-card__desc" data-i18n="cat_kitchen_desc">Кухни под ключ из лучших материалов
+                        </p>
                         <span class="category-card__link" data-i18n="cat_link">Открыть каталог →</span>
                     </div>
                 </a>
@@ -278,7 +359,8 @@
                     <div class="category-card__content">
                         <span class="category-card__count" data-i18n="cat_living_count">28 моделей</span>
                         <h3 class="category-card__title" data-i18n="cat_living">Гостиные</h3>
-                        <p class="category-card__desc" data-i18n="cat_living_desc">Стеллажи, ТВ-зоны, журнальные столы</p>
+                        <p class="category-card__desc" data-i18n="cat_living_desc">Стеллажи, ТВ-зоны, журнальные столы
+                        </p>
                         <span class="category-card__link" data-i18n="cat_link">Открыть каталог →</span>
                     </div>
                 </a>
@@ -300,7 +382,8 @@
                     <div class="category-card__content">
                         <span class="category-card__count" data-i18n="cat_office_count">20 моделей</span>
                         <h3 class="category-card__title" data-i18n="cat_office">Офисы</h3>
-                        <p class="category-card__desc" data-i18n="cat_office_desc">Рабочие зоны, кабинеты, переговорные</p>
+                        <p class="category-card__desc" data-i18n="cat_office_desc">Рабочие зоны, кабинеты, переговорные
+                        </p>
                         <span class="category-card__link" data-i18n="cat_link">Открыть каталог →</span>
                     </div>
                 </a>
@@ -314,15 +397,22 @@
             <div class="section-header">
                 <span class="section-tag" data-i18n="tag_products">Наши товары</span>
                 <h2 class="section-title" data-i18n="title_products">Каталог изделий</h2>
-                <p class="section-subtitle" data-i18n="subtitle_products">Выберите мебель из нашего актуального ассортимента</p>
+                <p class="section-subtitle" data-i18n="subtitle_products">Выберите мебель из нашего актуального
+                    ассортимента</p>
             </div>
             <div class="portfolio__filter" id="catalogFilter">
-                <button class="portfolio__filter-btn portfolio__filter-btn--active" data-filter="all" data-i18n="filter_cat_all">Все</button>
-                <button class="portfolio__filter-btn" data-filter="bedroom" data-i18n="filter_cat_bedroom">Спальни</button>
-                <button class="portfolio__filter-btn" data-filter="wardrobe" data-i18n="filter_cat_wardrobe">Гардеробные</button>
-                <button class="portfolio__filter-btn" data-filter="kitchen" data-i18n="filter_cat_kitchen">Кухни</button>
-                <button class="portfolio__filter-btn" data-filter="living" data-i18n="filter_cat_living">Гостиные</button>
-                <button class="portfolio__filter-btn" data-filter="hallway" data-i18n="filter_cat_hallway">Прихожие</button>
+                <button class="portfolio__filter-btn portfolio__filter-btn--active" data-filter="all"
+                    data-i18n="filter_cat_all">Все</button>
+                <button class="portfolio__filter-btn" data-filter="bedroom"
+                    data-i18n="filter_cat_bedroom">Спальни</button>
+                <button class="portfolio__filter-btn" data-filter="wardrobe"
+                    data-i18n="filter_cat_wardrobe">Гардеробные</button>
+                <button class="portfolio__filter-btn" data-filter="kitchen"
+                    data-i18n="filter_cat_kitchen">Кухни</button>
+                <button class="portfolio__filter-btn" data-filter="living"
+                    data-i18n="filter_cat_living">Гостиные</button>
+                <button class="portfolio__filter-btn" data-filter="hallway"
+                    data-i18n="filter_cat_hallway">Прихожие</button>
                 <button class="portfolio__filter-btn" data-filter="office" data-i18n="filter_cat_office">Офисы</button>
             </div>
             <div class="catalog-products__grid" id="catalogGrid">
@@ -337,72 +427,49 @@
             <div class="section-header section-header--light">
                 <span class="section-tag section-tag--light" data-i18n="tag_innovations">Инновации</span>
                 <h2 class="section-title section-title--light" data-i18n="title_constructor">3D Конструктор мебели</h2>
-                <p class="section-subtitle section-subtitle--light" data-i18n="subtitle_constructor">Спроектируйте, как мебель будет выглядеть в вашем доме. Выбирайте размеры, материалы, цвета — и смотрите результат в реальном времени с помощью нашего 3D движка.</p>
+                <p class="section-subtitle section-subtitle--light" data-i18n="subtitle_constructor">Спроектируйте, как
+                    мебель будет выглядеть в вашем доме. Выбирайте размеры, материалы, цвета — и смотрите результат в
+                    реальном времени с помощью нашего 3D движка.</p>
             </div>
             <div class="constructor__content">
                 <div class="constructor__viewport" id="constructorViewport">
-                    <!-- Three.js Canvas will be injected here -->
-                    <div id="three-container" style="width: 100%; height: 100%;"></div>
-                    
-                    <div class="constructor__controls">
-                        <button class="constructor__control-btn constructor__control-btn--active" data-model="living">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0Z"/></svg>
-                            <span data-i18n="ctrl_living">Living</span>
-                        </button>
-                        <button class="constructor__control-btn" data-model="bedroom">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/></svg>
-                            <span data-i18n="ctrl_bedroom">Dormitorio</span>
-                        </button>
-                    </div>
-                    
-                    <div class="constructor__ui" id="constructorUI">
-                        <div class="constructor__badge">
-                            <span class="constructor__badge-dot"></span>
-                            <span data-i18n="badge_3d_active">3D Режим активен</span>
-                        </div>
-                        <div class="constructor__tools">
-                            <div class="tool-group">
-                                <label data-i18n="lbl_material">Материал:</label>
-                                <div class="material-picker">
-                                    <button class="material-btn active" data-color="#B8956A" style="background: #B8956A;" title="Дуб"></button>
-                                    <button class="material-btn" data-color="#4A4A46" style="background: #4A4A46;" title="Венге"></button>
-                                    <button class="material-btn" data-color="#F4F3F0" style="background: #F4F3F0;" title="Белый глянец"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="constructor__overlay-text" id="constructorInitialOverlay">
-                        <div class="constructor__badge">
-                            <span class="constructor__badge-dot"></span>
-                            <span data-i18n="badge_demo">Интерактивная демонстрация</span>
-                        </div>
-                        <h3 class="constructor__cta-title" data-i18n="cta_constructor_title">Запустите 3D конструктор</h3>
-                        <p class="constructor__cta-desc" data-i18n="cta_constructor_desc">Выбирайте модели и меняйте материалы в реальном времени</p>
-                        <button class="btn btn--glow" id="launchConstructor">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                            <span data-i18n="btn_launch_360">Запустить 360° просмотр</span>
-                        </button>
-                    </div>
+                    <!-- PlanPlace 3D Constructor -->
+                    <div class="planplace-wrapper" id="planplace_container"></div>
                 </div>
                 <div class="constructor__features">
                     <div class="constructor__feature">
                         <div class="constructor__feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <rect x="3" y="3" width="7" height="7" />
+                                <rect x="14" y="3" width="7" height="7" />
+                                <rect x="14" y="14" width="7" height="7" />
+                                <rect x="3" y="14" width="7" height="7" />
+                            </svg>
                         </div>
                         <h4 data-i18n="feat_library">Библиотека моделей</h4>
                         <p data-i18n="feat_library_desc">Более 500 моделей мебели в каталоге</p>
                     </div>
                     <div class="constructor__feature">
                         <div class="constructor__feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M4.22 4.22l2.83 2.83m9.9 9.9l2.83 2.83M1 12h4m14 0h4M4.22 19.78l2.83-2.83m9.9-9.9l2.83-2.83"/></svg>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <circle cx="12" cy="12" r="3" />
+                                <path
+                                    d="M12 1v4m0 14v4M4.22 4.22l2.83 2.83m9.9 9.9l2.83 2.83M1 12h4m14 0h4M4.22 19.78l2.83-2.83m9.9-9.9l2.83-2.83" />
+                            </svg>
                         </div>
                         <h4 data-i18n="feat_materials">Реальные материалы</h4>
                         <p data-i18n="feat_materials_desc">Точные текстуры дерева, камня, ткани</p>
                     </div>
                     <div class="constructor__feature">
                         <div class="constructor__feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
                         </div>
                         <h4 data-i18n="feat_export">Экспорт проекта</h4>
                         <p data-i18n="feat_export_desc">Скачайте план с размерами в PDF</p>
@@ -418,10 +485,12 @@
             <div class="section-header">
                 <span class="section-tag" data-i18n="tag_portfolio">Портфолио</span>
                 <h2 class="section-title" data-i18n="title_portfolio">Выполненные работы</h2>
-                <p class="section-subtitle" data-i18n="subtitle_portfolio">Реальные проекты наших клиентов в Буэнос-Айресе и по всей Аргентине</p>
+                <p class="section-subtitle" data-i18n="subtitle_portfolio">Реальные проекты наших клиентов в
+                    Буэнос-Айресе и по всей Аргентине</p>
             </div>
             <div class="portfolio__filter">
-                <button class="portfolio__filter-btn portfolio__filter-btn--active" data-filter="all" data-i18n="filter_all">Все проекты</button>
+                <button class="portfolio__filter-btn portfolio__filter-btn--active" data-filter="all"
+                    data-i18n="filter_all">Все проекты</button>
                 <button class="portfolio__filter-btn" data-filter="bedroom" data-i18n="filter_bedroom">Спальни</button>
                 <button class="portfolio__filter-btn" data-filter="kitchen" data-i18n="filter_kitchen">Кухни</button>
                 <button class="portfolio__filter-btn" data-filter="living" data-i18n="filter_living">Гостиные</button>
@@ -510,17 +579,25 @@
             <div class="about__grid">
                 <div class="about__info">
                     <span class="section-tag" data-i18n="tag_about">О компании</span>
-                    <h2 class="section-title" data-i18n="title_about">Onyx Muebles — ваш партнёр в создании идеального интерьера</h2>
+                    <h2 class="section-title" data-i18n="title_about">Onyx Muebles — ваш партнёр в создании идеального
+                        интерьера</h2>
                     <p class="about__text" data-i18n="about_desc_1">
-                        Мы — команда профессиональных дизайнеров и мастеров с более чем 12-летним опытом производства мебели. Наше производство расположено в Буэнос-Айресе, что позволяет контролировать каждый этап — от проекта до установки.
+                        Мы — команда профессиональных дизайнеров и мастеров с более чем 12-летним опытом производства
+                        мебели. Наше производство расположено в Буэнос-Айресе, что позволяет контролировать каждый этап
+                        — от проекта до установки.
                     </p>
                     <p class="about__text" data-i18n="about_desc_2">
-                        Используем только сертифицированные материалы европейского и аргентинского производства. Каждый проект проходит трёхступенчатый контроль качества.
+                        Используем только сертифицированные материалы европейского и аргентинского производства. Каждый
+                        проект проходит трёхступенчатый контроль качества.
                     </p>
                     <div class="about__badges">
                         <div class="about__badge">
                             <div class="about__badge-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                    <polyline points="9 12 11 14 15 10" />
+                                </svg>
                             </div>
                             <div>
                                 <h4 data-i18n="badge_warranty">Гарантия 5 лет</h4>
@@ -529,7 +606,12 @@
                         </div>
                         <div class="about__badge">
                             <div class="about__badge-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                    <path d="M9 15l2 2 4-4" />
+                                </svg>
                             </div>
                             <div>
                                 <h4 data-i18n="badge_iso">Сертификаты ISO</h4>
@@ -538,7 +620,11 @@
                         </div>
                         <div class="about__badge">
                             <div class="about__badge-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path
+                                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                </svg>
                             </div>
                             <div>
                                 <h4 data-i18n="badge_rating">Рейтинг 4.9</h4>
@@ -549,7 +635,8 @@
                 </div>
                 <div class="about__visual">
                     <div class="about__image-wrap">
-                        <div class="about__image" style="background-image: url('images/equipo.jpg'); background-position: center;"></div>
+                        <div class="about__image"
+                            style="background-image: url('images/equipo.jpg'); background-position: center;"></div>
                         <div class="about__image-float">
                             <span class="about__image-float-number">12+</span>
                             <span class="about__image-float-text" data-i18n="about_float">лет<br>опыта</span>
@@ -566,40 +653,60 @@
             <div class="section-header">
                 <span class="section-tag" data-i18n="tag_guarantees">Надёжность</span>
                 <h2 class="section-title" data-i18n="title_guarantees">Наши гарантии</h2>
-                <p class="section-subtitle" data-i18n="subtitle_guarantees">Мы уверены в качестве и готовы подкрепить это реальными обязательствами</p>
+                <p class="section-subtitle" data-i18n="subtitle_guarantees">Мы уверены в качестве и готовы подкрепить
+                    это реальными обязательствами</p>
             </div>
             <div class="guarantees__grid">
                 <div class="guarantee-card" id="guarantee1">
                     <div class="guarantee-card__number">01</div>
                     <div class="guarantee-card__icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
                     </div>
                     <h3 class="guarantee-card__title" data-i18n="guard_1_title">Гарантия 5 лет</h3>
-                    <p class="guarantee-card__text" data-i18n="guard_1_desc">Полная гарантия на все изделия, включая фурнитуру и покрытия. Бесплатный выезд мастера в гарантийный период.</p>
+                    <p class="guarantee-card__text" data-i18n="guard_1_desc">Полная гарантия на все изделия, включая
+                        фурнитуру и покрытия. Бесплатный выезд мастера в гарантийный период.</p>
                 </div>
                 <div class="guarantee-card" id="guarantee2">
                     <div class="guarantee-card__number">02</div>
                     <div class="guarantee-card__icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                            <line x1="1" y1="10" x2="23" y2="10" />
+                        </svg>
                     </div>
                     <h3 class="guarantee-card__title" data-i18n="guard_2_title">Фиксированная цена</h3>
-                    <p class="guarantee-card__text" data-i18n="guard_2_desc">Стоимость проекта фиксируется после утверждения и не меняется в процессе производства.</p>
+                    <p class="guarantee-card__text" data-i18n="guard_2_desc">Стоимость проекта фиксируется после
+                        утверждения и не меняется в процессе производства.</p>
                 </div>
                 <div class="guarantee-card" id="guarantee3">
                     <div class="guarantee-card__number">03</div>
                     <div class="guarantee-card__icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
                     </div>
                     <h3 class="guarantee-card__title" data-i18n="guard_3_title">Точные сроки</h3>
-                    <p class="guarantee-card__text" data-i18n="guard_3_desc">Производство и установка строго по срокам. При задержке по нашей вине — компенсация 1% за каждый день.</p>
+                    <p class="guarantee-card__text" data-i18n="guard_3_desc">Производство и установка строго по срокам.
+                        При задержке по нашей вине — компенсация 1% за каждый день.</p>
                 </div>
                 <div class="guarantee-card" id="guarantee4">
                     <div class="guarantee-card__number">04</div>
                     <div class="guarantee-card__icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                            <polyline points="14 2 14 8 20 8" />
+                        </svg>
                     </div>
                     <h3 class="guarantee-card__title" data-i18n="guard_4_title">Официальный договор</h3>
-                    <p class="guarantee-card__text" data-i18n="guard_4_desc">Работаем только по договору с полной спецификацией материалов, размеров и сроков.</p>
+                    <p class="guarantee-card__text" data-i18n="guard_4_desc">Работаем только по договору с полной
+                        спецификацией материалов, размеров и сроков.</p>
                 </div>
             </div>
         </div>
@@ -612,11 +719,16 @@
                 <div class="contacts__info">
                     <span class="section-tag section-tag--light" data-i18n="tag_contacts">Контакты</span>
                     <h2 class="section-title section-title--light" data-i18n="title_contacts">Свяжитесь с нами</h2>
-                    <p class="contacts__text" data-i18n="contacts_intro">Расскажите нам о вашем проекте — мы подготовим бесплатный расчёт и 3D-визуализацию в течение 48 часов.</p>
+                    <p class="contacts__text" data-i18n="contacts_intro">Расскажите нам о вашем проекте — мы подготовим
+                        бесплатный расчёт и 3D-визуализацию в течение 48 часов.</p>
                     <div class="contacts__details">
                         <div class="contacts__detail">
                             <div class="contacts__detail-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
                             </div>
                             <div>
                                 <span class="contacts__detail-label" data-i18n="contact_showroom">Адрес шоурума</span>
@@ -625,41 +737,71 @@
                         </div>
                         <div class="contacts__detail">
                             <div class="contacts__detail-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg>
                             </div>
                             <div>
                                 <span class="contacts__detail-label" data-i18n="contact_phone">Телефон</span>
-                                <a href="https://wa.me/5492233390267?text=%C2%A1Hola!%20Vi%20una%20posici%C3%B3n%20en%20su%20cat%C3%A1logo%20y%20me%20gustar%C3%ADa%20charlarlo" target="_blank" rel="noopener noreferrer" class="contacts__detail-value contacts__detail-value--link">+54 9 2233 39-0267</a>
+                                <a href="https://wa.me/5492233390267?text=%C2%A1Hola!%20Vi%20una%20posici%C3%B3n%20en%20su%20cat%C3%A1logo%20y%20me%20gustar%C3%ADa%20charlarlo"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="contacts__detail-value contacts__detail-value--link">+54 9 2233 39-0267</a>
                             </div>
                         </div>
                         <div class="contacts__detail">
                             <div class="contacts__detail-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
                             </div>
                             <div>
                                 <span class="contacts__detail-label">E-mail</span>
-                                <a href="mailto:onyxcentermuebles@gmail.com" class="contacts__detail-value contacts__detail-value--link">onyxcentermuebles@gmail.com</a>
+                                <a href="mailto:onyxcentermuebles@gmail.com"
+                                    class="contacts__detail-value contacts__detail-value--link">onyxcentermuebles@gmail.com</a>
                             </div>
                         </div>
                         <div class="contacts__detail">
                             <div class="contacts__detail-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
+                                </svg>
                             </div>
                             <div>
                                 <span class="contacts__detail-label" data-i18n="contact_schedule">График работы</span>
-                                <span class="contacts__detail-value" data-i18n="contact_schedule_val">Пн-Пт: 9:00 — 19:00 | Cб: 10:00 — 15:00</span>
+                                <span class="contacts__detail-value" data-i18n="contact_schedule_val">Пн-Пт: 9:00 —
+                                    19:00 | Cб: 10:00 — 15:00</span>
                             </div>
                         </div>
                     </div>
                     <div class="contacts__socials">
-                        <a href="https://wa.me/5492233390267?text=%C2%A1Hola!%20Vi%20una%20posici%C3%B3n%20en%20su%20cat%C3%A1logo%20y%20me%20gustar%C3%ADa%20charlarlo" target="_blank" rel="noopener noreferrer" class="contacts__social" aria-label="WhatsApp">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        <a href="https://wa.me/5492233390267?text=%C2%A1Hola!%20Vi%20una%20posici%C3%B3n%20en%20su%20cat%C3%A1logo%20y%20me%20gustar%C3%ADa%20charlarlo"
+                            target="_blank" rel="noopener noreferrer" class="contacts__social" aria-label="WhatsApp">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg>
                         </a>
-                        <a href="https://www.instagram.com/onyxmuebles?igsh=MXd4aXYwYzJ4M2VmMw==" target="_blank" rel="noopener noreferrer" class="contacts__social" aria-label="Instagram">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        <a href="https://www.instagram.com/onyxmuebles?igsh=MXd4aXYwYzJ4M2VmMw==" target="_blank"
+                            rel="noopener noreferrer" class="contacts__social" aria-label="Instagram">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
                         </a>
                         <a href="#" class="contacts__social" aria-label="Facebook">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -690,12 +832,18 @@
                             </select>
                         </div>
                         <div class="contacts__form-group">
-                            <textarea id="contactMessage" class="contacts__input contacts__textarea" placeholder=" " rows="3"></textarea>
-                            <label for="contactMessage" class="contacts__label" data-i18n="form_message">Расскажите о проекте</label>
+                            <textarea id="contactMessage" class="contacts__input contacts__textarea" placeholder=" "
+                                rows="3"></textarea>
+                            <label for="contactMessage" class="contacts__label" data-i18n="form_message">Расскажите о
+                                проекте</label>
                         </div>
                         <button type="submit" class="btn btn--primary btn--full" id="contactSubmit">
                             <span data-i18n="btn_send">Отправить заявку</span>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13" />
+                                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                            </svg>
                         </button>
                     </form>
                 </div>
@@ -712,18 +860,25 @@
                         <span class="footer__logo-mark">O</span>
                         <span class="footer__logo-text">ONYX <span class="header__logo-accent">MUEBLES</span></span>
                     </a>
-                    <p class="footer__tagline" data-i18n="footer_tagline">Мебель премиум-класса<br>в Буэнос-Айресе с 2014 года</p>
+                    <p class="footer__tagline" data-i18n="footer_tagline">Мебель премиум-класса<br>в Буэнос-Айресе с
+                        2014 года</p>
                 </div>
                 <div class="footer__columns">
                     <div class="footer__column">
                         <h4 class="footer__column-title" data-i18n="footer_catalog">Каталог</h4>
                         <ul class="footer__links">
-                            <li><a href="#catalog-products" data-i18n="footer_cat_bed" data-category="bedroom">Спальные гарнитуры</a></li>
-                            <li><a href="#catalog-products" data-i18n="footer_cat_ward" data-category="wardrobe">Гардеробные</a></li>
-                            <li><a href="#catalog-products" data-i18n="footer_cat_kit" data-category="kitchen">Кухонные гарнитуры</a></li>
-                            <li><a href="#catalog-products" data-i18n="footer_cat_liv" data-category="living">Гостиные</a></li>
-                            <li><a href="#catalog-products" data-i18n="footer_cat_hall" data-category="hallway">Прихожие</a></li>
-                            <li><a href="#catalog-products" data-i18n="footer_cat_off" data-category="office">Офисы</a></li>
+                            <li><a href="#catalog-products" data-i18n="footer_cat_bed" data-category="bedroom">Спальные
+                                    гарнитуры</a></li>
+                            <li><a href="#catalog-products" data-i18n="footer_cat_ward"
+                                    data-category="wardrobe">Гардеробные</a></li>
+                            <li><a href="#catalog-products" data-i18n="footer_cat_kit" data-category="kitchen">Кухонные
+                                    гарнитуры</a></li>
+                            <li><a href="#catalog-products" data-i18n="footer_cat_liv"
+                                    data-category="living">Гостиные</a></li>
+                            <li><a href="#catalog-products" data-i18n="footer_cat_hall"
+                                    data-category="hallway">Прихожие</a></li>
+                            <li><a href="#catalog-products" data-i18n="footer_cat_off" data-category="office">Офисы</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="footer__column">
@@ -751,7 +906,11 @@
                 <p class="footer__copy" data-i18n="footer_copy">&copy; 2014–2026 Onyx Muebles. Все права защищены.</p>
                 <div class="footer__bottom-links">
                     <button class="footer__admin-btn" id="adminLoginBtn" title="Вход в админ-панель">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
                         <span data-i18n="footer_admin">Админ-панель</span>
                     </button>
                     <a href="#" data-i18n="footer_privacy">Политика конфиденциальности</a>
@@ -766,7 +925,10 @@
         <div class="modal__overlay" id="modalOverlay"></div>
         <div class="modal__content">
             <button class="modal__close" id="modalClose">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
             </button>
             <div class="modal__body" id="modalBody">
                 <!-- Dynamic Content Here -->
@@ -779,13 +941,18 @@
         <div class="admin-modal__overlay" id="adminAuthOverlay"></div>
         <div class="admin-modal__content admin-modal__content--small">
             <button class="admin-modal__close" id="adminAuthClose">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
             </button>
             <div class="admin-auth">
                 <h3 class="admin-auth__title">Вход в панель управления</h3>
                 <input type="password" id="adminPassword" class="admin-auth__input" placeholder="Введите пароль">
                 <button id="adminLoginSubmit" class="btn btn--primary btn--full">Войти</button>
-                <p id="adminAuthError" class="admin-auth__error" style="color: #ff4d4f; font-size: 14px; margin-top: 10px; display: none; text-align: center;">Неверный пароль</p>
+                <p id="adminAuthError" class="admin-auth__error"
+                    style="color: #ff4d4f; font-size: 14px; margin-top: 10px; display: none; text-align: center;">
+                    Неверный пароль</p>
             </div>
         </div>
     </div>
@@ -794,14 +961,17 @@
         <div class="admin-modal__overlay" id="adminDashboardOverlay"></div>
         <div class="admin-modal__content admin-modal__content--large">
             <button class="admin-modal__close" id="adminDashboardClose">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
             </button>
             <div class="admin-dashboard">
                 <div class="admin-dashboard__header">
                     <h2 class="admin-dashboard__title">Управление товарами</h2>
                     <button id="adminLogoutBtn" class="btn btn--outline" style="padding: 8px 16px;">Выйти</button>
                 </div>
-                
+
                 <div class="admin-dashboard__layout">
                     <div class="admin-dashboard__sidebar">
                         <h4 class="admin-dashboard__subtitle" id="adminFormTitle">Добавить товар</h4>
@@ -820,71 +990,105 @@
                             </div>
                             <div class="admin-form__group">
                                 <label>Название (RU)</label>
-                                <input type="text" id="adminProductName" required class="admin-auth__input" placeholder="Например: Спальня Aurora">
+                                <input type="text" id="adminProductName" required class="admin-auth__input"
+                                    placeholder="Например: Спальня Aurora">
                             </div>
                             <div class="admin-form__group">
                                 <label>Цена ($)</label>
-                                <input type="number" id="adminProductPrice" required class="admin-auth__input" placeholder="Например: 1500">
+                                <input type="number" id="adminProductPrice" required class="admin-auth__input"
+                                    placeholder="Например: 1500">
                             </div>
                             <div class="admin-form__group">
                                 <label>Главная фотография</label>
                                 <div style="display: flex; gap: 10px; margin-bottom: 5px;">
-                                    <input type="text" id="adminProductPhotoUrl" class="admin-auth__input" placeholder="URL картинки (http...)">
+                                    <input type="text" id="adminProductPhotoUrl" class="admin-auth__input"
+                                        placeholder="URL картинки (http...)">
                                 </div>
-                                <div style="font-size: 12px; color: var(--color-text-muted); margin-bottom: 5px; text-align: center;">ИЛИ</div>
-                                <input type="file" id="adminProductPhotoFile" accept="image/*" class="admin-auth__input" style="padding: 10px;">
-                                <div id="adminProductPhotoPreview" class="admin-photo-preview" style="display: none; margin-top: 10px;"></div>
+                                <div
+                                    style="font-size: 12px; color: var(--color-text-muted); margin-bottom: 5px; text-align: center;">
+                                    ИЛИ</div>
+                                <input type="file" id="adminProductPhotoFile" accept="image/*" class="admin-auth__input"
+                                    style="padding: 10px;">
+                                <div id="adminProductPhotoPreview" class="admin-photo-preview"
+                                    style="display: none; margin-top: 10px;"></div>
                             </div>
                             <div class="admin-form__group">
                                 <label>Дополнительные фото (до 9 шт.)</label>
                                 <div style="display: flex; gap: 10px; margin-bottom: 5px; align-items: center;">
-                                    <input type="file" id="adminProductAdditionalPhotosFile" accept="image/*" multiple class="admin-auth__input" style="display: none;">
-                                    <button type="button" class="btn btn--outline" style="flex: 1; padding: 10px; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="document.getElementById('adminProductAdditionalPhotosFile').click()">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                    <input type="file" id="adminProductAdditionalPhotosFile" accept="image/*" multiple
+                                        class="admin-auth__input" style="display: none;">
+                                    <button type="button" class="btn btn--outline"
+                                        style="flex: 1; padding: 10px; display: flex; align-items: center; justify-content: center; gap: 8px;"
+                                        onclick="document.getElementById('adminProductAdditionalPhotosFile').click()">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>
                                         Добавить фото
                                     </button>
-                                    <button type="button" id="adminClearAdditionalPhotosBtn" class="btn btn--outline" style="padding: 10px;" title="Очистить дополнительные фото">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                    <button type="button" id="adminClearAdditionalPhotosBtn" class="btn btn--outline"
+                                        style="padding: 10px;" title="Очистить дополнительные фото">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                                        </svg>
                                     </button>
                                 </div>
-                                <div id="adminProductAdditionalPhotosPreview" style="display: none; margin-top: 10px; grid-template-columns: repeat(3, 1fr); gap: 10px;"></div>
+                                <div id="adminProductAdditionalPhotosPreview"
+                                    style="display: none; margin-top: 10px; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                                </div>
                             </div>
                             <div class="admin-form__group">
                                 <label>Описание (RU)</label>
-                                <textarea id="adminProductDesc" required class="admin-auth__input" placeholder="Короткое описание..." rows="3"></textarea>
+                                <textarea id="adminProductDesc" required class="admin-auth__input"
+                                    placeholder="Короткое описание..." rows="3"></textarea>
                             </div>
-                            <details style="margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 12px; background: rgba(255,255,255,0.03);">
-                                <summary style="cursor: pointer; font-weight: 600; color: var(--color-text); font-size: 14px;">🌐 Переводы (ES / EN)</summary>
+                            <details
+                                style="margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 12px; background: rgba(255,255,255,0.03);">
+                                <summary
+                                    style="cursor: pointer; font-weight: 600; color: var(--color-text); font-size: 14px;">
+                                    🌐 Переводы (ES / EN)</summary>
                                 <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 10px;">
                                     <div class="admin-form__group" style="margin-bottom: 0;">
-                                        <label style="font-size: 12px; color: var(--color-primary);">🇪🇸 Nombre (ES)</label>
-                                        <input type="text" id="adminProductNameES" class="admin-auth__input" placeholder="Ej: Cocina «Noche Oscura»">
+                                        <label style="font-size: 12px; color: var(--color-primary);">🇪🇸 Nombre
+                                            (ES)</label>
+                                        <input type="text" id="adminProductNameES" class="admin-auth__input"
+                                            placeholder="Ej: Cocina «Noche Oscura»">
                                     </div>
                                     <div class="admin-form__group" style="margin-bottom: 0;">
-                                        <label style="font-size: 12px; color: var(--color-primary);">🇪🇸 Descripción (ES)</label>
-                                        <textarea id="adminProductDescES" class="admin-auth__input" placeholder="Descripción en español..." rows="2"></textarea>
+                                        <label style="font-size: 12px; color: var(--color-primary);">🇪🇸 Descripción
+                                            (ES)</label>
+                                        <textarea id="adminProductDescES" class="admin-auth__input"
+                                            placeholder="Descripción en español..." rows="2"></textarea>
                                     </div>
                                     <div class="admin-form__group" style="margin-bottom: 0;">
                                         <label style="font-size: 12px; color: #3b82f6;">🇬🇧 Name (EN)</label>
-                                        <input type="text" id="adminProductNameEN" class="admin-auth__input" placeholder="E.g.: Kitchen «Dark Night»">
+                                        <input type="text" id="adminProductNameEN" class="admin-auth__input"
+                                            placeholder="E.g.: Kitchen «Dark Night»">
                                     </div>
                                     <div class="admin-form__group" style="margin-bottom: 0;">
                                         <label style="font-size: 12px; color: #3b82f6;">🇬🇧 Description (EN)</label>
-                                        <textarea id="adminProductDescEN" class="admin-auth__input" placeholder="Description in English..." rows="2"></textarea>
+                                        <textarea id="adminProductDescEN" class="admin-auth__input"
+                                            placeholder="Description in English..." rows="2"></textarea>
                                     </div>
                                 </div>
                             </details>
                             <div style="display: flex; gap: 10px;">
-                                <button type="submit" class="btn btn--primary" style="flex: 1;" id="adminSubmitBtn">Добавить</button>
-                                <button type="button" class="btn btn--outline" style="display: none;" id="adminCancelEditBtn">Отмена</button>
+                                <button type="submit" class="btn btn--primary" style="flex: 1;"
+                                    id="adminSubmitBtn">Добавить</button>
+                                <button type="button" class="btn btn--outline" style="display: none;"
+                                    id="adminCancelEditBtn">Отмена</button>
                             </div>
                         </form>
                     </div>
-                    
+
                     <div class="admin-dashboard__main">
                         <div class="admin-dashboard__filters">
                             <label style="color: var(--color-text); font-weight: 500;">Категория: </label>
-                            <select id="adminViewCategory" class="admin-auth__input" style="width: auto; display: inline-block; margin-left: 10px; padding: 6px 12px;">
+                            <select id="adminViewCategory" class="admin-auth__input"
+                                style="width: auto; display: inline-block; margin-left: 10px; padding: 6px 12px;">
                                 <option value="all">Все категории</option>
                                 <option value="bedroom">Спальные гарнитуры</option>
                                 <option value="wardrobe">Гардеробные</option>
@@ -904,12 +1108,15 @@
     </div>
 
     <!-- ====== WHATSAPP FLOATING BUTTON ====== -->
-    <a href="https://wa.me/5492233390267?text=%C2%A1Hola!%20Vi%20una%20posici%C3%B3n%20en%20su%20cat%C3%A1logo%20y%20me%20gustar%C3%ADa%20charlarlo" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp">
+    <a href="https://wa.me/5492233390267?text=%C2%A1Hola!%20Vi%20una%20posici%C3%B3n%20en%20su%20cat%C3%A1logo%20y%20me%20gustar%C3%ADa%20charlarlo"
+        target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp">
         <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
         </svg>
     </a>
 
     <script type="module" src="main.js"></script>
 </body>
-</html>
+
+</html

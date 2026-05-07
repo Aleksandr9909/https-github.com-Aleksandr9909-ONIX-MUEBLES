@@ -1056,199 +1056,24 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(shakeStyle);
 
-    // ====== 3D CONSTRUCTOR ENGINE (Three.js) ======
-    let scene, camera, renderer, controls, furniture;
-    let is3DInitialized = false;
+    // ====== 3D CONSTRUCTOR (PlanPlace Integration) ======
+    (function initPlanPlace() {
+        var params = decodeURIComponent(window.location.search.substring(1));
+        var planplace_container = document.getElementById('planplace_container');
+        if (!planplace_container) return;
 
-    function init3DConstructor() {
-        if (is3DInitialized) return;
+        var iframe = document.createElement('iframe');
+        iframe.id = 'planplace';
+        iframe.allowFullscreen = true;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.minHeight = '700px';
+        iframe.style.border = '0';
+        iframe.src = 'https://planplace.ru/clients/230751115/';
+        if (params !== '') iframe.src = iframe.src + '?' + params;
+        planplace_container.appendChild(iframe);
+    })();
 
-        const container = document.getElementById('three-container');
-        if (!container) return;
-
-        // Scene setup
-        scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x141311);
-
-        // Camera
-        camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-        camera.position.set(5, 5, 8);
-
-        // Renderer
-        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(container.clientWidth, container.clientHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.shadowMap.enabled = true;
-        container.appendChild(renderer.domElement);
-
-        // Controls
-        controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.dampingFactor = 0.05;
-        controls.minDistance = 5;
-        controls.maxDistance = 15;
-        controls.maxPolarAngle = Math.PI / 2 - 0.1; // Don't go below floor
-
-        // Lights
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-        scene.add(ambientLight);
-
-        const spotLight = new THREE.SpotLight(0xffffff, 0.8);
-        spotLight.position.set(5, 10, 5);
-        spotLight.castShadow = true;
-        scene.add(spotLight);
-
-        const pointLight = new THREE.PointLight(0xB8956A, 0.5);
-        pointLight.position.set(-5, 5, -5);
-        scene.add(pointLight);
-
-        // Floor
-        const floorGeo = new THREE.PlaneGeometry(20, 20);
-        const floorMat = new THREE.MeshStandardMaterial({ 
-            color: 0x1A1917,
-            roughness: 0.8,
-            metalness: 0.2
-        });
-        const floor = new THREE.Mesh(floorGeo, floorMat);
-        floor.rotation.x = -Math.PI / 2;
-        floor.receiveShadow = true;
-        scene.add(floor);
-
-        // Walls
-        const wallMat = new THREE.MeshStandardMaterial({ color: 0x2C2C2A });
-        
-        const backWall = new THREE.Mesh(new THREE.PlaneGeometry(20, 10), wallMat);
-        backWall.position.z = -5;
-        backWall.position.y = 5;
-        scene.add(backWall);
-
-        const leftWall = new THREE.Mesh(new THREE.PlaneGeometry(20, 10), wallMat);
-        leftWall.rotation.y = Math.PI / 2;
-        leftWall.position.x = -5;
-        leftWall.position.y = 5;
-        scene.add(leftWall);
-
-        // Grid helper
-        const grid = new THREE.GridHelper(20, 20, 0x333333, 0x222222);
-        grid.position.y = 0.01;
-        scene.add(grid);
-
-        // Initial Furniture Model
-        loadFurniture('living');
-
-        animate3D();
-        is3DInitialized = true;
-
-        window.addEventListener('resize', onWindowResize);
-    }
-
-    function loadFurniture(type) {
-        if (furniture) scene.remove(furniture);
-        furniture = new THREE.Group();
-
-        if (type === 'living') {
-            // Simple sofa representation
-            const base = new THREE.Mesh(
-                new THREE.BoxGeometry(3, 0.6, 1.2),
-                new THREE.MeshStandardMaterial({ color: 0xB8956A })
-            );
-            base.position.y = 0.3;
-            base.castShadow = true;
-            furniture.add(base);
-
-            const back = new THREE.Mesh(
-                new THREE.BoxGeometry(3, 0.8, 0.4),
-                new THREE.MeshStandardMaterial({ color: 0xB8956A })
-            );
-            back.position.set(0, 0.7, -0.4);
-            back.castShadow = true;
-            furniture.add(back);
-
-            const table = new THREE.Mesh(
-                new THREE.BoxGeometry(1.2, 0.4, 0.8),
-                new THREE.MeshStandardMaterial({ color: 0x4A4A46 })
-            );
-            table.position.set(0, 0.2, 1.5);
-            table.castShadow = true;
-            furniture.add(table);
-        } else if (type === 'bedroom') {
-            // Simple bed representation
-            const frame = new THREE.Mesh(
-                new THREE.BoxGeometry(2.2, 0.5, 3),
-                new THREE.MeshStandardMaterial({ color: 0xB8956A })
-            );
-            frame.position.y = 0.25;
-            frame.castShadow = true;
-            furniture.add(frame);
-
-            const headboard = new THREE.Mesh(
-                new THREE.BoxGeometry(HEADBOARD_WIDTH, 1.5, 0.2), // Wait, fixed below
-                new THREE.MeshStandardMaterial({ color: 0xB8956A })
-            );
-            headboard.position.set(0, 0.75, -1.4);
-            headboard.castShadow = true;
-            furniture.add(headboard);
-        }
-
-        scene.add(furniture);
-    }
-    const HEADBOARD_WIDTH = 2.2; // Minor fix for a missing variable
-
-    function animate3D() {
-        requestAnimationFrame(animate3D);
-        if (controls) controls.update();
-        if (renderer) renderer.render(scene, camera);
-    }
-
-    function onWindowResize() {
-        const container = document.getElementById('three-container');
-        if (!container) return;
-        camera.aspect = container.clientWidth / container.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(container.clientWidth, container.clientHeight);
-    }
-
-    // Launch Constructor
-    const launchBtn = document.getElementById('launchConstructor');
-    const constructorUI = document.getElementById('constructorUI');
-    const initialOverlay = document.getElementById('constructorInitialOverlay');
-
-    if (launchBtn) {
-        launchBtn.addEventListener('click', () => {
-            initialOverlay.classList.add('hidden');
-            constructorUI.classList.add('active');
-            init3DConstructor();
-        });
-    }
-
-    // Material controls
-    const materialBtns = document.querySelectorAll('.material-btn');
-    materialBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            materialBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            const color = btn.dataset.color;
-            if (furniture) {
-                furniture.traverse(child => {
-                    if (child.isMesh && child.geometry.type !== 'PlaneGeometry') {
-                        child.material.color.set(color);
-                    }
-                });
-            }
-        });
-    });
-
-    // Model controls
-    const modelBtns = document.querySelectorAll('.constructor__control-btn');
-    modelBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (!is3DInitialized) return;
-            modelBtns.forEach(b => b.classList.remove('constructor__control-btn--active'));
-            btn.classList.add('constructor__control-btn--active');
-            loadFurniture(btn.dataset.model);
-        });
-    });
 
     // ====== NAVIGATE TO CATEGORY (shared function) ======
     // Used by category cards, side menu links, and footer links
