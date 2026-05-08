@@ -1983,4 +1983,31 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal(content);
     };
 
+    // ====== CONSTRUCTOR ACCESS ======
+    const constructorAccess = document.getElementById('constructorAccess');
+    const constructorPassword = document.getElementById('constructorPassword');
+    const constructorLoginBtn = document.getElementById('constructorLoginBtn');
+    const constructorError = document.getElementById('constructorError');
+    const planplaceContainer = document.getElementById('planplace_container');
+
+    if (constructorAccess && constructorLoginBtn) {
+        constructorLoginBtn.addEventListener('click', () => {
+            if (constructorPassword.value === 'ONIXMUEBLES2015') {
+                constructorAccess.classList.add('hidden');
+                if (planplaceContainer) {
+                    planplaceContainer.classList.add('unblurred');
+                }
+                constructorError.style.display = 'none';
+            } else {
+                constructorError.style.display = 'block';
+            }
+        });
+
+        constructorPassword.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                constructorLoginBtn.click();
+            }
+        });
+    }
+
 });

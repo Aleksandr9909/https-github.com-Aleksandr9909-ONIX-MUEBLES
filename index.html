@@ -433,9 +433,19 @@
                     реальном времени с помощью нашего 3D движка.</p>
             </div>
             <div class="constructor__content">
-                <div class="constructor__viewport" id="constructorViewport">
+                <div class="constructor__viewport" id="constructorViewport" style="position: relative;">
+                    <!-- Constructor Access Overlay -->
+                    <div class="constructor__access-overlay" id="constructorAccess">
+                        <div class="constructor__access-card">
+                            <h3 data-i18n="constructor_access_title" style="margin-bottom: 10px; font-size: 24px; color: #1A1917;">Доступ к конструктору</h3>
+                            <p data-i18n="constructor_access_desc" style="margin-bottom: 20px; color: #6B6860;">Пожалуйста, введите пароль для входа в 3D конструктор</p>
+                            <input type="password" id="constructorPassword" placeholder="Пароль" class="constructor__access-input" style="width: 100%; padding: 12px 16px; margin-bottom: 16px; border: 1px solid rgba(26, 25, 23, 0.2); border-radius: 8px; font-size: 16px;">
+                            <button class="btn btn--primary" id="constructorLoginBtn" style="width: 100%;">Войти в конструктор</button>
+                            <p class="constructor__access-error" id="constructorError" style="display: none; color: #e74c3c; margin-top: 12px; font-size: 14px; text-align: center;" data-i18n="constructor_access_error">Неверный пароль</p>
+                        </div>
+                    </div>
                     <!-- PlanPlace 3D Constructor -->
-                    <div class="planplace-wrapper" id="planplace_container"></div>
+                    <div class="planplace-wrapper blurred-wrapper" id="planplace_container"></div>
                 </div>
                 <div class="constructor__features">
                     <div class="constructor__feature">

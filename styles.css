@@ -2825,3 +2825,51 @@ ul, ol {
 .header.scrolled .header__cart-badge {
     border-color: #FAFAF8;
 }
+
+/* ====== CONSTRUCTOR ACCESS OVERLAY ====== */
+.constructor__access-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.constructor__access-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.constructor__access-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 0.4s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.constructor__access-overlay.hidden .constructor__access-card {
+    transform: translateY(20px);
+}
+
+.blurred-wrapper {
+    filter: blur(12px);
+    pointer-events: none;
+    transition: filter 0.4s ease;
+}
+
+.blurred-wrapper.unblurred {
+    filter: blur(0);
+    pointer-events: all;
+}
