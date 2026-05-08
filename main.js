@@ -209,6 +209,12 @@ document.addEventListener('DOMContentLoaded', () => {
             'project_default_title': 'Nuestro proyecto',
             'project_default_desc': 'Información detallada del trabajo realizado.',
             'btn_close': 'Cerrar',
+            // — Constructor Access —
+            'constructor_access_title': 'Acceso al Constructor',
+            'constructor_access_desc': 'Por favor, introduzca la contraseña para acceder al constructor 3D',
+            'constructor_access_error': 'Contraseña incorrecta. Por favor, inténtelo de nuevo.',
+            'btn_enter_constructor': 'Entrar al constructor',
+            'placeholder_password': 'Contraseña',
             // — Materials —
             'mat_oak': 'Roble',
             'mat_wenge': 'Wengué',
@@ -416,6 +422,12 @@ document.addEventListener('DOMContentLoaded', () => {
             'project_default_title': 'Our Project',
             'project_default_desc': 'Detailed information about the completed work.',
             'btn_close': 'Close',
+            // — Constructor Access —
+            'constructor_access_title': 'Constructor Access',
+            'constructor_access_desc': 'Please enter the password to access the 3D constructor',
+            'constructor_access_error': 'Incorrect password. Please try again.',
+            'btn_enter_constructor': 'Enter constructor',
+            'placeholder_password': 'Password',
             // — Materials —
             'mat_oak': 'Oak',
             'mat_wenge': 'Wenge',
@@ -623,6 +635,12 @@ document.addEventListener('DOMContentLoaded', () => {
             'project_default_title': 'Наш проект',
             'project_default_desc': 'Детальная информация о выполненной работе.',
             'btn_close': 'Закрыть',
+            // — Constructor Access —
+            'constructor_access_title': 'Доступ к конструктору',
+            'constructor_access_desc': 'Пожалуйста, введите пароль для входа в 3D конструктор',
+            'constructor_access_error': 'Неверный пароль. Попробуйте снова.',
+            'btn_enter_constructor': 'Войти в конструктор',
+            'placeholder_password': 'Пароль',
             // — Materials —
             'mat_oak': 'Дуб',
             'mat_wenge': 'Венге',
@@ -682,6 +700,12 @@ document.addEventListener('DOMContentLoaded', () => {
             'ru': 'Onyx Muebles — Мебель Премиум-Класса | Аргентина'
         };
         document.title = pageTitles[lang] || pageTitles['es'];
+
+        // Update password placeholder
+        const constructorPasswordInput = document.getElementById('constructorPassword');
+        if (constructorPasswordInput && t['placeholder_password']) {
+            constructorPasswordInput.placeholder = t['placeholder_password'];
+        }
 
         // Update meta description
         const metaDesc = document.querySelector('meta[name="description"]');
