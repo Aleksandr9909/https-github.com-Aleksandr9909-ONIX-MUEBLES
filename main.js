@@ -220,7 +220,38 @@ document.addEventListener('DOMContentLoaded', () => {
             'mat_wenge': 'Wengué',
             'mat_white': 'Blanco brillante',
             // — Meta —
-            'meta_description': 'Fábrica de muebles premium en Argentina — dormitorios, cocinas, vestidores, living, oficinas. Constructor 3D de muebles, proyecto gratuito.'
+            'meta_description': 'Fábrica de muebles premium en Argentina — dormitorios, cocinas, vestidores, living, oficinas. Constructor 3D de muebles, proyecto gratuito.',
+            // — Partners —
+            'nav_partners': 'Para socios',
+            'side_partners': 'Para socios',
+            'side_partners_desc': 'Empresas y fábricas',
+            'title_constructor_partner': 'El Constructor 3D está disponible solo para socios',
+            'desc_constructor_partner': 'Diseñá cómo se verán los muebles en tu casa. La funcionalidad completa del constructor 3D ya está disponible en el gabinete personal del socio.',
+            'btn_become_partner': 'Convertirse en socio / Iniciar sesión',
+            'modal_partner_title': 'Beneficios de la asociación',
+            'modal_partner_benefit1': 'Acceso al constructor 3D privado con catálogo completo',
+            'modal_partner_benefit2': 'Precios mayoristas y descuentos individuales',
+            'modal_partner_benefit3': 'Gabinete personal: historial, carrito y estados',
+            'modal_partner_benefit4': 'Soporte prioritario y gerente personal',
+            'modal_partner_login_title': 'Entrada para socios',
+            'modal_partner_login_subtitle': 'Ingrese sus datos para acceder al gabinete personal',
+            'modal_partner_btn_login': 'Entrar al gabinete',
+            'modal_partner_no_account': '¿No tienes cuenta?',
+            'modal_partner_apply': 'Enviar solicitud',
+            // — Cabinet —
+            'cab_menu_title': 'Menú del socio',
+            'cab_constructor': 'Constructor 3D',
+            'cab_cart': 'Carrito',
+            'cab_orders': 'Pedidos actuales',
+            'cab_history': 'Historial de pedidos',
+            'cab_logout': 'Cerrar sesión',
+            'cab_cart_empty': 'El carrito está vacío',
+            'cab_cart_desc': 'Agregue productos desde el constructor 3D o el catálogo',
+            'cab_btn_to_constructor': 'Ir al constructor',
+            'cab_no_orders': 'No tienes pedidos actuales',
+            'cab_no_orders_desc': 'Los pedidos realizados aparecerán aquí',
+            'cab_history_empty': 'El historial de pedidos está vacío',
+            'cab_history_desc': 'Aquí se mostrará el archivo de sus pedidos completados'
         },
         'en': {
             // — Nav —
@@ -433,7 +464,38 @@ document.addEventListener('DOMContentLoaded', () => {
             'mat_wenge': 'Wenge',
             'mat_white': 'White Gloss',
             // — Meta —
-            'meta_description': 'Premium furniture factory in Argentina — bedroom sets, kitchens, wardrobes, living rooms, offices. 3D furniture constructor, free project design.'
+            'meta_description': 'Premium furniture factory in Argentina — bedroom sets, kitchens, wardrobes, living rooms, offices. 3D furniture constructor, free project design.',
+            // — Partners —
+            'nav_partners': 'For partners',
+            'side_partners': 'For partners',
+            'side_partners_desc': 'Companies & factories',
+            'title_constructor_partner': '3D Constructor is available for partners only',
+            'desc_constructor_partner': 'Design how the furniture will look in your home. Full 3D constructor functionality is now available in the partner\'s personal cabinet.',
+            'btn_become_partner': 'Become a partner / Login',
+            'modal_partner_title': 'Partnership Benefits',
+            'modal_partner_benefit1': 'Access to private 3D constructor with full catalog',
+            'modal_partner_benefit2': 'Wholesale prices and individual discounts',
+            'modal_partner_benefit3': 'Personal cabinet: history, cart and tracking',
+            'modal_partner_benefit4': 'Priority support and personal manager',
+            'modal_partner_login_title': 'Partner Login',
+            'modal_partner_login_subtitle': 'Enter your details to access your personal cabinet',
+            'modal_partner_btn_login': 'Login to cabinet',
+            'modal_partner_no_account': 'Don\'t have an account?',
+            'modal_partner_apply': 'Submit request',
+            // — Cabinet —
+            'cab_menu_title': 'Partner Menu',
+            'cab_constructor': '3D Constructor',
+            'cab_cart': 'Cart',
+            'cab_orders': 'Current Orders',
+            'cab_history': 'Order History',
+            'cab_logout': 'Logout',
+            'cab_cart_empty': 'Cart is empty',
+            'cab_cart_desc': 'Add products from the 3D constructor or catalog',
+            'cab_btn_to_constructor': 'Go to constructor',
+            'cab_no_orders': 'You have no current orders',
+            'cab_no_orders_desc': 'Placed orders will appear here',
+            'cab_history_empty': 'Order history is empty',
+            'cab_history_desc': 'An archive of your completed orders will be displayed here'
         },
         'ru': {
             // — Nav —
@@ -646,7 +708,38 @@ document.addEventListener('DOMContentLoaded', () => {
             'mat_wenge': 'Венге',
             'mat_white': 'Белый глянец',
             // — Meta —
-            'meta_description': 'Мебельная компания в Аргентине — спальные гарнитуры, кухни, гардеробные, гостиные, офисы. 3D-конструктор мебели, бесплатный проект.'
+            'meta_description': 'Мебельная компания в Аргентине — спальные гарнитуры, кухни, гардеробные, гостиные, офисы. 3D-конструктор мебели, бесплатный проект.',
+            // — Partners —
+            'nav_partners': 'Для партнеров',
+            'side_partners': 'Для партнеров',
+            'side_partners_desc': 'Компании и фабрики',
+            'title_constructor_partner': '3D Конструктор доступен только для партнеров',
+            'desc_constructor_partner': 'Спроектируйте, как мебель будет выглядеть в вашем доме. Полный функционал 3D конструктора теперь доступен в личном кабинете партнера.',
+            'btn_become_partner': 'Стать партнером / Войти',
+            'modal_partner_title': 'Преимущества партнерства',
+            'modal_partner_benefit1': 'Доступ к закрытому 3D конструктору с полным каталогом моделей',
+            'modal_partner_benefit2': 'Оптовые цены и индивидуальные скидки на все категории мебели',
+            'modal_partner_benefit3': 'Удобный личный кабинет: история заказов, корзина и отслеживание статусов',
+            'modal_partner_benefit4': 'Приоритетная поддержка и персональный менеджер',
+            'modal_partner_login_title': 'Вход для партнеров',
+            'modal_partner_login_subtitle': 'Введите данные для доступа в личный кабинет',
+            'modal_partner_btn_login': 'Войти в кабинет',
+            'modal_partner_no_account': 'Нет аккаунта?',
+            'modal_partner_apply': 'Оставить заявку',
+            // — Cabinet —
+            'cab_menu_title': 'Меню партнера',
+            'cab_constructor': '3D Конструктор',
+            'cab_cart': 'Корзина',
+            'cab_orders': 'Текущие заказы',
+            'cab_history': 'История заказов',
+            'cab_logout': 'Выйти из аккаунта',
+            'cab_cart_empty': 'Корзина пуста',
+            'cab_cart_desc': 'Добавьте товары из 3D конструктора или каталога',
+            'cab_btn_to_constructor': 'Перейти в конструктор',
+            'cab_no_orders': 'У вас нет текущих заказов',
+            'cab_no_orders_desc': 'Оформленные заказы появятся здесь',
+            'cab_history_empty': 'История заказов пуста',
+            'cab_history_desc': 'Здесь будет отображаться архив ваших завершенных заказов'
         }
     };
 
@@ -2066,4 +2159,48 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    // ====== PARTNER CABINET LOGIC ======
+    function initCabinet() {
+        const cabinetLinks = document.querySelectorAll('.cabinet-nav-link');
+        const cabinetTabs = document.querySelectorAll('.tab-content');
+        const cabinetTitle = document.getElementById('cabinetTitle');
+
+        if (!cabinetLinks.length) return;
+
+        cabinetLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Update active link
+                cabinetLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+
+                // Update title with translation key
+                const key = link.getAttribute('data-i18n-key');
+                if (cabinetTitle && key) {
+                    cabinetTitle.setAttribute('data-i18n', key);
+                    // Re-run translation for the title immediately
+                    const currentLang = localStorage.getItem('preferred_lang') || 'es';
+                    const t = translations[currentLang] || translations['es'];
+                    if (t[key]) {
+                        cabinetTitle.innerHTML = t[key];
+                    }
+                }
+
+                // Show selected tab
+                const targetTabId = 'tab-' + link.getAttribute('data-tab');
+                cabinetTabs.forEach(tab => {
+                    if (tab.id === targetTabId) {
+                        tab.classList.add('active');
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
+            });
+        });
+    }
+
+    // Run cabinet init
+    initCabinet();
 });
