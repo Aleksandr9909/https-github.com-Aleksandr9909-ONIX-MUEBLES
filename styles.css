@@ -2873,3 +2873,6 @@ ul, ol {
     filter: blur(0);
     pointer-events: all;
 }
+
+@media (max-width: 768px) { .partner-auth-layout { flex-direction: column !important; } .partner-auth__info, .partner-auth__form-wrap { padding: 30px !important; } } .admin-modal__content--medium { width: 100%; max-width: 800px; }
+

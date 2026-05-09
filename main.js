@@ -2007,31 +2007,63 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal(content);
     };
 
-    // ====== CONSTRUCTOR ACCESS ======
-    const constructorAccess = document.getElementById('constructorAccess');
-    const constructorPassword = document.getElementById('constructorPassword');
-    const constructorLoginBtn = document.getElementById('constructorLoginBtn');
-    const constructorError = document.getElementById('constructorError');
-    const planplaceContainer = document.getElementById('planplace_container');
+    // ====== PARTNER AUTH MODAL ======
+    const partnerAuthModal = document.getElementById('partnerAuthModal');
+    const partnerAuthOverlay = document.getElementById('partnerAuthOverlay');
+    const partnerAuthClose = document.getElementById('partnerAuthClose');
+    const partnerEmail = document.getElementById('partnerEmail');
+    const partnerPassword = document.getElementById('partnerPassword');
+    const partnerLoginSubmit = document.getElementById('partnerLoginSubmit');
+    const partnerAuthError = document.getElementById('partnerAuthError');
+    const partnerRequestAccess = document.getElementById('partnerRequestAccess');
 
-    if (constructorAccess && constructorLoginBtn) {
-        constructorLoginBtn.addEventListener('click', () => {
-            if (constructorPassword.value === 'ONIXMUEBLES2015') {
-                constructorAccess.classList.add('hidden');
-                if (planplaceContainer) {
-                    planplaceContainer.classList.add('unblurred');
-                }
-                constructorError.style.display = 'none';
-            } else {
-                constructorError.style.display = 'block';
+    document.querySelectorAll('.btn-partner-trigger').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (partnerAuthModal) {
+                partnerAuthModal.classList.add('active');
+                const sm = document.getElementById('sideMenu');
+                const mo = document.getElementById('menuOverlay');
+                if(sm) sm.classList.remove('active');
+                if(mo) mo.classList.remove('active');
             }
         });
+    });
 
-        constructorPassword.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                constructorLoginBtn.click();
-            }
+    if (partnerAuthClose) {
+        partnerAuthClose.addEventListener('click', () => {
+            partnerAuthModal.classList.remove('active');
         });
     }
 
+    if (partnerAuthOverlay) {
+        partnerAuthOverlay.addEventListener('click', () => {
+            partnerAuthModal.classList.remove('active');
+        });
+    }
+
+    if (partnerRequestAccess) {
+        partnerRequestAccess.addEventListener('click', () => {
+            partnerAuthModal.classList.remove('active');
+        });
+    }
+
+    if (partnerLoginSubmit) {
+        partnerLoginSubmit.addEventListener('click', () => {
+            if (partnerEmail.value && partnerPassword.value) {
+                // Redirect to personal cabinet
+                window.location.href = 'cabinet.html';
+            } else {
+                partnerAuthError.style.display = 'block';
+            }
+        });
+        
+        if (partnerPassword) {
+            partnerPassword.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    partnerLoginSubmit.click();
+                }
+            });
+        }
+    }
 });

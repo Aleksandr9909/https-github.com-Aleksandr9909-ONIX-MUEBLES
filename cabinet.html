@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет партнера | Onyx Muebles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            background: var(--color-bg-alt);
+        }
+        .cabinet-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        .cabinet-sidebar {
+            width: 280px;
+            background: var(--color-bg-dark);
+            color: white;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex-shrink: 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+        .cabinet-sidebar .logo-image-wrapper {
+            margin-bottom: 20px;
+            padding: 0 10px;
+            max-width: 140px;
+        }
+        .cabinet-sidebar img {
+            filter: brightness(0) invert(1);
+        }
+        .cabinet-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .cabinet-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        .cabinet-nav-link:hover {
+            color: white;
+            background: rgba(255,255,255,0.05);
+        }
+        .cabinet-nav-link.active {
+            color: white;
+            background: var(--color-primary);
+        }
+        .cabinet-content {
+            flex: 1;
+            padding: 40px 60px;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+        .cabinet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .cabinet-title {
+            font-size: 32px;
+            color: var(--color-text);
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+        }
+        .cabinet-user {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .cabinet-avatar {
+            width: 44px;
+            height: 44px;
+            background: var(--color-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        .cabinet-logout {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+        .cabinet-logout:hover {
+            color: var(--color-primary);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cart-placeholder, .orders-placeholder {
+            background: white;
+            border-radius: 16px;
+            padding: 60px;
+            text-align: center;
+            color: var(--color-text-muted);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        
+        .cart-placeholder h3, .orders-placeholder h3 {
+            color: var(--color-text);
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cabinet-layout">
+        <!-- Sidebar -->
+        <aside class="cabinet-sidebar">
+            <a href="index.html" class="logo-image-wrapper">
+                <img src="images/onyx-logo-new.png" alt="Onyx Muebles Logo" style="width: 100%;">
+            </a>
+            
+            <div style="padding: 0 16px; margin-bottom: 10px;">
+                <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.4); font-weight: 600;">Меню партнера</span>
+            </div>
+
+            <ul class="cabinet-nav">
+                <li>
+                    <a href="#" class="cabinet-nav-link active" data-tab="constructor">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                        3D Конструктор
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="cabinet-nav-link" data-tab="cart">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.5"></circle><circle cx="20" cy="21" r="1.5"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                        Корзина
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="cabinet-nav-link" data-tab="orders">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        Текущие заказы
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="cabinet-nav-link" data-tab="history">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        История заказов
+                    </a>
+                </li>
+            </ul>
+            <div style="margin-top: auto; padding-top: 20px; font-size: 13px; color: rgba(255,255,255,0.4); text-align: center;">
+                &copy; 2026 Onyx Muebles<br>Partner Portal
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="cabinet-content">
+            <header class="cabinet-header">
+                <h1 class="cabinet-title" id="cabinetTitle">3D Конструктор</h1>
+                <div class="cabinet-user">
+                    <div style="display: flex; flex-direction: column; text-align: right;">
+                        <span style="font-weight: 600; font-size: 15px; color: var(--color-text);">Partner Company</span>
+                        <a href="index.html" class="cabinet-logout">Выйти из аккаунта</a>
+                    </div>
+                    <div class="cabinet-avatar">P</div>
+                </div>
+            </header>
+
+            <!-- Tab: 3D Constructor -->
+            <div class="tab-content active" id="tab-constructor">
+                <div class="constructor__viewport" id="constructorViewport" style="position: relative; border-radius: 16px; overflow: hidden; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.05); min-height: 650px; display: flex; flex-direction: column;">
+                    <!-- PlanPlace 3D Constructor -->
+                    <div class="planplace-wrapper" id="planplace_container" style="flex: 1; min-height: 650px;"></div>
+                </div>
+            </div>
+
+            <!-- Tab: Cart -->
+            <div class="tab-content" id="tab-cart">
+                <div class="cart-placeholder">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity: 0.2; margin-bottom: 24px;"><circle cx="9" cy="21" r="2"></circle><circle cx="20" cy="21" r="2"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <h3>Корзина пуста</h3>
+                    <p style="font-size: 16px;">Добавьте товары из 3D конструктора или каталога</p>
+                    <button class="btn btn--primary" style="margin-top: 24px;" onclick="document.querySelector('[data-tab=\'constructor\']').click()">Перейти в конструктор</button>
+                </div>
+            </div>
+
+            <!-- Tab: Orders -->
+            <div class="tab-content" id="tab-orders">
+                <div class="orders-placeholder">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity: 0.2; margin-bottom: 24px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <h3>У вас нет текущих заказов</h3>
+                    <p style="font-size: 16px;">Оформленные заказы появятся здесь</p>
+                </div>
+            </div>
+
+            <!-- Tab: History -->
+            <div class="tab-content" id="tab-history">
+                <div class="orders-placeholder">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity: 0.2; margin-bottom: 24px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <h3>История заказов пуста</h3>
+                    <p style="font-size: 16px;">Здесь будет отображаться архив ваших завершенных заказов</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Include main.js for Firebase and PlanPlace initialization -->
+    <script type="module" src="main.js"></script>
+    <script>
+        // Simple tab switching logic for cabinet
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.cabinet-nav-link');
+            const tabs = document.querySelectorAll('.tab-content');
+            const title = document.getElementById('cabinetTitle');
+
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Update active link
+                    links.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+
+                    // Update title
+                    title.textContent = link.textContent.trim();
+
+                    // Show selected tab
+                    const targetTabId = 'tab-' + link.getAttribute('data-tab');
+                    tabs.forEach(tab => {
+                        if (tab.id === targetTabId) {
+                            tab.classList.add('active');
+                        } else {
+                            tab.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

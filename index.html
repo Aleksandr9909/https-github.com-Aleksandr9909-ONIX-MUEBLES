@@ -162,6 +162,27 @@
                     </svg>
                 </a>
             </li>
+            <li class="side-menu__item">
+                <a href="#" class="side-menu__link btn-partner-trigger" id="sidePartnerBtn">
+                    <div class="side-menu__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                    </div>
+                    <div class="side-menu__text">
+                        <span class="side-menu__name" data-i18n="side_partners" style="color: var(--color-primary);">Для партнеров</span>
+                        <span class="side-menu__desc" data-i18n="side_partners_desc">Компании и фабрики</span>
+                    </div>
+                    <svg class="side-menu__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </a>
+            </li>
         </ul>
         <div class="side-menu__footer" style="display: flex; gap: 16px; justify-content: center; padding: 24px;">
             <a href="https://wa.me/5492233390267?text=%C2%A1Hola!%20Vi%20una%20posici%C3%B3n%20en%20su%20cat%C3%A1logo%20y%20me%20gustar%C3%ADa%20charlarlo"
@@ -200,6 +221,7 @@
                 <a href="#portfolio" class="header__nav-link" data-i18n="nav_portfolio">Портфолио</a>
                 <a href="#about" class="header__nav-link" data-i18n="nav_about">О нас</a>
                 <a href="#contacts" class="header__nav-link" data-i18n="nav_contacts">Контакты</a>
+                <a href="#" class="header__nav-link btn-partner-trigger" data-i18n="nav_partners" style="color: var(--color-primary); font-weight: 600;">Для партнеров</a>
             </nav>
             <div class="header__actions">
                 <button class="header__cart-btn" aria-label="Cart" id="cartOpenBtn">
@@ -422,71 +444,13 @@
         </div>
     </section>
 
-    <!-- ====== 3D CONSTRUCTOR SECTION ====== -->
-    <section class="constructor" id="constructor">
+    <!-- ====== 3D CONSTRUCTOR SECTION (MOVED TO CABINET) ====== -->
+    <!-- The constructor has been moved to the partner cabinet -->
+    <section class="constructor" id="constructor" style="padding: 60px 0; background: var(--color-bg-alt); text-align: center;">
         <div class="container">
-            <div class="section-header section-header--light">
-                <span class="section-tag section-tag--light" data-i18n="tag_innovations">Инновации</span>
-                <h2 class="section-title section-title--light" data-i18n="title_constructor">3D Конструктор мебели</h2>
-                <p class="section-subtitle section-subtitle--light" data-i18n="subtitle_constructor">Спроектируйте, как
-                    мебель будет выглядеть в вашем доме. Выбирайте размеры, материалы, цвета — и смотрите результат в
-                    реальном времени с помощью нашего 3D движка.</p>
-            </div>
-            <div class="constructor__content">
-                <div class="constructor__viewport" id="constructorViewport" style="position: relative;">
-                    <!-- Constructor Access Overlay -->
-                    <div class="constructor__access-overlay" id="constructorAccess">
-                        <div class="constructor__access-card">
-                            <h3 data-i18n="constructor_access_title" style="margin-bottom: 10px; font-size: 24px; color: #1A1917;">Доступ к конструктору</h3>
-                            <p data-i18n="constructor_access_desc" style="margin-bottom: 20px; color: #6B6860;">Пожалуйста, введите пароль для входа в 3D конструктор</p>
-                            <input type="password" id="constructorPassword" placeholder="Пароль" class="constructor__access-input" style="width: 100%; padding: 12px 16px; margin-bottom: 16px; border: 1px solid rgba(26, 25, 23, 0.2); border-radius: 8px; font-size: 16px;">
-                            <button class="btn btn--primary" id="constructorLoginBtn" style="width: 100%;" data-i18n="btn_enter_constructor">Войти в конструктор</button>
-                            <p class="constructor__access-error" id="constructorError" style="display: none; color: #e74c3c; margin-top: 12px; font-size: 14px; text-align: center;" data-i18n="constructor_access_error">Неверный пароль</p>
-                        </div>
-                    </div>
-                    <!-- PlanPlace 3D Constructor -->
-                    <div class="planplace-wrapper blurred-wrapper" id="planplace_container"></div>
-                </div>
-                <div class="constructor__features">
-                    <div class="constructor__feature">
-                        <div class="constructor__feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5">
-                                <rect x="3" y="3" width="7" height="7" />
-                                <rect x="14" y="3" width="7" height="7" />
-                                <rect x="14" y="14" width="7" height="7" />
-                                <rect x="3" y="14" width="7" height="7" />
-                            </svg>
-                        </div>
-                        <h4 data-i18n="feat_library">Библиотека моделей</h4>
-                        <p data-i18n="feat_library_desc">Более 500 моделей мебели в каталоге</p>
-                    </div>
-                    <div class="constructor__feature">
-                        <div class="constructor__feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5">
-                                <circle cx="12" cy="12" r="3" />
-                                <path
-                                    d="M12 1v4m0 14v4M4.22 4.22l2.83 2.83m9.9 9.9l2.83 2.83M1 12h4m14 0h4M4.22 19.78l2.83-2.83m9.9-9.9l2.83-2.83" />
-                            </svg>
-                        </div>
-                        <h4 data-i18n="feat_materials">Реальные материалы</h4>
-                        <p data-i18n="feat_materials_desc">Точные текстуры дерева, камня, ткани</p>
-                    </div>
-                    <div class="constructor__feature">
-                        <div class="constructor__feature-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                <polyline points="7 10 12 15 17 10" />
-                                <line x1="12" y1="15" x2="12" y2="3" />
-                            </svg>
-                        </div>
-                        <h4 data-i18n="feat_export">Экспорт проекта</h4>
-                        <p data-i18n="feat_export_desc">Скачайте план с размерами в PDF</p>
-                    </div>
-                </div>
-            </div>
+            <h2 class="section-title" data-i18n="title_constructor_partner" style="color: var(--color-text);">3D Конструктор доступен только для партнеров</h2>
+            <p style="margin-top: 20px; color: var(--color-text-muted); max-width: 600px; margin-left: auto; margin-right: auto;" data-i18n="desc_constructor_partner">Спроектируйте, как мебель будет выглядеть в вашем доме. Полный функционал 3D конструктора теперь доступен в личном кабинете партнера.</p>
+            <button class="btn btn--primary btn-partner-trigger" style="margin-top: 30px;" data-i18n="btn_become_partner">Стать партнером / Войти</button>
         </div>
     </section>
 
@@ -1113,6 +1077,80 @@
                         <div class="admin-dashboard__products" id="adminProductsList">
                             <!-- Products will be generated here -->
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== PARTNER LOGIN MODAL ====== -->
+    <div class="admin-modal" id="partnerAuthModal">
+        <div class="admin-modal__overlay" id="partnerAuthOverlay"></div>
+        <div class="admin-modal__content admin-modal__content--medium" style="max-width: 800px; padding: 0; overflow: hidden; border-radius: 16px;">
+            <button class="admin-modal__close" id="partnerAuthClose" style="z-index: 10; background: rgba(0,0,0,0.5); color: white; border-radius: 50%; padding: 4px; right: 16px; top: 16px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="partner-auth-layout" style="display: flex; min-height: 500px;">
+                <!-- Left side: Advantages -->
+                <div class="partner-auth__info" style="flex: 1; background: var(--color-bg-dark); color: white; padding: 40px; display: flex; flex-direction: column; justify-content: center;">
+                    <div class="logo-image-wrapper" style="margin-bottom: 30px; max-width: 150px;">
+                        <img src="images/onyx-logo-new.png" alt="Onyx Muebles Logo" style="filter: brightness(0) invert(1);">
+                    </div>
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 20px;" data-i18n="partner_modal_title">Преимущества партнерства</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;">
+                        <li style="display: flex; gap: 12px; align-items: flex-start;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            <span data-i18n="partner_adv_1" style="font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.9);">Доступ к закрытому 3D конструктору с полным каталогом моделей</span>
+                        </li>
+                        <li style="display: flex; gap: 12px; align-items: flex-start;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            <span data-i18n="partner_adv_2" style="font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.9);">Оптовые цены и индивидуальные скидки на все категории мебели</span>
+                        </li>
+                        <li style="display: flex; gap: 12px; align-items: flex-start;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            <span data-i18n="partner_adv_3" style="font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.9);">Удобный личный кабинет: история заказов, корзина и отслеживание статусов</span>
+                        </li>
+                        <li style="display: flex; gap: 12px; align-items: flex-start;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            <span data-i18n="partner_adv_4" style="font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.9);">Приоритетная поддержка и персональный менеджер</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Right side: Login form -->
+                <div class="partner-auth__form-wrap" style="flex: 1; background: var(--color-bg); padding: 40px; display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="font-size: 24px; margin-bottom: 8px; color: var(--color-text);" data-i18n="partner_login_title">Вход для партнеров</h3>
+                    <p style="color: var(--color-text-muted); margin-bottom: 30px; font-size: 14px;" data-i18n="partner_login_desc">Введите данные для доступа в личный кабинет</p>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; font-size: 13px; font-weight: 500; margin-bottom: 8px; color: var(--color-text);" data-i18n="form_email">E-mail</label>
+                        <input type="email" id="partnerEmail" class="admin-auth__input" placeholder="partner@company.com" style="width: 100%; border: 1px solid rgba(0,0,0,0.1); color: #000; background: #fff;">
+                    </div>
+                    <div style="margin-bottom: 24px;">
+                        <label style="display: block; font-size: 13px; font-weight: 500; margin-bottom: 8px; color: var(--color-text);" data-i18n="form_password">Пароль</label>
+                        <input type="password" id="partnerPassword" class="admin-auth__input" placeholder="••••••••" style="width: 100%; border: 1px solid rgba(0,0,0,0.1); color: #000; background: #fff;">
+                    </div>
+                    
+                    <button id="partnerLoginSubmit" class="btn btn--primary btn--full" style="padding: 14px; font-size: 16px;" data-i18n="btn_login">Войти в кабинет</button>
+                    <p id="partnerAuthError" style="color: #e74c3c; font-size: 14px; margin-top: 12px; display: none; text-align: center;" data-i18n="partner_error">Неверный E-mail или пароль</p>
+                    
+                    <div style="margin-top: 24px; text-align: center; font-size: 14px; color: var(--color-text-muted);">
+                        <span data-i18n="partner_no_account">Нет аккаунта?</span> 
+                        <a href="#contacts" id="partnerRequestAccess" style="color: var(--color-primary); font-weight: 600; text-decoration: none;" data-i18n="partner_request_access">Оставить заявку</a>
                     </div>
                 </div>
             </div>
