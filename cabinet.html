@@ -216,7 +216,29 @@
             <div class="tab-content active" id="tab-constructor">
                 <div class="constructor__viewport" id="constructorViewport" style="position: relative; border-radius: 16px; overflow: hidden; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.05); min-height: 650px; display: flex; flex-direction: column;">
                     <!-- PlanPlace 3D Constructor -->
-                    <div class="planplace-wrapper" id="planplace_container" style="flex: 1; min-height: 650px;"></div>
+                    <div class="planplace-wrapper" id="planplace_container" style="flex: 1; min-height: 650px;">
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var params = decodeURIComponent(window.location.search.substring(1));
+                                var planplace_container = document.getElementById('planplace_container');
+                                if (!planplace_container) return;
+                                
+                                // Check if iframe already exists to avoid duplicates
+                                if (document.getElementById('planplace')) return;
+
+                                var iframe = document.createElement('iframe');
+                                iframe.id = 'planplace';
+                                iframe.allowFullscreen = true;
+                                iframe.style.width = "100%";
+                                iframe.style.height = "100%";
+                                iframe.style.minHeight = "700px";
+                                iframe.style.border = 0;
+                                iframe.src = 'https://planplace.ru/clients/230751115/';
+                                if (params !== '') iframe.src = iframe.src + "?" + params;
+                                planplace_container.appendChild(iframe);
+                            });
+                        </script>
+                    </div>
                 </div>
             </div>
 

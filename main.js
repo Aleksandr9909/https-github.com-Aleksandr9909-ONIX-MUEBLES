@@ -1176,23 +1176,8 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(shakeStyle);
 
-    // ====== 3D CONSTRUCTOR (PlanPlace Integration) ======
-    (function initPlanPlace() {
-        var params = decodeURIComponent(window.location.search.substring(1));
-        var planplace_container = document.getElementById('planplace_container');
-        if (!planplace_container) return;
-
-        var iframe = document.createElement('iframe');
-        iframe.id = 'planplace';
-        iframe.allowFullscreen = true;
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        iframe.style.minHeight = '700px';
-        iframe.style.border = '0';
-        iframe.src = 'https://planplace.ru/clients/230751115/';
-        if (params !== '') iframe.src = iframe.src + '?' + params;
-        planplace_container.appendChild(iframe);
-    })();
+    // ====== 3D CONSTRUCTOR (Moved to cabinet.html) ======
+    // Initialization is now handled directly in cabinet.html for better reliability.
 
 
     // ====== NAVIGATE TO CATEGORY (shared function) ======
