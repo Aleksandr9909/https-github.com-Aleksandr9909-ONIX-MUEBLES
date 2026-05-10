@@ -2178,6 +2178,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tabProductsBtn.style.opacity = '1';
             tabPartnersBtn.style.opacity = '0.5';
             adminProductsSection.style.display = 'flex';
+            adminProductsSection.style.flexDirection = 'row';
             adminPartnersSection.style.display = 'none';
         });
 
@@ -2185,6 +2186,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tabPartnersBtn.style.opacity = '1';
             tabProductsBtn.style.opacity = '0.5';
             adminPartnersSection.style.display = 'flex';
+            adminPartnersSection.style.flexDirection = 'row';
             adminProductsSection.style.display = 'none';
             renderAdminPartners();
         });
