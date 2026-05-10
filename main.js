@@ -2177,14 +2177,14 @@ document.addEventListener('DOMContentLoaded', () => {
         tabProductsBtn.addEventListener('click', () => {
             tabProductsBtn.style.opacity = '1';
             tabPartnersBtn.style.opacity = '0.5';
-            adminProductsSection.style.display = 'grid';
+            adminProductsSection.style.display = 'flex';
             adminPartnersSection.style.display = 'none';
         });
 
         tabPartnersBtn.addEventListener('click', () => {
             tabPartnersBtn.style.opacity = '1';
             tabProductsBtn.style.opacity = '0.5';
-            adminPartnersSection.style.display = 'grid';
+            adminPartnersSection.style.display = 'flex';
             adminProductsSection.style.display = 'none';
             renderAdminPartners();
         });
