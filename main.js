@@ -2096,7 +2096,7 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal(content);
     };
 
-    // ====== PARTNER AUTH MODAL ======
+    // ====== PARTNER AUTH LOGIC ======
     const partnerAuthModal = document.getElementById('partnerAuthModal');
     const partnerAuthOverlay = document.getElementById('partnerAuthOverlay');
     const partnerAuthClose = document.getElementById('partnerAuthClose');
@@ -2131,18 +2131,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (partnerRequestAccess) {
-        partnerRequestAccess.addEventListener('click', () => {
-            partnerAuthModal.classList.remove('active');
-        });
-    }
-
     if (partnerLoginSubmit) {
-        partnerLoginSubmit.addEventListener('click', () => {
-            if (partnerEmail.value && partnerPassword.value) {
-                // Redirect to personal cabinet
-                window.location.href = 'cabinet.html';
+        partnerLoginSubmit.addEventListener('click', async () => {
+            const email = partnerEmail.value.trim();
+            const password = partnerPassword.value;
+
+            if (email && password) {
+                // NEW: Check if email is in the authorized partners list
+                const isAuthorized = await FirebaseDB.isAuthorizedPartner(email);
+                
+                if (isAuthorized) {
+                    // Store authorized email in session
+                    sessionStorage.setItem('partner_auth', 'true');
+                    sessionStorage.setItem('partner_email', email);
+                    window.location.href = 'cabinet.html';
+                } else {
+                    partnerAuthError.textContent = 'Доступ запрещен. Ваш Email не найден в списке партнеров.';
+                    partnerAuthError.style.display = 'block';
+                }
             } else {
+                partnerAuthError.textContent = 'Пожалуйста, введите Email и пароль.';
                 partnerAuthError.style.display = 'block';
             }
         });
@@ -2156,7 +2164,96 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ====== PARTNER CABINET LOGIC ======
+    // ====== ADMIN PARTNERS MANAGEMENT ======
+    const tabProductsBtn = document.getElementById('tabProductsBtn');
+    const tabPartnersBtn = document.getElementById('tabPartnersBtn');
+    const adminProductsSection = document.getElementById('adminProductsSection');
+    const adminPartnersSection = document.getElementById('adminPartnersSection');
+    const adminPartnerForm = document.getElementById('adminPartnerForm');
+    const newPartnerEmail = document.getElementById('newPartnerEmail');
+    const adminPartnersList = document.getElementById('adminPartnersList');
+
+    if (tabProductsBtn && tabPartnersBtn) {
+        tabProductsBtn.addEventListener('click', () => {
+            tabProductsBtn.style.opacity = '1';
+            tabPartnersBtn.style.opacity = '0.5';
+            adminProductsSection.style.display = 'grid';
+            adminPartnersSection.style.display = 'none';
+        });
+
+        tabPartnersBtn.addEventListener('click', () => {
+            tabPartnersBtn.style.opacity = '1';
+            tabProductsBtn.style.opacity = '0.5';
+            adminPartnersSection.style.display = 'grid';
+            adminProductsSection.style.display = 'none';
+            renderAdminPartners();
+        });
+    }
+
+    async function renderAdminPartners() {
+        if (!adminPartnersList) return;
+        
+        adminPartnersList.innerHTML = '<p style="text-align: center; padding: 20px; color: var(--color-text-muted);">⏳ Загрузка списка...</p>';
+        
+        const partners = await FirebaseDB.getPartners();
+        
+        if (partners.length === 0) {
+            adminPartnersList.innerHTML = '<p style="text-align: center; padding: 20px; color: var(--color-text-muted);">Список партнеров пуст.</p>';
+            return;
+        }
+
+        adminPartnersList.innerHTML = partners.map(p => `
+            <div style="display: flex; justify-content: space-between; align-items: center; background: var(--color-bg-alt); padding: 12px 20px; border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+                <div>
+                    <div style="font-weight: 600; color: var(--color-text);">${p.email}</div>
+                    <div style="font-size: 11px; color: var(--color-text-muted);">Добавлен: ${new Date(p.createdAt).toLocaleDateString()}</div>
+                </div>
+                <button class="admin-btn-delete" onclick="window.removePartner('${p.id}', '${p.email}')" style="padding: 6px 12px; font-size: 12px;">Удалить</button>
+            </div>
+        `).join('');
+    }
+
+    if (adminPartnerForm) {
+        adminPartnerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = newPartnerEmail.value.trim();
+            if (!email) return;
+
+            const submitBtn = document.getElementById('adminAddPartnerBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Добавление...';
+
+            try {
+                // Check if already exists
+                const exists = await FirebaseDB.isAuthorizedPartner(email);
+                if (exists) {
+                    alert('Этот партнер уже в списке.');
+                } else {
+                    await FirebaseDB.addPartner(email);
+                    newPartnerEmail.value = '';
+                    renderAdminPartners();
+                }
+            } catch (err) {
+                alert('Ошибка при добавлении: ' + err.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Добавить в список';
+            }
+        });
+    }
+
+    window.removePartner = async function(id, email) {
+        if (confirm(`Вы уверены, что хотите удалить партнера ${email}?`)) {
+            try {
+                await FirebaseDB.deletePartner(id);
+                renderAdminPartners();
+            } catch (err) {
+                alert('Ошибка при удалении: ' + err.message);
+            }
+        }
+    };
+
+    // Run cabinet init
     function initCabinet() {
         const cabinetLinks = document.querySelectorAll('.cabinet-nav-link');
         const cabinetTabs = document.querySelectorAll('.tab-content');
@@ -2197,6 +2294,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Run cabinet init
     initCabinet();
 });

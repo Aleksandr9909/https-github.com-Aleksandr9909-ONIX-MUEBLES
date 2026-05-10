@@ -139,6 +139,12 @@
             font-size: 24px;
         }
     </style>
+    <script>
+        // Check if partner is authorized
+        if (sessionStorage.getItem('partner_auth') !== 'true') {
+            window.location.href = 'index.html';
+        }
+    </script>
 </head>
 <body>
     <div class="cabinet-layout">
@@ -204,10 +210,10 @@
                     <div class="header__divider" style="width: 1px; height: 24px; background: rgba(0,0,0,0.1);"></div>
                     <div class="cabinet-user">
                         <div style="display: flex; flex-direction: column; text-align: right;">
-                            <span style="font-weight: 600; font-size: 15px; color: var(--color-text);">Partner Company</span>
-                            <a href="index.html" class="cabinet-logout" data-i18n="cab_logout">Выйти из аккаунта</a>
+                            <span style="font-weight: 600; font-size: 15px; color: var(--color-text);" id="cabinetUserEmail">Partner</span>
+                            <a href="#" class="cabinet-logout" onclick="sessionStorage.removeItem('partner_auth'); sessionStorage.removeItem('partner_email'); window.location.href='index.html';" data-i18n="cab_logout">Выйти из аккаунта</a>
                         </div>
-                        <div class="cabinet-avatar">P</div>
+                        <div class="cabinet-avatar" id="cabinetUserAvatar">P</div>
                     </div>
                 </div>
             </header>
@@ -274,5 +280,15 @@
 
     <!-- Include main.js for Firebase and PlanPlace initialization -->
     <script type="module" src="main.js"></script>
+    <script>
+        // Update user info from session
+        document.addEventListener('DOMContentLoaded', () => {
+            const email = sessionStorage.getItem('partner_email');
+            if (email) {
+                document.getElementById('cabinetUserEmail').textContent = email;
+                document.getElementById('cabinetUserAvatar').textContent = email.charAt(0).toUpperCase();
+            }
+        });
+    </script>
 </body>
 </html>
