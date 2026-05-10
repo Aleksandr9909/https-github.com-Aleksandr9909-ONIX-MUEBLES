@@ -2259,15 +2259,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Run cabinet init
     function initCabinet() {
+        console.log('🏗️ Initializing Partner Cabinet...');
         const cabinetLinks = document.querySelectorAll('.cabinet-nav-link');
         const cabinetTabs = document.querySelectorAll('.tab-content');
         const cabinetTitle = document.getElementById('cabinetTitle');
 
-        if (!cabinetLinks.length) return;
+        if (!cabinetLinks.length) {
+            console.log('ℹ️ No cabinet links found, skipping cabinet init.');
+            return;
+        }
+
+        console.log(`✅ Found ${cabinetLinks.length} nav links and ${cabinetTabs.length} tabs.`);
 
         cabinetLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
+                const tabName = link.getAttribute('data-tab');
+                console.log(`🖱️ Cabinet nav click: ${tabName}`);
                 
                 // Update active link
                 cabinetLinks.forEach(l => l.classList.remove('active'));
@@ -2277,7 +2285,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const key = link.getAttribute('data-i18n-key');
                 if (cabinetTitle && key) {
                     cabinetTitle.setAttribute('data-i18n', key);
-                    // Re-run translation for the title immediately
                     const currentLang = localStorage.getItem('preferred_lang') || 'es';
                     const t = translations[currentLang] || translations['es'];
                     if (t[key]) {
@@ -2286,17 +2293,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Show selected tab
-                const targetTabId = 'tab-' + link.getAttribute('data-tab');
+                const targetTabId = 'tab-' + tabName;
+                let found = false;
                 cabinetTabs.forEach(tab => {
                     if (tab.id === targetTabId) {
                         tab.classList.add('active');
+                        found = true;
                     } else {
                         tab.classList.remove('active');
                     }
                 });
+
+                if (!found) {
+                    console.warn(`⚠️ Tab with ID ${targetTabId} not found!`);
+                }
             });
         });
     }
 
+    // Call init immediately and also on DOMContentLoaded just in case
     initCabinet();
+    document.addEventListener('DOMContentLoaded', initCabinet);
 });
