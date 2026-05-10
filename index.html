@@ -795,22 +795,24 @@
                     </div>
                 </div>
                 <div class="contacts__form-wrap">
-                    <form class="contacts__form" id="contactForm">
+                    <form class="contacts__form" id="contactForm" name="contact" data-netlify="true" netlify-honeypot="bot-field">
+                        <input type="hidden" name="form-name" value="contact">
+                        <p class="hidden" style="display:none;"><label>Don’t fill this out if you're human: <input name="bot-field" /></label></p>
                         <h3 class="contacts__form-title" data-i18n="form_title">Бесплатная консультация</h3>
                         <div class="contacts__form-group">
-                            <input type="text" id="contactName" class="contacts__input" placeholder=" " required>
+                            <input type="text" id="contactName" name="name" class="contacts__input" placeholder=" " required>
                             <label for="contactName" class="contacts__label" data-i18n="form_name">Ваше имя</label>
                         </div>
                         <div class="contacts__form-group">
-                            <input type="tel" id="contactPhone" class="contacts__input" placeholder=" " required>
+                            <input type="tel" id="contactPhone" name="phone" class="contacts__input" placeholder=" " required>
                             <label for="contactPhone" class="contacts__label" data-i18n="form_phone">Телефон</label>
                         </div>
                         <div class="contacts__form-group">
-                            <input type="email" id="contactEmail" class="contacts__input" placeholder=" ">
+                            <input type="email" id="contactEmail" name="email" class="contacts__input" placeholder=" ">
                             <label for="contactEmail" class="contacts__label" data-i18n="form_email">E-mail</label>
                         </div>
                         <div class="contacts__form-group">
-                            <select id="contactCategory" class="contacts__input contacts__select">
+                            <select id="contactCategory" name="category" class="contacts__input contacts__select">
                                 <option value="" disabled selected>Выберите категорию</option>
                                 <option value="bedroom">Спальный гарнитур</option>
                                 <option value="wardrobe">Гардеробная</option>
@@ -821,7 +823,7 @@
                             </select>
                         </div>
                         <div class="contacts__form-group">
-                            <textarea id="contactMessage" class="contacts__input contacts__textarea" placeholder=" "
+                            <textarea id="contactMessage" name="message" class="contacts__input contacts__textarea" placeholder=" "
                                 rows="3"></textarea>
                             <label for="contactMessage" class="contacts__label" data-i18n="form_message">Расскажите о
                                 проекте</label>

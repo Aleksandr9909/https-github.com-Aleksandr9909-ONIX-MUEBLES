@@ -1127,7 +1127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerHTML = t['form_sending'];
 
             try {
-                // Save to Firebase Cloud Database
+                // 1. Save to Firebase Cloud Database (Backup)
                 await FirebaseDB.saveContactSubmission({
                     name,
                     phone,
@@ -1135,6 +1135,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     category,
                     message,
                     language: document.documentElement.lang || 'es'
+                });
+
+                // 2. Submit to Netlify (Triggers Email Notification)
+                const formData = new FormData(contactForm);
+                await fetch("/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString(),
                 });
 
                 // Success state
