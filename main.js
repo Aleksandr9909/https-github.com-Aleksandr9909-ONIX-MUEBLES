@@ -908,9 +908,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('menu-open');
     }
 
-    menuBtn.addEventListener('click', openMenu);
-    menuClose.addEventListener('click', closeMenu);
-    menuOverlay.addEventListener('click', closeMenu);
+    if (menuBtn) menuBtn.addEventListener('click', openMenu);
+    if (menuClose) menuClose.addEventListener('click', closeMenu);
+    if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
 
     // Close menu on link click
     document.querySelectorAll('.side-menu__link').forEach(link => {
@@ -921,7 +921,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close menu on Escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && sideMenu.classList.contains('active')) {
+        if (e.key === 'Escape' && sideMenu && sideMenu.classList.contains('active')) {
             closeMenu();
         }
     });
@@ -934,10 +934,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollY = window.scrollY;
 
         // Add/remove scrolled class
-        if (scrollY > 60) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        if (header) {
+            if (scrollY > 60) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         }
 
         lastScroll = scrollY;
