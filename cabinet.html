@@ -29,6 +29,8 @@
             gap: 20px;
             flex-shrink: 0;
             box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1000;
         }
         .cabinet-sidebar .logo-image-wrapper {
             margin-bottom: 20px;
@@ -212,9 +214,9 @@
                     <div class="cabinet-user">
                         <div style="display: flex; flex-direction: column; text-align: right;">
                             <span style="font-weight: 600; font-size: 15px; color: var(--color-text);" id="cabinetUserEmail">Partner</span>
-                            <a href="#" class="cabinet-logout" onclick="sessionStorage.removeItem('partner_auth'); sessionStorage.removeItem('partner_email'); window.location.href='index.html';" data-i18n="cab_logout">Выйти из аккаунта</a>
+                            <a href="#" class="cabinet-logout" onclick="sessionStorage.removeItem('partner_auth'); sessionStorage.removeItem('partner_email'); window.location.href='index.html';" data-i18n="cab_logout" style="position: relative; z-index: 1001;">Выйти из аккаунта</a>
                         </div>
-                        <div class="cabinet-avatar" id="cabinetUserAvatar">P</div>
+                        <div class="cabinet-avatar" id="cabinetUserAvatar" style="position: relative; z-index: 1001;">P</div>
                     </div>
                 </div>
             </header>
@@ -283,25 +285,30 @@
     <script type="module" src="main.js"></script>
     <script>
         // Tab switching and UI logic for Partner Cabinet
-        document.addEventListener('DOMContentLoaded', () => {
-            const cabinetLinks = document.querySelectorAll('.cabinet-nav-link');
-            const cabinetTabs = document.querySelectorAll('.tab-content');
-            const cabinetTitle = document.getElementById('cabinetTitle');
-            const userEmail = sessionStorage.getItem('partner_email');
+        console.log('Cabinet: Script starting...');
+        
+        const cabinetLinks = document.querySelectorAll('.cabinet-nav-link');
+        const cabinetTabs = document.querySelectorAll('.tab-content');
+        const cabinetTitle = document.getElementById('cabinetTitle');
+        const userEmail = sessionStorage.getItem('partner_email');
 
-            // Update user info
-            if (userEmail) {
-                const emailEl = document.getElementById('cabinetUserEmail');
-                const avatarEl = document.getElementById('cabinetUserAvatar');
-                if (emailEl) emailEl.textContent = userEmail;
-                if (avatarEl) avatarEl.textContent = userEmail.charAt(0).toUpperCase();
-            }
+        // Update user info
+        if (userEmail) {
+            const emailEl = document.getElementById('cabinetUserEmail');
+            const avatarEl = document.getElementById('cabinetUserAvatar');
+            if (emailEl) emailEl.textContent = userEmail;
+            if (avatarEl) avatarEl.textContent = userEmail.charAt(0).toUpperCase();
+        }
 
-            // Tab switching logic
+        // Tab switching logic
+        if (cabinetLinks.length > 0) {
+            console.log('Cabinet: Found', cabinetLinks.length, 'links');
             cabinetLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
+                    e.stopPropagation();
                     const tabName = link.getAttribute('data-tab');
+                    console.log('Cabinet: Clicked tab', tabName);
                     
                     // Update active link state
                     cabinetLinks.forEach(l => l.classList.remove('active'));
@@ -311,7 +318,6 @@
                     const linkSpan = link.querySelector('span');
                     if (cabinetTitle && linkSpan) {
                         cabinetTitle.textContent = linkSpan.textContent;
-                        // Also update data-i18n for the title so it persists on language change
                         const key = link.getAttribute('data-i18n-key');
                         if (key) cabinetTitle.setAttribute('data-i18n', key);
                     }
@@ -325,11 +331,11 @@
                             tab.classList.remove('active');
                         }
                     });
-
-                    console.log('Cabinet: switched to', tabName);
                 });
             });
-        });
+        } else {
+            console.warn('Cabinet: No links found!');
+        }
     </script>
 </body>
 </html>
