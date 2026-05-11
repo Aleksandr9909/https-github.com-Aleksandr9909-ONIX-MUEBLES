@@ -1148,7 +1148,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 // Success state
-                lang = document.documentElement.lang || 'es';
                 const successText = translations[lang]?.form_success || 'Заявка отправлена!';
                 submitBtn.innerHTML = `
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
