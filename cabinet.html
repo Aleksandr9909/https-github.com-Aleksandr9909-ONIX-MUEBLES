@@ -141,6 +141,98 @@
             margin-bottom: 10px;
             font-size: 24px;
         }
+
+        /* ====== MOBILE ADAPTATION ====== */
+        @media (max-width: 992px) {
+            .cabinet-layout {
+                flex-direction: column;
+            }
+            .cabinet-sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px 15px;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                top: auto;
+                flex-direction: row;
+                justify-content: space-around;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+            }
+            .cabinet-sidebar .logo-image-wrapper {
+                display: none; /* Hide logo in bottom nav */
+            }
+            .cabinet-sidebar .cabinet-nav {
+                flex-direction: row;
+                width: 100%;
+                justify-content: space-around;
+                gap: 0;
+            }
+            .cabinet-nav-link {
+                flex-direction: column;
+                gap: 4px;
+                padding: 8px;
+                font-size: 10px;
+                text-align: center;
+                border-radius: 0;
+                background: transparent !important;
+            }
+            .cabinet-nav-link svg {
+                width: 20px;
+                height: 20px;
+            }
+            .cabinet-nav-link span {
+                display: block;
+            }
+            .cabinet-nav-link.active {
+                color: var(--color-primary);
+            }
+            .cabinet-content {
+                padding: 20px 15px 80px; /* Space for bottom nav */
+                max-height: none;
+                overflow-y: visible;
+            }
+            .cabinet-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .cabinet-title {
+                font-size: 24px;
+            }
+            .cabinet-user {
+                width: 100%;
+                justify-content: space-between;
+                padding-top: 10px;
+                border-top: 1px solid rgba(0,0,0,0.05);
+            }
+            .cabinet-sidebar aside > div:last-child {
+                display: none; /* Hide copyright in mobile nav */
+            }
+            
+            /* Constructor mobile tweaks */
+            .constructor__viewport {
+                min-height: auto !important;
+            }
+            #planplace_container, #planplace {
+                min-height: 500px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cabinet-nav-link span {
+                font-size: 9px;
+            }
+            .cabinet-nav-link svg {
+                width: 18px;
+                height: 18px;
+            }
+            .cart-placeholder, .orders-placeholder {
+                padding: 40px 20px;
+            }
+        }
     </style>
     <script>
         // Check if partner is authorized
