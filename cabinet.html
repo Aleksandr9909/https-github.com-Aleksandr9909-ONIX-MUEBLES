@@ -281,13 +281,53 @@
     <!-- Include main.js for Firebase and PlanPlace initialization -->
     <script type="module" src="main.js"></script>
     <script>
-        // Update user info from session
+        // Tab switching and UI logic for Partner Cabinet
         document.addEventListener('DOMContentLoaded', () => {
-            const email = sessionStorage.getItem('partner_email');
-            if (email) {
-                document.getElementById('cabinetUserEmail').textContent = email;
-                document.getElementById('cabinetUserAvatar').textContent = email.charAt(0).toUpperCase();
+            const cabinetLinks = document.querySelectorAll('.cabinet-nav-link');
+            const cabinetTabs = document.querySelectorAll('.tab-content');
+            const cabinetTitle = document.getElementById('cabinetTitle');
+            const userEmail = sessionStorage.getItem('partner_email');
+
+            // Update user info
+            if (userEmail) {
+                const emailEl = document.getElementById('cabinetUserEmail');
+                const avatarEl = document.getElementById('cabinetUserAvatar');
+                if (emailEl) emailEl.textContent = userEmail;
+                if (avatarEl) avatarEl.textContent = userEmail.charAt(0).toUpperCase();
             }
+
+            // Tab switching logic
+            cabinetLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const tabName = link.getAttribute('data-tab');
+                    
+                    // Update active link state
+                    cabinetLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+
+                    // Update main title
+                    const linkSpan = link.querySelector('span');
+                    if (cabinetTitle && linkSpan) {
+                        cabinetTitle.textContent = linkSpan.textContent;
+                        // Also update data-i18n for the title so it persists on language change
+                        const key = link.getAttribute('data-i18n-key');
+                        if (key) cabinetTitle.setAttribute('data-i18n', key);
+                    }
+
+                    // Switch tab content
+                    const targetId = 'tab-' + tabName;
+                    cabinetTabs.forEach(tab => {
+                        if (tab.id === targetId) {
+                            tab.classList.add('active');
+                        } else {
+                            tab.classList.remove('active');
+                        }
+                    });
+
+                    console.log('Cabinet: switched to', tabName);
+                });
+            });
         });
     </script>
 </body>
