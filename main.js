@@ -252,7 +252,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'cab_no_orders': 'No tienes pedidos actuales',
             'cab_no_orders_desc': 'Los pedidos realizados aparecerán aquí',
             'cab_history_empty': 'El historial de pedidos está vacío',
-            'cab_history_desc': 'Aquí se mostrará el archivo de sus pedidos completados'
+            'cab_history_desc': 'Aquí se mostrará el archivo de sus pedidos completados',
+            'cab_catalog': 'Catálogo',
+            'cab_catalog_empty': 'El catálogo está vacío',
+            'cab_catalog_desc': 'Pronto agregaremos productos aquí'
         },
         'en': {
             // — Nav —
@@ -497,7 +500,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'cab_no_orders': 'You have no current orders',
             'cab_no_orders_desc': 'Placed orders will appear here',
             'cab_history_empty': 'Order history is empty',
-            'cab_history_desc': 'An archive of your completed orders will be displayed here'
+            'cab_history_desc': 'An archive of your completed orders will be displayed here',
+            'cab_catalog': 'Catalog',
+            'cab_catalog_empty': 'Catalog is empty',
+            'cab_catalog_desc': 'We will add products here soon'
         },
         'ru': {
             // — Nav —
@@ -742,7 +748,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'cab_no_orders': 'У вас нет текущих заказов',
             'cab_no_orders_desc': 'Оформленные заказы появятся здесь',
             'cab_history_empty': 'История заказов пуста',
-            'cab_history_desc': 'Здесь будет отображаться архив ваших завершенных заказов'
+            'cab_history_desc': 'Здесь будет отображаться архив ваших завершенных заказов',
+            'cab_catalog': 'Каталог',
+            'cab_catalog_empty': 'Каталог пока пуст',
+            'cab_catalog_desc': 'Мы скоро добавим сюда товары для заказа'
         }
     };
 
