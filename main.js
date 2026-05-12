@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'form_name': 'Tu nombre',
             'form_phone': 'Tu teléfono',
             'form_email': 'E-mail',
+            'form_password': 'Contraseña',
             'form_message': 'Contanos sobre tu proyecto',
             'btn_send': 'Enviar solicitud',
             'form_success': '¡Solicitud enviada!',
@@ -220,7 +221,38 @@ document.addEventListener('DOMContentLoaded', () => {
             'mat_wenge': 'Wengué',
             'mat_white': 'Blanco brillante',
             // — Meta —
-            'meta_description': 'Fábrica de muebles premium en Argentina — dormitorios, cocinas, vestidores, living, oficinas. Constructor 3D de muebles, proyecto gratuito.'
+            'meta_description': 'Fábrica de muebles premium en Argentina — dormitorios, cocinas, vestidores, living, oficinas. Constructor 3D de muebles, proyecto gratuito.',
+            // — Partners —
+            'nav_partners': 'Para socios',
+            'side_partners': 'Para socios',
+            'side_partners_desc': 'Empresas y fábricas',
+            'title_constructor_partner': 'El Constructor 3D está disponible solo para socios',
+            'desc_constructor_partner': 'Diseñá cómo se verán los muebles en tu casa. La funcionalidad completa del constructor 3D ya está disponible en el gabinete personal del socio.',
+            'btn_become_partner': 'Convertirse en socio / Iniciar sesión',
+            'modal_partner_title': 'Beneficios de la asociación',
+            'modal_partner_benefit1': 'Acceso al constructor 3D privado con catálogo completo',
+            'modal_partner_benefit2': 'Precios mayoristas y descuentos individuales',
+            'modal_partner_benefit3': 'Gabinete personal: historial, carrito y estados',
+            'modal_partner_benefit4': 'Soporte prioritario y gerente personal',
+            'modal_partner_login_title': 'Entrada para socios',
+            'modal_partner_login_subtitle': 'Ingrese sus datos para acceder al gabinete personal',
+            'modal_partner_btn_login': 'Entrar al gabinete',
+            'modal_partner_no_account': '¿No tienes cuenta?',
+            'modal_partner_apply': 'Enviar solicitud',
+            // — Cabinet —
+            'cab_menu_title': 'Menú del socio',
+            'cab_constructor': 'Constructor 3D',
+            'cab_cart': 'Carrito',
+            'cab_orders': 'Pedidos actuales',
+            'cab_history': 'Historial de pedidos',
+            'cab_logout': 'Cerrar sesión',
+            'cab_cart_empty': 'El carrito está vacío',
+            'cab_cart_desc': 'Agregue productos desde el constructor 3D o el catálogo',
+            'cab_btn_to_constructor': 'Ir al constructor',
+            'cab_no_orders': 'No tienes pedidos actuales',
+            'cab_no_orders_desc': 'Los pedidos realizados aparecerán aquí',
+            'cab_history_empty': 'El historial de pedidos está vacío',
+            'cab_history_desc': 'Aquí se mostrará el archivo de sus pedidos completados'
         },
         'en': {
             // — Nav —
@@ -359,6 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'form_name': 'Your name',
             'form_phone': 'Your phone',
             'form_email': 'E-mail',
+            'form_password': 'Password',
             'form_message': 'Tell us about your project',
             'btn_send': 'Send Request',
             'form_success': 'Request sent!',
@@ -433,7 +466,38 @@ document.addEventListener('DOMContentLoaded', () => {
             'mat_wenge': 'Wenge',
             'mat_white': 'White Gloss',
             // — Meta —
-            'meta_description': 'Premium furniture factory in Argentina — bedroom sets, kitchens, wardrobes, living rooms, offices. 3D furniture constructor, free project design.'
+            'meta_description': 'Premium furniture factory in Argentina — bedroom sets, kitchens, wardrobes, living rooms, offices. 3D furniture constructor, free project design.',
+            // — Partners —
+            'nav_partners': 'For partners',
+            'side_partners': 'For partners',
+            'side_partners_desc': 'Companies & factories',
+            'title_constructor_partner': '3D Constructor is available for partners only',
+            'desc_constructor_partner': 'Design how the furniture will look in your home. Full 3D constructor functionality is now available in the partner\'s personal cabinet.',
+            'btn_become_partner': 'Become a partner / Login',
+            'modal_partner_title': 'Partnership Benefits',
+            'modal_partner_benefit1': 'Access to private 3D constructor with full catalog',
+            'modal_partner_benefit2': 'Wholesale prices and individual discounts',
+            'modal_partner_benefit3': 'Personal cabinet: history, cart and tracking',
+            'modal_partner_benefit4': 'Priority support and personal manager',
+            'modal_partner_login_title': 'Partner Login',
+            'modal_partner_login_subtitle': 'Enter your details to access your personal cabinet',
+            'modal_partner_btn_login': 'Login to cabinet',
+            'modal_partner_no_account': 'Don\'t have an account?',
+            'modal_partner_apply': 'Submit request',
+            // — Cabinet —
+            'cab_menu_title': 'Partner Menu',
+            'cab_constructor': '3D Constructor',
+            'cab_cart': 'Cart',
+            'cab_orders': 'Current Orders',
+            'cab_history': 'Order History',
+            'cab_logout': 'Logout',
+            'cab_cart_empty': 'Cart is empty',
+            'cab_cart_desc': 'Add products from the 3D constructor or catalog',
+            'cab_btn_to_constructor': 'Go to constructor',
+            'cab_no_orders': 'You have no current orders',
+            'cab_no_orders_desc': 'Placed orders will appear here',
+            'cab_history_empty': 'Order history is empty',
+            'cab_history_desc': 'An archive of your completed orders will be displayed here'
         },
         'ru': {
             // — Nav —
@@ -572,6 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'form_name': 'Ваше имя',
             'form_phone': 'Телефон',
             'form_email': 'E-mail',
+            'form_password': 'Пароль',
             'form_message': 'Расскажите о проекте',
             'btn_send': 'Отправить заявку',
             'form_success': 'Заявка отправлена!',
@@ -646,7 +711,38 @@ document.addEventListener('DOMContentLoaded', () => {
             'mat_wenge': 'Венге',
             'mat_white': 'Белый глянец',
             // — Meta —
-            'meta_description': 'Мебельная компания в Аргентине — спальные гарнитуры, кухни, гардеробные, гостиные, офисы. 3D-конструктор мебели, бесплатный проект.'
+            'meta_description': 'Мебельная компания в Аргентине — спальные гарнитуры, кухни, гардеробные, гостиные, офисы. 3D-конструктор мебели, бесплатный проект.',
+            // — Partners —
+            'nav_partners': 'Для партнеров',
+            'side_partners': 'Для партнеров',
+            'side_partners_desc': 'Компании и фабрики',
+            'title_constructor_partner': '3D Конструктор доступен только для партнеров',
+            'desc_constructor_partner': 'Спроектируйте, как мебель будет выглядеть в вашем доме. Полный функционал 3D конструктора теперь доступен в личном кабинете партнера.',
+            'btn_become_partner': 'Стать партнером / Войти',
+            'modal_partner_title': 'Преимущества партнерства',
+            'modal_partner_benefit1': 'Доступ к закрытому 3D конструктору с полным каталогом моделей',
+            'modal_partner_benefit2': 'Оптовые цены и индивидуальные скидки на все категории мебели',
+            'modal_partner_benefit3': 'Удобный личный кабинет: история заказов, корзина и отслеживание статусов',
+            'modal_partner_benefit4': 'Приоритетная поддержка и персональный менеджер',
+            'modal_partner_login_title': 'Вход для партнеров',
+            'modal_partner_login_subtitle': 'Введите данные для доступа в личный кабинет',
+            'modal_partner_btn_login': 'Войти в кабинет',
+            'modal_partner_no_account': 'Нет аккаунта?',
+            'modal_partner_apply': 'Оставить заявку',
+            // — Cabinet —
+            'cab_menu_title': 'Меню партнера',
+            'cab_constructor': '3D Конструктор',
+            'cab_cart': 'Корзина',
+            'cab_orders': 'Текущие заказы',
+            'cab_history': 'История заказов',
+            'cab_logout': 'Выйти из аккаунта',
+            'cab_cart_empty': 'Корзина пуста',
+            'cab_cart_desc': 'Добавьте товары из 3D конструктора или каталога',
+            'cab_btn_to_constructor': 'Перейти в конструктор',
+            'cab_no_orders': 'У вас нет текущих заказов',
+            'cab_no_orders_desc': 'Оформленные заказы появятся здесь',
+            'cab_history_empty': 'История заказов пуста',
+            'cab_history_desc': 'Здесь будет отображаться архив ваших завершенных заказов'
         }
     };
 
@@ -812,9 +908,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('menu-open');
     }
 
-    menuBtn.addEventListener('click', openMenu);
-    menuClose.addEventListener('click', closeMenu);
-    menuOverlay.addEventListener('click', closeMenu);
+    if (menuBtn) menuBtn.addEventListener('click', openMenu);
+    if (menuClose) menuClose.addEventListener('click', closeMenu);
+    if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
 
     // Close menu on link click
     document.querySelectorAll('.side-menu__link').forEach(link => {
@@ -825,7 +921,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close menu on Escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && sideMenu.classList.contains('active')) {
+        if (e.key === 'Escape' && sideMenu && sideMenu.classList.contains('active')) {
             closeMenu();
         }
     });
@@ -838,10 +934,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollY = window.scrollY;
 
         // Add/remove scrolled class
-        if (scrollY > 60) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        if (header) {
+            if (scrollY > 60) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         }
 
         lastScroll = scrollY;
@@ -1031,7 +1129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerHTML = t['form_sending'];
 
             try {
-                // Save to Firebase Cloud Database
+                // 1. Save to Firebase Cloud Database (Backup)
                 await FirebaseDB.saveContactSubmission({
                     name,
                     phone,
@@ -1041,8 +1139,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     language: document.documentElement.lang || 'es'
                 });
 
+                // 2. Submit to Netlify (Triggers Email Notification)
+                const formData = new FormData(contactForm);
+                await fetch("/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString(),
+                });
+
                 // Success state
-                const lang = document.documentElement.lang || 'es';
                 const successText = translations[lang]?.form_success || 'Заявка отправлена!';
                 submitBtn.innerHTML = `
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1080,23 +1185,8 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(shakeStyle);
 
-    // ====== 3D CONSTRUCTOR (PlanPlace Integration) ======
-    (function initPlanPlace() {
-        var params = decodeURIComponent(window.location.search.substring(1));
-        var planplace_container = document.getElementById('planplace_container');
-        if (!planplace_container) return;
-
-        var iframe = document.createElement('iframe');
-        iframe.id = 'planplace';
-        iframe.allowFullscreen = true;
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        iframe.style.minHeight = '700px';
-        iframe.style.border = '0';
-        iframe.src = 'https://planplace.ru/clients/230751115/';
-        if (params !== '') iframe.src = iframe.src + '?' + params;
-        planplace_container.appendChild(iframe);
-    })();
+    // ====== 3D CONSTRUCTOR (Moved to cabinet.html) ======
+    // Initialization is now handled directly in cabinet.html for better reliability.
 
 
     // ====== NAVIGATE TO CATEGORY (shared function) ======
@@ -2007,7 +2097,7 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal(content);
     };
 
-    // ====== PARTNER AUTH MODAL ======
+    // ====== PARTNER AUTH LOGIC ======
     const partnerAuthModal = document.getElementById('partnerAuthModal');
     const partnerAuthOverlay = document.getElementById('partnerAuthOverlay');
     const partnerAuthClose = document.getElementById('partnerAuthClose');
@@ -2042,18 +2132,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (partnerRequestAccess) {
-        partnerRequestAccess.addEventListener('click', () => {
-            partnerAuthModal.classList.remove('active');
-        });
-    }
-
     if (partnerLoginSubmit) {
-        partnerLoginSubmit.addEventListener('click', () => {
-            if (partnerEmail.value && partnerPassword.value) {
-                // Redirect to personal cabinet
-                window.location.href = 'cabinet.html';
+        partnerLoginSubmit.addEventListener('click', async () => {
+            const email = partnerEmail.value.trim();
+            const password = partnerPassword.value;
+
+            if (email && password) {
+                // NEW: Check if email is in the authorized partners list
+                const isAuthorized = await FirebaseDB.isAuthorizedPartner(email);
+                
+                if (isAuthorized) {
+                    // Store authorized email in session
+                    sessionStorage.setItem('partner_auth', 'true');
+                    sessionStorage.setItem('partner_email', email);
+                    window.location.href = 'cabinet.html';
+                } else {
+                    partnerAuthError.textContent = 'Доступ запрещен. Ваш Email не найден в списке партнеров.';
+                    partnerAuthError.style.display = 'block';
+                }
             } else {
+                partnerAuthError.textContent = 'Пожалуйста, введите Email и пароль.';
                 partnerAuthError.style.display = 'block';
             }
         });
@@ -2066,4 +2164,96 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    // ====== ADMIN PARTNERS MANAGEMENT ======
+    const tabProductsBtn = document.getElementById('tabProductsBtn');
+    const tabPartnersBtn = document.getElementById('tabPartnersBtn');
+    const adminProductsSection = document.getElementById('adminProductsSection');
+    const adminPartnersSection = document.getElementById('adminPartnersSection');
+    const adminPartnerForm = document.getElementById('adminPartnerForm');
+    const newPartnerEmail = document.getElementById('newPartnerEmail');
+    const adminPartnersList = document.getElementById('adminPartnersList');
+
+    if (tabProductsBtn && tabPartnersBtn) {
+        tabProductsBtn.addEventListener('click', () => {
+            tabProductsBtn.style.opacity = '1';
+            tabPartnersBtn.style.opacity = '0.5';
+            adminProductsSection.style.display = 'flex';
+            adminProductsSection.style.flexDirection = 'row';
+            adminPartnersSection.style.display = 'none';
+        });
+
+        tabPartnersBtn.addEventListener('click', () => {
+            tabPartnersBtn.style.opacity = '1';
+            tabProductsBtn.style.opacity = '0.5';
+            adminPartnersSection.style.display = 'flex';
+            adminPartnersSection.style.flexDirection = 'row';
+            adminProductsSection.style.display = 'none';
+            renderAdminPartners();
+        });
+    }
+
+    async function renderAdminPartners() {
+        if (!adminPartnersList) return;
+        
+        adminPartnersList.innerHTML = '<p style="text-align: center; padding: 20px; color: var(--color-text-muted);">⏳ Загрузка списка...</p>';
+        
+        const partners = await FirebaseDB.getPartners();
+        
+        if (partners.length === 0) {
+            adminPartnersList.innerHTML = '<p style="text-align: center; padding: 20px; color: var(--color-text-muted);">Список партнеров пуст.</p>';
+            return;
+        }
+
+        adminPartnersList.innerHTML = partners.map(p => `
+            <div style="display: flex; justify-content: space-between; align-items: center; background: var(--color-bg-alt); padding: 12px 20px; border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+                <div>
+                    <div style="font-weight: 600; color: var(--color-text);">${p.email}</div>
+                    <div style="font-size: 11px; color: var(--color-text-muted);">Добавлен: ${new Date(p.createdAt).toLocaleDateString()}</div>
+                </div>
+                <button class="admin-btn-delete" onclick="window.removePartner('${p.id}', '${p.email}')" style="padding: 6px 12px; font-size: 12px;">Удалить</button>
+            </div>
+        `).join('');
+    }
+
+    if (adminPartnerForm) {
+        adminPartnerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = newPartnerEmail.value.trim();
+            if (!email) return;
+
+            const submitBtn = document.getElementById('adminAddPartnerBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Добавление...';
+
+            try {
+                // Check if already exists
+                const exists = await FirebaseDB.isAuthorizedPartner(email);
+                if (exists) {
+                    alert('Этот партнер уже в списке.');
+                } else {
+                    await FirebaseDB.addPartner(email);
+                    newPartnerEmail.value = '';
+                    renderAdminPartners();
+                }
+            } catch (err) {
+                alert('Ошибка при добавлении: ' + err.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Добавить в список';
+            }
+        });
+    }
+
+    window.removePartner = async function(id, email) {
+        if (confirm(`Вы уверены, что хотите удалить партнера ${email}?`)) {
+            try {
+                await FirebaseDB.deletePartner(id);
+                renderAdminPartners();
+            } catch (err) {
+                alert('Ошибка при удалении: ' + err.message);
+            }
+        }
+    };
+
 });

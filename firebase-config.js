@@ -117,6 +117,56 @@ const FirebaseDB = {
         }
     },
 
+    // --- Partner Management ---
+
+    /** Get all authorized partners */
+    async getPartners() {
+        try {
+            const snapshot = await getDocs(collection(db, 'partners'));
+            return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        } catch (error) {
+            console.error('❌ Error reading partners:', error);
+            return [];
+        }
+    },
+
+    /** Add a new partner */
+    async addPartner(email) {
+        try {
+            const docRef = await addDoc(collection(db, 'partners'), {
+                email: email.toLowerCase().trim(),
+                createdAt: Date.now()
+            });
+            console.log('✅ Partner added:', email);
+            return docRef.id;
+        } catch (error) {
+            console.error('❌ Error adding partner:', error);
+            throw error;
+        }
+    },
+
+    /** Delete a partner */
+    async deletePartner(id) {
+        try {
+            await deleteDoc(doc(db, 'partners', id));
+            console.log('✅ Partner deleted:', id);
+        } catch (error) {
+            console.error('❌ Error deleting partner:', error);
+            throw error;
+        }
+    },
+
+    /** Check if an email is an authorized partner */
+    async isAuthorizedPartner(email) {
+        try {
+            const partners = await this.getPartners();
+            return partners.some(p => p.email === email.toLowerCase().trim());
+        } catch (error) {
+            console.error('❌ Error checking authorization:', error);
+            return false;
+        }
+    },
+
     // --- Migration Helper ---
 
     /** Migrate products from localStorage to Firestore (one-time) */

@@ -12,7 +12,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
+<<<<<<< HEAD
     <link rel="stylesheet" href="styles.css?v=10.0">
+=======
+    <link rel="stylesheet" href="styles.css?v=2.0">
+>>>>>>> cb8ebda4bcb1b4e7707cec328a1f5d6218497a2a
 
 </head>
 
@@ -248,7 +252,7 @@
                     </div>
                 </div>
                 <div class="header__divider"></div>
-                <div class="header__socials" style="display: flex; gap: 12px; align-items: center;">
+                <div class="header__socials">
                     <a href="https://wa.me/5492233390267?text=%C2%A1Hola!%20Vi%20una%20posici%C3%B3n%20en%20su%20cat%C3%A1logo%20y%20me%20gustar%C3%ADa%20charlarlo"
                         target="_blank" rel="noopener noreferrer" class="social-badge social-badge--whatsapp"
                         aria-label="WhatsApp">
@@ -707,8 +711,22 @@
                             </div>
                             <div>
                                 <span class="contacts__detail-label" data-i18n="contact_showroom">Адрес шоурума</span>
-                                <span class="contacts__detail-value">Av. Mario Bravo 3265, Buenos Aires</span>
+                                <a href="#googleMapIframe" class="contacts__detail-value contacts__detail-value--link">Av. Mario Bravo 3265, Buenos Aires</a>
                             </div>
+                        </div>
+
+                        <!-- Interactive Map Window -->
+                        <div class="contacts__map-wrapper" style="margin: 25px 0 35px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.1); background: #1a1a1a;">
+                            <iframe 
+                                id="googleMapIframe"
+                                src="https://www.google.com/maps?q=ONIX+MUEBLES+Av.+Mario+Bravo+3265,+Buenos+Aires&output=embed" 
+                                width="100%" 
+                                height="220" 
+                                style="border:0; display: block; filter: grayscale(0.2) contrast(1.1);" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                         </div>
                         <div class="contacts__detail">
                             <div class="contacts__detail-icon">
@@ -781,22 +799,24 @@
                     </div>
                 </div>
                 <div class="contacts__form-wrap">
-                    <form class="contacts__form" id="contactForm">
+                    <form class="contacts__form" id="contactForm" name="contact" data-netlify="true" netlify-honeypot="bot-field">
+                        <input type="hidden" name="form-name" value="contact">
+                        <p class="hidden" style="display:none;"><label>Don’t fill this out if you're human: <input name="bot-field" /></label></p>
                         <h3 class="contacts__form-title" data-i18n="form_title">Бесплатная консультация</h3>
                         <div class="contacts__form-group">
-                            <input type="text" id="contactName" class="contacts__input" placeholder=" " required>
+                            <input type="text" id="contactName" name="name" class="contacts__input" placeholder=" " required>
                             <label for="contactName" class="contacts__label" data-i18n="form_name">Ваше имя</label>
                         </div>
                         <div class="contacts__form-group">
-                            <input type="tel" id="contactPhone" class="contacts__input" placeholder=" " required>
+                            <input type="tel" id="contactPhone" name="phone" class="contacts__input" placeholder=" " required>
                             <label for="contactPhone" class="contacts__label" data-i18n="form_phone">Телефон</label>
                         </div>
                         <div class="contacts__form-group">
-                            <input type="email" id="contactEmail" class="contacts__input" placeholder=" ">
+                            <input type="email" id="contactEmail" name="email" class="contacts__input" placeholder=" ">
                             <label for="contactEmail" class="contacts__label" data-i18n="form_email">E-mail</label>
                         </div>
                         <div class="contacts__form-group">
-                            <select id="contactCategory" class="contacts__input contacts__select">
+                            <select id="contactCategory" name="category" class="contacts__input contacts__select">
                                 <option value="" disabled selected>Выберите категорию</option>
                                 <option value="bedroom">Спальный гарнитур</option>
                                 <option value="wardrobe">Гардеробная</option>
@@ -807,7 +827,7 @@
                             </select>
                         </div>
                         <div class="contacts__form-group">
-                            <textarea id="contactMessage" class="contacts__input contacts__textarea" placeholder=" "
+                            <textarea id="contactMessage" name="message" class="contacts__input contacts__textarea" placeholder=" "
                                 rows="3"></textarea>
                             <label for="contactMessage" class="contacts__label" data-i18n="form_message">Расскажите о
                                 проекте</label>
@@ -944,11 +964,14 @@
             </button>
             <div class="admin-dashboard">
                 <div class="admin-dashboard__header">
-                    <h2 class="admin-dashboard__title">Управление товарами</h2>
+                    <div style="display: flex; gap: 20px; align-items: center;">
+                        <h2 class="admin-dashboard__title admin-nav-tab active" data-tab="products" style="cursor: pointer; opacity: 1; transition: 0.3s;" id="tabProductsBtn">Управление товарами</h2>
+                        <h2 class="admin-dashboard__title admin-nav-tab" data-tab="partners" style="cursor: pointer; opacity: 0.5; transition: 0.3s;" id="tabPartnersBtn">Список партнеров</h2>
+                    </div>
                     <button id="adminLogoutBtn" class="btn btn--outline" style="padding: 8px 16px;">Выйти</button>
                 </div>
 
-                <div class="admin-dashboard__layout">
+                <div class="admin-dashboard__layout" id="adminProductsSection">
                     <div class="admin-dashboard__sidebar">
                         <h4 class="admin-dashboard__subtitle" id="adminFormTitle">Добавить товар</h4>
                         <form id="adminProductForm" class="admin-form">
@@ -1079,6 +1102,26 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- NEW: Partners Management Section -->
+                <div class="admin-dashboard__layout" id="adminPartnersSection" style="display: none;">
+                    <div class="admin-dashboard__sidebar">
+                        <h4 class="admin-dashboard__subtitle">Добавить партнера</h4>
+                        <form id="adminPartnerForm" class="admin-form">
+                            <div class="admin-form__group">
+                                <label>Email партнера</label>
+                                <input type="email" id="newPartnerEmail" required class="admin-auth__input" placeholder="partner@example.com">
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full" id="adminAddPartnerBtn">Добавить в список</button>
+                        </form>
+                    </div>
+                    <div class="admin-dashboard__main">
+                        <div class="admin-dashboard__products" id="adminPartnersList" style="display: flex; flex-direction: column; gap: 10px;">
+                            <!-- Partners will be listed here -->
+                        </div>
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1099,42 +1142,42 @@
                     <div class="logo-image-wrapper" style="margin-bottom: 30px; max-width: 150px;">
                         <img src="images/onyx-logo-new.png" alt="Onyx Muebles Logo" style="filter: brightness(0) invert(1);">
                     </div>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 20px;" data-i18n="partner_modal_title">Преимущества партнерства</h3>
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 20px;" data-i18n="modal_partner_title">Преимущества партнерства</h3>
                     <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;">
                         <li style="display: flex; gap: 12px; align-items: flex-start;">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
-                            <span data-i18n="partner_adv_1" style="font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.9);">Доступ к закрытому 3D конструктору с полным каталогом моделей</span>
+                            <span data-i18n="modal_partner_benefit1" style="font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.9);">Доступ к закрытому 3D конструктору с полным каталогом моделей</span>
                         </li>
                         <li style="display: flex; gap: 12px; align-items: flex-start;">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
-                            <span data-i18n="partner_adv_2" style="font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.9);">Оптовые цены и индивидуальные скидки на все категории мебели</span>
+                            <span data-i18n="modal_partner_benefit2" style="font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.9);">Оптовые цены и индивидуальные скидки на все категории мебели</span>
                         </li>
                         <li style="display: flex; gap: 12px; align-items: flex-start;">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
-                            <span data-i18n="partner_adv_3" style="font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.9);">Удобный личный кабинет: история заказов, корзина и отслеживание статусов</span>
+                            <span data-i18n="modal_partner_benefit3" style="font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.9);">Удобный личный кабинет: история заказов, корзина и отслеживание статусов</span>
                         </li>
                         <li style="display: flex; gap: 12px; align-items: flex-start;">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
-                            <span data-i18n="partner_adv_4" style="font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.9);">Приоритетная поддержка и персональный менеджер</span>
+                            <span data-i18n="modal_partner_benefit4" style="font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.9);">Приоритетная поддержка и персональный менеджер</span>
                         </li>
                     </ul>
                 </div>
                 <!-- Right side: Login form -->
                 <div class="partner-auth__form-wrap" style="flex: 1; background: var(--color-bg); padding: 40px; display: flex; flex-direction: column; justify-content: center;">
-                    <h3 style="font-size: 24px; margin-bottom: 8px; color: var(--color-text);" data-i18n="partner_login_title">Вход для партнеров</h3>
-                    <p style="color: var(--color-text-muted); margin-bottom: 30px; font-size: 14px;" data-i18n="partner_login_desc">Введите данные для доступа в личный кабинет</p>
+                    <h3 style="font-size: 24px; margin-bottom: 8px; color: var(--color-text);" data-i18n="modal_partner_login_title">Вход для партнеров</h3>
+                    <p style="color: var(--color-text-muted); margin-bottom: 30px; font-size: 14px;" data-i18n="modal_partner_login_subtitle">Введите данные для доступа в личный кабинет</p>
                     
                     <div style="margin-bottom: 20px;">
                         <label style="display: block; font-size: 13px; font-weight: 500; margin-bottom: 8px; color: var(--color-text);" data-i18n="form_email">E-mail</label>
@@ -1145,12 +1188,12 @@
                         <input type="password" id="partnerPassword" class="admin-auth__input" placeholder="••••••••" style="width: 100%; border: 1px solid rgba(0,0,0,0.1); color: #000; background: #fff;">
                     </div>
                     
-                    <button id="partnerLoginSubmit" class="btn btn--primary btn--full" style="padding: 14px; font-size: 16px;" data-i18n="btn_login">Войти в кабинет</button>
+                    <button id="partnerLoginSubmit" class="btn btn--primary btn--full" style="padding: 14px; font-size: 16px;" data-i18n="modal_partner_btn_login">Войти в кабинет</button>
                     <p id="partnerAuthError" style="color: #e74c3c; font-size: 14px; margin-top: 12px; display: none; text-align: center;" data-i18n="partner_error">Неверный E-mail или пароль</p>
                     
                     <div style="margin-top: 24px; text-align: center; font-size: 14px; color: var(--color-text-muted);">
-                        <span data-i18n="partner_no_account">Нет аккаунта?</span> 
-                        <a href="#contacts" id="partnerRequestAccess" style="color: var(--color-primary); font-weight: 600; text-decoration: none;" data-i18n="partner_request_access">Оставить заявку</a>
+                        <span data-i18n="modal_partner_no_account">Нет аккаунта?</span> 
+                        <a href="#contacts" id="partnerRequestAccess" style="color: var(--color-primary); font-weight: 600; text-decoration: none;" data-i18n="modal_partner_apply">Оставить заявку</a>
                     </div>
                 </div>
             </div>
