@@ -327,6 +327,7 @@ ul, ol {
     display: flex;
     align-items: center;
     gap: var(--space-xl);
+    position: relative; /* For absolute centered logo on mobile */
 }
 
 .header__menu-btn {
@@ -2508,11 +2509,22 @@ ul, ol {
     background: var(--color-surface);
     border-radius: var(--radius-xl);
     z-index: 1;
-    overflow: hidden;
-    box-shadow: var(--shadow-xl);
+    overflow-y: auto; /* Allow vertical scrolling */
     max-height: 90vh;
     display: flex;
     flex-direction: column;
+    box-shadow: var(--shadow-xl);
+}
+
+#partnerAuthModalContent {
+    max-width: 800px;
+    padding: 0;
+    border-radius: 16px;
+}
+
+.partner-auth-layout {
+    display: flex;
+    min-height: 500px;
 }
 
 .admin-modal__content--small { width: 100%; max-width: 400px; padding: var(--space-2xl); }
@@ -2874,5 +2886,65 @@ ul, ol {
     pointer-events: all;
 }
 
-@media (max-width: 768px) { .partner-auth-layout { flex-direction: column !important; } .partner-auth__info, .partner-auth__form-wrap { padding: 30px !important; } } .admin-modal__content--medium { width: 100%; max-width: 800px; }
+@media (max-width: 768px) {
+    /* Header adjustments */
+    .header__nav, 
+    .header__socials, 
+    .header__divider {
+        display: none !important; /* Hide clutter on mobile header */
+    }
+    
+    .header__inner {
+        justify-content: space-between;
+        padding: 0 16px;
+    }
+    
+    .header__logo {
+        margin: 0 !important;
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        z-index: 10 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .logo-image-wrapper {
+        height: 36px !important;
+        width: auto !important;
+        display: block !important;
+    }
 
+    .logo-image-wrapper img {
+        height: 100% !important;
+        width: auto !important;
+        display: block !important;
+        opacity: 1 !important;
+    }
+
+    .header__actions {
+        gap: 12px;
+        margin-left: auto;
+    }
+
+    /* Partner Modal Mobile Stack */
+    .partner-auth-layout {
+        flex-direction: column !important;
+        min-height: auto !important;
+    }
+
+    .partner-auth__info {
+        padding: 40px 30px !important;
+    }
+
+    .partner-auth__form-wrap {
+        padding: 40px 30px !important;
+    }
+
+    .admin-modal__content {
+        max-height: 95vh;
+        width: 95%;
+    }
+} .admin-modal__content--medium { width: 100%; max-width: 800px; }
