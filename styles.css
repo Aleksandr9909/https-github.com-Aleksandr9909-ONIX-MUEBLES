@@ -3012,7 +3012,6 @@ ul, ol {
         padding: 30px 20px;
     }
 
->>>>>>> cb8ebda4bcb1b4e7707cec328a1f5d6218497a2a
     /* Header adjustments */
     .header__nav, 
     .header__socials, 
@@ -3021,8 +3020,9 @@ ul, ol {
     }
     
     .header__inner {
-        justify-content: space-between;
-        padding: 0 16px;
+        justify-content: space-between !important;
+        padding: 0 16px !important;
+        height: var(--header-height) !important;
     }
     
     .header__logo {
@@ -3031,49 +3031,68 @@ ul, ol {
         left: 50% !important;
         top: 50% !important;
         transform: translate(-50%, -50%) !important;
-        z-index: 10 !important;
+        z-index: 999 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        width: auto !important;
     }
     
     .logo-image-wrapper {
-        height: 36px !important;
+        height: 44px !important; /* Larger and more visible logo */
         width: auto !important;
         display: block !important;
     }
-<<<<<<< HEAD
-=======
 
     .logo-image-wrapper img {
         height: 100% !important;
         width: auto !important;
         display: block !important;
         opacity: 1 !important;
+        object-fit: contain !important;
     }
 
     .header__actions {
-        gap: 12px;
-        margin-left: auto;
+        gap: 8px !important;
+        margin-left: auto !important;
+    }
+
+    .header__actions > *:not(#cartBtn):not(.lang-switcher) {
+        display: none !important;
     }
 
     /* Partner Modal Mobile Stack */
+    .admin-modal__content {
+        max-height: 85vh !important;
+        width: 92% !important;
+        margin: 0 auto !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
     .partner-auth-layout {
         flex-direction: column !important;
         min-height: auto !important;
+        height: auto !important;
+        display: block !important;
     }
 
     .partner-auth__info {
-        padding: 40px 30px !important;
+        padding: 40px 24px !important;
+        flex: none !important;
+        width: 100% !important;
     }
 
     .partner-auth__form-wrap {
-        padding: 40px 30px !important;
+        padding: 40px 24px !important;
+        flex: none !important;
+        width: 100% !important;
+        background: var(--color-bg) !important;
     }
 
-    .admin-modal__content {
-        max-height: 95vh;
-        width: 95%;
+    .btn--full {
+        padding: 16px !important;
+        font-size: 16px !important;
     }
 }
 
