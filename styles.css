@@ -3022,19 +3022,33 @@ ul, ol {
     }
     
     .header__logo {
-        margin: 0;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 2;
+        margin: 0 !important;
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        z-index: 10 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
     
     .logo-image-wrapper {
-        height: 32px; /* Professional size for mobile */
+        height: 36px !important;
+        width: auto !important;
+        display: block !important;
+    }
+
+    .logo-image-wrapper img {
+        height: 100% !important;
+        width: auto !important;
+        display: block !important;
+        opacity: 1 !important;
     }
 
     .header__actions {
-        gap: 8px;
+        gap: 12px;
+        margin-left: auto;
     }
 
     /* Partner Modal Mobile Stack */
