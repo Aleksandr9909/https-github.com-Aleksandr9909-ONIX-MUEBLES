@@ -2268,4 +2268,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // ====== LEAFLET MAP INITIALIZATION ======
+    const mapElement = document.getElementById('leafletMap');
+    if (mapElement && typeof L !== 'undefined') {
+        // Initialize map centered between the two points
+        const map = L.map('leafletMap', {
+            zoomControl: false,
+            scrollWheelZoom: false
+        }).setView([-38.035, -57.566], 13);
+        
+        // Add zoom control to top right
+        L.control.zoom({ position: 'topright' }).addTo(map);
+
+        // Add custom dark style map tiles (CartoDB Dark Matter)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+            subdomains: 'abcd',
+            maxZoom: 20
+        }).addTo(map);
+
+        // Define a custom colored marker icon
+        const customIcon = L.divIcon({
+            className: 'custom-map-marker',
+            html: `
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.5));">
+                    <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#B8956A"/>
+                </svg>`,
+            iconSize: [30, 30],
+            iconAnchor: [15, 30],
+            popupAnchor: [0, -30]
+        });
+
+        // Add markers
+        L.marker([-38.058, -57.568], { icon: customIcon }).addTo(map)
+            .bindPopup('<strong style="color: #1a1a1a; font-family: sans-serif; font-size: 14px;">ONIX MUEBLES (Фабрика)</strong><br><span style="color: #666; font-family: sans-serif; font-size: 13px;">Av. Mario Bravo 3265</span>');
+            
+        L.marker([-38.0135, -57.5645], { icon: customIcon }).addTo(map)
+            .bindPopup('<strong style="color: #1a1a1a; font-family: sans-serif; font-size: 14px;">ONIX MUEBLES (Шоурум)</strong><br><span style="color: #666; font-family: sans-serif; font-size: 13px;">Av. Juan B. Justo 2354</span>');
+    }
+
 });
