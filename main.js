@@ -2268,4 +2268,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // ====== MAP SWITCHING LOGIC ======
+    const btnMapShowroom = document.getElementById('btnMapShowroom');
+    const btnMapFactory = document.getElementById('btnMapFactory');
+    const googleMapIframe = document.getElementById('googleMapIframe');
+
+    if (btnMapShowroom && btnMapFactory && googleMapIframe) {
+        btnMapShowroom.addEventListener('click', () => {
+            btnMapShowroom.className = 'btn btn--primary';
+            btnMapFactory.className = 'btn btn--outline';
+            googleMapIframe.src = 'https://www.google.com/maps?q=ONIX+MUEBLES+Av.+Juan+B.+Justo+2354,+Mar+del+Plata&output=embed';
+        });
+
+        btnMapFactory.addEventListener('click', () => {
+            btnMapFactory.className = 'btn btn--primary';
+            btnMapShowroom.className = 'btn btn--outline';
+            googleMapIframe.src = 'https://www.google.com/maps?q=Av.+Mario+Bravo+3265,+Mar+del+Plata&output=embed';
+        });
+    }
+
 });

@@ -725,8 +725,15 @@
                             </div>
                         </div>
 
+                        <!-- Map Controls -->
+                        <div class="contacts__map-controls" style="display: flex; gap: 10px; margin-top: 25px; margin-bottom: 15px;">
+                            <button id="btnMapShowroom" class="btn btn--primary" style="flex: 1; padding: 10px; font-size: 13px;" data-i18n="contact_showroom">Адрес шоурума</button>
+                            <button id="btnMapFactory" class="btn btn--outline" style="flex: 1; padding: 10px; font-size: 13px;" data-i18n="contact_factory">Адрес фабрики</button>
+                        </div>
+
                         <!-- Interactive Map Window -->
-                        <div class="contacts__map-wrapper" style="margin: 25px 0 35px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.1); background: #1a1a1a;">
+                        <div class="contacts__map-wrapper" style="margin: 0 0 35px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.1); background: #1a1a1a;">
+
                             <iframe 
                                 id="googleMapIframe"
                                 src="https://www.google.com/maps?q=ONIX+MUEBLES+Av.+Juan+B.+Justo+2354,+Mar+del+Plata&output=embed" 
