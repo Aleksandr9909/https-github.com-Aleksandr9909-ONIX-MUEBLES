@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // — Portfolio —
             'tag_portfolio': 'Nuestros trabajos',
             'title_portfolio': 'Proyectos realizados',
-            'subtitle_portfolio': 'Proyectos reales de nuestros clientes en Buenos Aires y toda Argentina',
+            'subtitle_portfolio': 'Proyectos reales de nuestros clientes en Mar del Plata y toda Argentina',
             'filter_all': 'Todos los proyectos',
             'filter_bedroom': 'Dormitorios',
             'filter_kitchen': 'Cocinas',
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // — About —
             'tag_about': 'Sobre nosotros',
             'title_about': 'Onyx Muebles — tu socio en la creación del interior ideal',
-            'about_desc_1': 'Somos un equipo de diseñadores y artesanos profesionales con más de 12 años de experiencia en la fabricación de muebles. Nuestra producción está en Buenos Aires, lo que nos permite controlar cada etapa — desde el diseño hasta la instalación.',
+            'about_desc_1': 'Somos un equipo de diseñadores y artesanos profesionales con más de 12 años de experiencia en la fabricación de muebles. Nuestra producción está en Mar del Plata, lo que nos permite controlar cada etapa — desde el diseño hasta la instalación.',
             'about_desc_2': 'Usamos solo materiales certificados de producción europea y argentina. Cada proyecto pasa por un control de calidad de tres niveles.',
             'badge_warranty': 'Garantía 5 años',
             'badge_warranty_desc': 'En todos los productos y herrajes',
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'form_success': '¡Solicitud enviada!',
             'loading_3d': 'Cargando motor 3D...',
             // — Footer —
-            'footer_tagline': 'Muebles premium<br>en Buenos Aires desde 2014',
+            'footer_tagline': 'Muebles premium<br>en Mar del Plata y en toda Argentina desde 2014',
             'footer_catalog': 'Catálogo',
             'footer_cat_bed': 'Dormitorios',
             'footer_cat_ward': 'Vestidores',
@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // — Portfolio —
             'tag_portfolio': 'Our Works',
             'title_portfolio': 'Completed Projects',
-            'subtitle_portfolio': 'Real projects by our clients in Buenos Aires and across Argentina',
+            'subtitle_portfolio': 'Real projects by our clients in Mar del Plata and across Argentina',
             'filter_all': 'All Projects',
             'filter_bedroom': 'Bedrooms',
             'filter_kitchen': 'Kitchens',
@@ -362,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // — About —
             'tag_about': 'About Us',
             'title_about': 'Onyx Muebles — your partner in creating the ideal interior',
-            'about_desc_1': 'We are a team of professional designers and craftsmen with over 12 years of experience in furniture manufacturing. Our production is based in Buenos Aires, allowing us to control every stage — from design to installation.',
+            'about_desc_1': 'We are a team of professional designers and craftsmen with over 12 years of experience in furniture manufacturing. Our production is based in Mar del Plata, allowing us to control every stage — from design to installation.',
             'about_desc_2': 'We use only certified materials from European and Argentine production. Every project goes through a three-stage quality control.',
             'badge_warranty': '5-Year Warranty',
             'badge_warranty_desc': 'On all products and hardware',
@@ -402,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'form_success': 'Request sent!',
             'loading_3d': '3D Engine loading...',
             // — Footer —
-            'footer_tagline': 'Premium furniture<br>in Buenos Aires since 2014',
+            'footer_tagline': 'Premium furniture<br>in Mar del Plata and all over Argentina since 2014',
             'footer_catalog': 'Catalog',
             'footer_cat_bed': 'Bedroom Sets',
             'footer_cat_ward': 'Wardrobes',
@@ -585,7 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // — Portfolio —
             'tag_portfolio': 'Портфолио',
             'title_portfolio': 'Выполненные работы',
-            'subtitle_portfolio': 'Реальные проекты наших клиентов в Буэнос-Айресе и по всей Аргентине',
+            'subtitle_portfolio': 'Реальные проекты наших клиентов в Мар-дель-Плата и по всей Аргентине',
             'filter_all': 'Все проекты',
             'filter_bedroom': 'Спальни',
             'filter_kitchen': 'Кухни',
@@ -611,7 +611,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // — About —
             'tag_about': 'О компании',
             'title_about': 'Onyx Muebles — ваш партнёр в создании идеального интерьера',
-            'about_desc_1': 'Мы — команда профессиональных дизайнеров и мастеров с более чем 12-летним опытом производства мебели. Наше производство расположено в Буэнос-Айресе, что позволяет контролировать каждый этап — от проекта до установки.',
+            'about_desc_1': 'Мы — команда профессиональных дизайнеров и мастеров с более чем 12-летним опытом производства мебели. Наше производство расположено в Мар-дель-Плата, что позволяет контролировать каждый этап — от проекта до установки.',
             'about_desc_2': 'Используем только сертифицированные материалы европейского и аргентинского производства. Каждый проект проходит трёхступенчатый контроль качества.',
             'badge_warranty': 'Гарантия 5 лет',
             'badge_warranty_desc': 'На все изделия и фурнитуру',
@@ -651,7 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'form_success': 'Заявка отправлена!',
             'loading_3d': '3D Engine загружается...',
             // — Footer —
-            'footer_tagline': 'Мебель премиум-класса<br>в Буэнос-Айресе с 2014 года',
+            'footer_tagline': 'Мебель премиум-класса<br>в Мар-дель-Плата и по всей Аргентине с 2014 года',
             'footer_catalog': 'Каталог',
             'footer_cat_bed': 'Спальные гарнитуры',
             'footer_cat_ward': 'Гардеробные',
