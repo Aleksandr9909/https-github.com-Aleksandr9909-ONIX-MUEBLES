@@ -634,8 +634,8 @@
         let cabCurrentPhoto = '';
         let cabExtraPhotos = [];
 
-        // Firebase real-time sync
-        FirebaseDB.onProductsChange((firebaseProducts) => {
+        // Firebase real-time sync for partner products
+        FirebaseDB.onPartnerProductsChange((firebaseProducts) => {
             cabProducts = firebaseProducts;
             renderCabProducts();
         });
@@ -833,9 +833,9 @@
 
                 try {
                     if (id) {
-                        await FirebaseDB.updateProduct(id, productData);
+                        await FirebaseDB.updatePartnerProduct(id, productData);
                     } else {
-                        await FirebaseDB.addProduct(productData);
+                        await FirebaseDB.addPartnerProduct(productData);
                     }
                     resetCabForm();
                 } catch (error) {
@@ -895,7 +895,7 @@
         window.cabDeleteProduct = async function(id) {
             if (confirm('Удалить этот товар?')) {
                 try {
-                    await FirebaseDB.deleteProduct(id);
+                    await FirebaseDB.deletePartnerProduct(id);
                     if (cabProductId.value === id) resetCabForm();
                 } catch (err) { alert('Ошибка: ' + err.message); }
             }

@@ -88,6 +88,64 @@ const FirebaseDB = {
         }
     },
 
+    // --- Partner Products (Separate Database for Cabinet) ---
+
+    async getPartnerProducts() {
+        try {
+            const snapshot = await getDocs(collection(db, 'partner_products'));
+            return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        } catch (error) {
+            console.error('❌ Error reading partner products:', error);
+            return [];
+        }
+    },
+
+    onPartnerProductsChange(callback) {
+        return onSnapshot(collection(db, 'partner_products'), (snapshot) => {
+            const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            callback(products);
+        }, (error) => {
+            console.error('❌ Firestore listener error:', error);
+        });
+    },
+
+    async addPartnerProduct(productData) {
+        try {
+            const docRef = await addDoc(collection(db, 'partner_products'), {
+                ...productData,
+                createdAt: Date.now()
+            });
+            console.log('✅ Partner Product added:', docRef.id);
+            return docRef.id;
+        } catch (error) {
+            console.error('❌ Error adding partner product:', error);
+            throw error;
+        }
+    },
+
+    async updatePartnerProduct(id, productData) {
+        try {
+            await updateDoc(doc(db, 'partner_products', id), {
+                ...productData,
+                updatedAt: Date.now()
+            });
+            console.log('✅ Partner Product updated:', id);
+        } catch (error) {
+            console.error('❌ Error updating partner product:', error);
+            throw error;
+        }
+    },
+
+    async deletePartnerProduct(id) {
+        try {
+            await deleteDoc(doc(db, 'partner_products', id));
+            console.log('✅ Partner Product deleted:', id);
+        } catch (error) {
+            console.error('❌ Error deleting partner product:', error);
+            throw error;
+        }
+    },
+
     // --- Contact Form Submissions ---
 
     /** Save a contact form submission */
