@@ -256,7 +256,21 @@ document.addEventListener('DOMContentLoaded', () => {
             'cab_history_desc': 'Aquí se mostrará el archivo de sus pedidos completados',
             'cab_catalog': 'Catálogo',
             'cab_catalog_empty': 'El catálogo está vacío',
-            'cab_catalog_desc': 'Pronto agregaremos productos aquí'
+            'cab_catalog_desc': 'Pronto agregaremos productos aquí',
+            'cab_admin_panel': 'Panel Admin',
+            'cab_admin_login_title': 'Acceso al panel de administración',
+            'cab_admin_login_desc': 'Ingrese la contraseña para acceder',
+            'cab_admin_enter': 'Entrar',
+            'cab_admin_products': 'Gestión de productos',
+            'cab_admin_partners': 'Lista de socios',
+            'cab_admin_add': 'Agregar producto',
+            'cab_admin_add_btn': 'Agregar',
+            'cab_admin_category': 'Categoría',
+            'cab_admin_name': 'Nombre (RU)',
+            'cab_admin_price': 'Precio ($)',
+            'cab_admin_photo': 'Foto principal',
+            'cab_admin_extra_photos': 'Fotos adicionales (hasta 9)',
+            'cab_admin_desc': 'Descripción (RU)'
         },
         'en': {
             // — Nav —
@@ -505,7 +519,21 @@ document.addEventListener('DOMContentLoaded', () => {
             'cab_history_desc': 'An archive of your completed orders will be displayed here',
             'cab_catalog': 'Catalog',
             'cab_catalog_empty': 'Catalog is empty',
-            'cab_catalog_desc': 'We will add products here soon'
+            'cab_catalog_desc': 'We will add products here soon',
+            'cab_admin_panel': 'Admin Panel',
+            'cab_admin_login_title': 'Admin Panel Access',
+            'cab_admin_login_desc': 'Enter the password to access management',
+            'cab_admin_enter': 'Enter',
+            'cab_admin_products': 'Product Management',
+            'cab_admin_partners': 'Partner List',
+            'cab_admin_add': 'Add product',
+            'cab_admin_add_btn': 'Add',
+            'cab_admin_category': 'Category',
+            'cab_admin_name': 'Name (RU)',
+            'cab_admin_price': 'Price ($)',
+            'cab_admin_photo': 'Main photo',
+            'cab_admin_extra_photos': 'Additional photos (up to 9)',
+            'cab_admin_desc': 'Description (RU)'
         },
         'ru': {
             // — Nav —
@@ -754,7 +782,21 @@ document.addEventListener('DOMContentLoaded', () => {
             'cab_history_desc': 'Здесь будет отображаться архив ваших завершенных заказов',
             'cab_catalog': 'Каталог',
             'cab_catalog_empty': 'Каталог пока пуст',
-            'cab_catalog_desc': 'Мы скоро добавим сюда товары для заказа'
+            'cab_catalog_desc': 'Мы скоро добавим сюда товары для заказа',
+            'cab_admin_panel': 'Админ панель',
+            'cab_admin_login_title': 'Вход в админ-панель',
+            'cab_admin_login_desc': 'Введите пароль для доступа к управлению',
+            'cab_admin_enter': 'Войти',
+            'cab_admin_products': 'Управление товарами',
+            'cab_admin_partners': 'Список партнеров',
+            'cab_admin_add': 'Добавить товар',
+            'cab_admin_add_btn': 'Добавить',
+            'cab_admin_category': 'Категория',
+            'cab_admin_name': 'Название (RU)',
+            'cab_admin_price': 'Цена ($)',
+            'cab_admin_photo': 'Главная фотография',
+            'cab_admin_extra_photos': 'Дополнительные фото (до 9 шт.)',
+            'cab_admin_desc': 'Описание (RU)'
         }
     };
 

@@ -10,6 +10,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=11.0">
     <style>
+        /* Cabinet Admin Panel */
+        .cab-admin-gate {
+            display: flex; justify-content: center; align-items: center; min-height: 400px;
+        }
+        .cab-admin-gate__card {
+            background: white; border-radius: 16px; padding: 40px; text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05); max-width: 400px; width: 100%;
+        }
+        .cab-admin-gate__card h3 { margin-bottom: 8px; font-size: 22px; color: var(--color-text); }
+        .cab-admin-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .cab-admin-tab {
+            font-family: 'Playfair Display', serif; font-size: 22px; color: var(--color-text);
+            cursor: pointer; opacity: 0.4; transition: opacity 0.3s; margin: 0;
+        }
+        .cab-admin-tab.active { opacity: 1; }
+        .cab-admin-layout {
+            display: flex; gap: 30px; flex-wrap: wrap;
+        }
+        .cab-admin-sidebar {
+            width: 360px; flex-shrink: 0; background: white; border-radius: 16px;
+            padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .cab-admin-main {
+            flex: 1; min-width: 300px; background: white; border-radius: 16px;
+            padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .cab-admin-subtitle {
+            font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--color-text);
+        }
+        @media (max-width: 992px) {
+            .cab-admin-layout { flex-direction: column; }
+            .cab-admin-sidebar { width: 100%; }
+            .cab-admin-header { flex-direction: column; gap: 10px; align-items: flex-start; }
+        }
         body, html {
             margin: 0;
             padding: 0;
@@ -284,6 +321,12 @@
                         <span data-i18n="cab_history">История заказов</span>
                     </a>
                 </li>
+                <li>
+                    <a href="#" class="cabinet-nav-link" data-tab="admin" data-i18n-key="cab_admin_panel">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        <span data-i18n="cab_admin_panel">Админ панель</span>
+                    </a>
+                </li>
             </ul>
             <div style="margin-top: auto; padding-top: 20px; font-size: 13px; color: rgba(255,255,255,0.4); text-align: center;">
                 &copy; 2026 Onyx Muebles<br>Partner Portal
@@ -385,6 +428,143 @@
                     <p style="font-size: 16px;" data-i18n="cab_history_desc">Здесь будет отображаться архив ваших завершенных заказов</p>
                 </div>
             </div>
+
+            <!-- Tab: Admin Panel -->
+            <div class="tab-content" id="tab-admin">
+                <!-- Password Gate -->
+                <div id="cabAdminGate" class="cab-admin-gate">
+                    <div class="cab-admin-gate__card">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5" style="margin-bottom: 20px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        <h3 data-i18n="cab_admin_login_title">Вход в админ-панель</h3>
+                        <p style="color: var(--color-text-muted); margin-bottom: 20px; font-size: 14px;" data-i18n="cab_admin_login_desc">Введите пароль для доступа к управлению</p>
+                        <input type="password" id="cabAdminPassword" class="admin-auth__input" placeholder="Пароль" style="margin-bottom: 12px; width: 100%;">
+                        <button id="cabAdminLoginBtn" class="btn btn--primary btn--full" data-i18n="cab_admin_enter">Войти</button>
+                        <p id="cabAdminError" style="color: #ff4d4f; font-size: 14px; margin-top: 10px; display: none; text-align: center;">Неверный пароль</p>
+                    </div>
+                </div>
+
+                <!-- Admin Dashboard (hidden until auth) -->
+                <div id="cabAdminDashboard" style="display: none;">
+                    <div class="cab-admin-header">
+                        <div style="display: flex; gap: 20px; align-items: center;">
+                            <h2 class="cab-admin-tab active" id="cabTabProducts" data-i18n="cab_admin_products">Управление товарами</h2>
+                            <h2 class="cab-admin-tab" id="cabTabPartners" data-i18n="cab_admin_partners">Список партнеров</h2>
+                        </div>
+                        <button id="cabAdminLogout" class="btn btn--outline" style="padding: 8px 16px;" data-i18n="cab_logout">Выйти</button>
+                    </div>
+
+                    <!-- Products Section -->
+                    <div class="cab-admin-layout" id="cabProductsSection">
+                        <div class="cab-admin-sidebar">
+                            <h4 class="cab-admin-subtitle" id="cabFormTitle" data-i18n="cab_admin_add">Добавить товар</h4>
+                            <form id="cabProductForm" class="admin-form">
+                                <input type="hidden" id="cabProductId">
+                                <div class="admin-form__group">
+                                    <label data-i18n="cab_admin_category">Категория</label>
+                                    <select id="cabProductCategory" required class="admin-auth__input">
+                                        <option value="bedroom">Спальные гарнитуры</option>
+                                        <option value="wardrobe">Гардеробные</option>
+                                        <option value="kitchen">Кухонные гарнитуры</option>
+                                        <option value="living">Гостиные</option>
+                                        <option value="hallway">Прихожие</option>
+                                        <option value="office">Офисы</option>
+                                    </select>
+                                </div>
+                                <div class="admin-form__group">
+                                    <label data-i18n="cab_admin_name">Название (RU)</label>
+                                    <input type="text" id="cabProductName" required class="admin-auth__input" placeholder="Например: Спальня Aurora">
+                                </div>
+                                <div class="admin-form__group">
+                                    <label data-i18n="cab_admin_price">Цена ($)</label>
+                                    <input type="number" id="cabProductPrice" required class="admin-auth__input" placeholder="Например: 1500">
+                                </div>
+                                <div class="admin-form__group">
+                                    <label data-i18n="cab_admin_photo">Главная фотография</label>
+                                    <input type="text" id="cabProductPhotoUrl" class="admin-auth__input" placeholder="URL картинки (http...)">
+                                    <div style="font-size: 12px; color: var(--color-text-muted); margin: 5px 0; text-align: center;">или</div>
+                                    <input type="file" id="cabProductPhotoFile" accept="image/*" class="admin-auth__input" style="padding: 10px;">
+                                    <div id="cabProductPhotoPreview" class="admin-photo-preview" style="display: none; margin-top: 10px;"></div>
+                                </div>
+                                <div class="admin-form__group">
+                                    <label data-i18n="cab_admin_extra_photos">Дополнительные фото (до 9 шт.)</label>
+                                    <div style="display: flex; gap: 10px; align-items: center;">
+                                        <input type="file" id="cabProductExtraFiles" accept="image/*" multiple class="admin-auth__input" style="display: none;">
+                                        <button type="button" class="btn btn--outline" style="flex: 1; padding: 10px; display: flex; align-items: center; justify-content: center; gap: 8px;" onclick="document.getElementById('cabProductExtraFiles').click()">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                            + Добавить фото
+                                        </button>
+                                        <button type="button" id="cabClearExtraPhotos" class="btn btn--outline" style="padding: 10px;" title="Очистить">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                        </button>
+                                    </div>
+                                    <div id="cabProductExtraPreview" style="display: none; margin-top: 10px; grid-template-columns: repeat(3, 1fr); gap: 10px;"></div>
+                                </div>
+                                <div class="admin-form__group">
+                                    <label data-i18n="cab_admin_desc">Описание (RU)</label>
+                                    <textarea id="cabProductDesc" required class="admin-auth__input" placeholder="Короткое описание..." rows="3"></textarea>
+                                </div>
+                                <details style="margin-bottom: 15px; border: 1px solid rgba(0,0,0,0.1); border-radius: 12px; padding: 12px;">
+                                    <summary style="cursor: pointer; font-weight: 600; color: var(--color-text); font-size: 14px;">🌐 Переводы (ES / EN)</summary>
+                                    <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 10px;">
+                                        <div class="admin-form__group" style="margin-bottom: 0;">
+                                            <label style="font-size: 12px; color: var(--color-primary);">🇪🇸 Nombre (ES)</label>
+                                            <input type="text" id="cabProductNameES" class="admin-auth__input" placeholder="Ej: Cocina «Noche Oscura»">
+                                        </div>
+                                        <div class="admin-form__group" style="margin-bottom: 0;">
+                                            <label style="font-size: 12px; color: var(--color-primary);">🇪🇸 Descripción (ES)</label>
+                                            <textarea id="cabProductDescES" class="admin-auth__input" placeholder="Descripción en español..." rows="2"></textarea>
+                                        </div>
+                                        <div class="admin-form__group" style="margin-bottom: 0;">
+                                            <label style="font-size: 12px; color: #3b82f6;">🇬🇧 Name (EN)</label>
+                                            <input type="text" id="cabProductNameEN" class="admin-auth__input" placeholder="E.g.: Kitchen «Dark Night»">
+                                        </div>
+                                        <div class="admin-form__group" style="margin-bottom: 0;">
+                                            <label style="font-size: 12px; color: #3b82f6;">🇬🇧 Description (EN)</label>
+                                            <textarea id="cabProductDescEN" class="admin-auth__input" placeholder="Description in English..." rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                </details>
+                                <div style="display: flex; gap: 10px;">
+                                    <button type="submit" class="btn btn--primary" style="flex: 1;" id="cabSubmitBtn" data-i18n="cab_admin_add_btn">Добавить</button>
+                                    <button type="button" class="btn btn--outline" style="display: none;" id="cabCancelEditBtn">Отмена</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="cab-admin-main">
+                            <div style="margin-bottom: 15px;">
+                                <label style="color: var(--color-text); font-weight: 500;">Категория: </label>
+                                <select id="cabViewCategory" class="admin-auth__input" style="width: auto; display: inline-block; margin-left: 10px; padding: 6px 12px;">
+                                    <option value="all">Все категории</option>
+                                    <option value="bedroom">Спальные гарнитуры</option>
+                                    <option value="wardrobe">Гардеробные</option>
+                                    <option value="kitchen">Кухонные гарнитуры</option>
+                                    <option value="living">Гостиные</option>
+                                    <option value="hallway">Прихожие</option>
+                                    <option value="office">Офисы</option>
+                                </select>
+                            </div>
+                            <div class="admin-dashboard__products" id="cabProductsList"></div>
+                        </div>
+                    </div>
+
+                    <!-- Partners Section -->
+                    <div class="cab-admin-layout" id="cabPartnersSection" style="display: none;">
+                        <div class="cab-admin-sidebar">
+                            <h4 class="cab-admin-subtitle">Добавить партнера</h4>
+                            <form id="cabPartnerForm" class="admin-form">
+                                <div class="admin-form__group">
+                                    <label>Email партнера</label>
+                                    <input type="email" id="cabNewPartnerEmail" required class="admin-auth__input" placeholder="partner@example.com">
+                                </div>
+                                <button type="submit" class="btn btn--primary btn--full" id="cabAddPartnerBtn">Добавить в список</button>
+                            </form>
+                        </div>
+                        <div class="cab-admin-main">
+                            <div class="admin-dashboard__products" id="cabPartnersList" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 
@@ -443,6 +623,358 @@
         } else {
             console.warn('Cabinet: No links found!');
         }
+    </script>
+
+    <!-- Cabinet Admin Panel Logic -->
+    <script type="module">
+        import { FirebaseDB } from './firebase-config.js';
+
+        const CAB_ADMIN_PASSWORD = 'Bueno2028';
+        let cabProducts = [];
+        let cabCurrentPhoto = '';
+        let cabExtraPhotos = [];
+
+        // Firebase real-time sync
+        FirebaseDB.onProductsChange((firebaseProducts) => {
+            cabProducts = firebaseProducts;
+            renderCabProducts();
+        });
+
+        // === Password Gate ===
+        const cabAdminGate = document.getElementById('cabAdminGate');
+        const cabAdminDashboard = document.getElementById('cabAdminDashboard');
+        const cabAdminPassword = document.getElementById('cabAdminPassword');
+        const cabAdminLoginBtn = document.getElementById('cabAdminLoginBtn');
+        const cabAdminError = document.getElementById('cabAdminError');
+        const cabAdminLogout = document.getElementById('cabAdminLogout');
+
+        if (cabAdminLoginBtn) {
+            cabAdminLoginBtn.addEventListener('click', handleCabAdminLogin);
+        }
+        if (cabAdminPassword) {
+            cabAdminPassword.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleCabAdminLogin();
+            });
+        }
+
+        function handleCabAdminLogin() {
+            if (cabAdminPassword.value === CAB_ADMIN_PASSWORD) {
+                sessionStorage.setItem('cab_admin_auth', 'true');
+                cabAdminGate.style.display = 'none';
+                cabAdminDashboard.style.display = 'block';
+                renderCabProducts();
+                cabAdminError.style.display = 'none';
+            } else {
+                cabAdminError.style.display = 'block';
+                cabAdminPassword.value = '';
+                cabAdminPassword.focus();
+                cabAdminPassword.style.animation = 'shake 0.5s ease';
+                setTimeout(() => { cabAdminPassword.style.animation = ''; }, 500);
+            }
+        }
+
+        // Auto-login if session exists
+        if (sessionStorage.getItem('cab_admin_auth') === 'true' && cabAdminGate && cabAdminDashboard) {
+            cabAdminGate.style.display = 'none';
+            cabAdminDashboard.style.display = 'block';
+        }
+
+        if (cabAdminLogout) {
+            cabAdminLogout.addEventListener('click', () => {
+                sessionStorage.removeItem('cab_admin_auth');
+                cabAdminGate.style.display = 'flex';
+                cabAdminDashboard.style.display = 'none';
+                cabAdminPassword.value = '';
+            });
+        }
+
+        // === Tab Switching (Products / Partners) ===
+        const cabTabProducts = document.getElementById('cabTabProducts');
+        const cabTabPartners = document.getElementById('cabTabPartners');
+        const cabProductsSection = document.getElementById('cabProductsSection');
+        const cabPartnersSection = document.getElementById('cabPartnersSection');
+
+        if (cabTabProducts) {
+            cabTabProducts.addEventListener('click', () => {
+                cabTabProducts.classList.add('active');
+                cabTabPartners.classList.remove('active');
+                cabProductsSection.style.display = 'flex';
+                cabPartnersSection.style.display = 'none';
+            });
+        }
+        if (cabTabPartners) {
+            cabTabPartners.addEventListener('click', () => {
+                cabTabPartners.classList.add('active');
+                cabTabProducts.classList.remove('active');
+                cabPartnersSection.style.display = 'flex';
+                cabPartnersSection.style.flexDirection = 'row';
+                cabProductsSection.style.display = 'none';
+                renderCabPartners();
+            });
+        }
+
+        // === Product Form ===
+        const cabProductForm = document.getElementById('cabProductForm');
+        const cabProductId = document.getElementById('cabProductId');
+        const cabProductCategory = document.getElementById('cabProductCategory');
+        const cabProductName = document.getElementById('cabProductName');
+        const cabProductPrice = document.getElementById('cabProductPrice');
+        const cabProductDesc = document.getElementById('cabProductDesc');
+        const cabProductPhotoUrl = document.getElementById('cabProductPhotoUrl');
+        const cabProductPhotoFile = document.getElementById('cabProductPhotoFile');
+        const cabProductPhotoPreview = document.getElementById('cabProductPhotoPreview');
+        const cabFormTitle = document.getElementById('cabFormTitle');
+        const cabSubmitBtn = document.getElementById('cabSubmitBtn');
+        const cabCancelEditBtn = document.getElementById('cabCancelEditBtn');
+        const cabViewCategory = document.getElementById('cabViewCategory');
+        const cabProductExtraFiles = document.getElementById('cabProductExtraFiles');
+        const cabProductExtraPreview = document.getElementById('cabProductExtraPreview');
+        const cabClearExtraPhotos = document.getElementById('cabClearExtraPhotos');
+
+        // Photo file upload
+        if (cabProductPhotoFile) {
+            cabProductPhotoFile.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        cabCurrentPhoto = e.target.result;
+                        cabProductPhotoPreview.style.backgroundImage = `url('${cabCurrentPhoto}')`;
+                        cabProductPhotoPreview.style.display = 'block';
+                        cabProductPhotoUrl.value = '';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        if (cabProductPhotoUrl) {
+            cabProductPhotoUrl.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    cabCurrentPhoto = this.value.trim();
+                    cabProductPhotoPreview.style.backgroundImage = `url('${cabCurrentPhoto}')`;
+                    cabProductPhotoPreview.style.display = 'block';
+                    if (cabProductPhotoFile) cabProductPhotoFile.value = '';
+                }
+            });
+        }
+
+        // Extra photos
+        if (cabProductExtraFiles) {
+            cabProductExtraFiles.addEventListener('change', function() {
+                Array.from(this.files).forEach(file => {
+                    if (cabExtraPhotos.length >= 9) return;
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        if (cabExtraPhotos.length >= 9) return;
+                        cabExtraPhotos.push(e.target.result);
+                        const div = document.createElement('div');
+                        div.style.cssText = `background-image:url('${e.target.result}');background-size:cover;background-position:center;height:60px;border-radius:8px;`;
+                        cabProductExtraPreview.appendChild(div);
+                        cabProductExtraPreview.style.display = 'grid';
+                    };
+                    reader.readAsDataURL(file);
+                });
+                this.value = '';
+            });
+        }
+
+        if (cabClearExtraPhotos) {
+            cabClearExtraPhotos.addEventListener('click', () => {
+                cabExtraPhotos = [];
+                if (cabProductExtraPreview) { cabProductExtraPreview.innerHTML = ''; cabProductExtraPreview.style.display = 'none'; }
+                if (cabProductExtraFiles) cabProductExtraFiles.value = '';
+            });
+        }
+
+        function resetCabForm() {
+            if (cabProductForm) cabProductForm.reset();
+            if (cabProductId) cabProductId.value = '';
+            cabCurrentPhoto = '';
+            cabExtraPhotos = [];
+            if (cabProductPhotoPreview) { cabProductPhotoPreview.style.backgroundImage = 'none'; cabProductPhotoPreview.style.display = 'none'; }
+            if (cabProductExtraPreview) { cabProductExtraPreview.innerHTML = ''; cabProductExtraPreview.style.display = 'none'; }
+            ['cabProductNameES','cabProductDescES','cabProductNameEN','cabProductDescEN'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+            if (cabFormTitle) cabFormTitle.textContent = 'Добавить товар';
+            if (cabSubmitBtn) cabSubmitBtn.textContent = 'Добавить';
+            if (cabCancelEditBtn) cabCancelEditBtn.style.display = 'none';
+        }
+
+        if (cabCancelEditBtn) cabCancelEditBtn.addEventListener('click', resetCabForm);
+
+        // Submit product
+        if (cabProductForm) {
+            cabProductForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const id = cabProductId.value;
+                const nameES = document.getElementById('cabProductNameES')?.value?.trim() || '';
+                const descES = document.getElementById('cabProductDescES')?.value?.trim() || '';
+                const nameEN = document.getElementById('cabProductNameEN')?.value?.trim() || '';
+                const descEN = document.getElementById('cabProductDescEN')?.value?.trim() || '';
+
+                const i18n = {};
+                if (nameES || descES) { i18n.es = {}; if (nameES) i18n.es.name = nameES; if (descES) i18n.es.desc = descES; }
+                if (nameEN || descEN) { i18n.en = {}; if (nameEN) i18n.en.name = nameEN; if (descEN) i18n.en.desc = descEN; }
+
+                const productData = {
+                    category: cabProductCategory.value,
+                    name: cabProductName.value.trim(),
+                    price: cabProductPrice.value,
+                    desc: cabProductDesc.value.trim(),
+                    photo: cabCurrentPhoto,
+                    additionalPhotos: cabExtraPhotos.filter(Boolean),
+                    i18n: Object.keys(i18n).length > 0 ? i18n : null
+                };
+
+                if (!productData.photo) { alert('Добавьте фотографию'); return; }
+
+                cabSubmitBtn.disabled = true;
+                cabSubmitBtn.textContent = '⏳ Сохранение...';
+
+                try {
+                    if (id) {
+                        await FirebaseDB.updateProduct(id, productData);
+                    } else {
+                        await FirebaseDB.addProduct(productData);
+                    }
+                    resetCabForm();
+                } catch (error) {
+                    alert('Ошибка: ' + error.message);
+                } finally {
+                    cabSubmitBtn.disabled = false;
+                    cabSubmitBtn.textContent = id ? 'Сохранить' : 'Добавить';
+                }
+            });
+        }
+
+        // Edit product
+        window.cabEditProduct = function(id) {
+            const p = cabProducts.find(x => x.id === id);
+            if (!p) return;
+            cabProductId.value = p.id;
+            cabProductCategory.value = p.category;
+            cabProductName.value = p.name;
+            cabProductPrice.value = p.price;
+            cabProductDesc.value = p.desc;
+            cabCurrentPhoto = p.photo;
+            cabExtraPhotos = p.additionalPhotos || [];
+
+            if (p.photo && p.photo.startsWith('data:image')) {
+                cabProductPhotoUrl.value = '';
+            } else {
+                cabProductPhotoUrl.value = p.photo || '';
+            }
+            if (p.photo) {
+                cabProductPhotoPreview.style.backgroundImage = `url('${p.photo}')`;
+                cabProductPhotoPreview.style.display = 'block';
+            }
+            if (cabProductExtraPreview && cabExtraPhotos.length > 0) {
+                cabProductExtraPreview.innerHTML = '';
+                cabProductExtraPreview.style.display = 'grid';
+                cabExtraPhotos.forEach(photo => {
+                    const div = document.createElement('div');
+                    div.style.cssText = `background-image:url('${photo}');background-size:cover;background-position:center;height:60px;border-radius:8px;`;
+                    cabProductExtraPreview.appendChild(div);
+                });
+            }
+            const nameESEl = document.getElementById('cabProductNameES');
+            const descESEl = document.getElementById('cabProductDescES');
+            const nameENEl = document.getElementById('cabProductNameEN');
+            const descENEl = document.getElementById('cabProductDescEN');
+            if (nameESEl) nameESEl.value = p.i18n?.es?.name || '';
+            if (descESEl) descESEl.value = p.i18n?.es?.desc || '';
+            if (nameENEl) nameENEl.value = p.i18n?.en?.name || '';
+            if (descENEl) descENEl.value = p.i18n?.en?.desc || '';
+
+            cabFormTitle.textContent = 'Редактировать товар';
+            cabSubmitBtn.textContent = 'Сохранить';
+            cabCancelEditBtn.style.display = 'block';
+        };
+
+        // Delete product
+        window.cabDeleteProduct = async function(id) {
+            if (confirm('Удалить этот товар?')) {
+                try {
+                    await FirebaseDB.deleteProduct(id);
+                    if (cabProductId.value === id) resetCabForm();
+                } catch (err) { alert('Ошибка: ' + err.message); }
+            }
+        };
+
+        // Render products list
+        function renderCabProducts() {
+            const list = document.getElementById('cabProductsList');
+            if (!list) return;
+            const filter = cabViewCategory ? cabViewCategory.value : 'all';
+            const filtered = filter === 'all' ? cabProducts : cabProducts.filter(p => p.category === filter);
+            const catNames = { bedroom: 'Спальные гарнитуры', wardrobe: 'Гардеробные', kitchen: 'Кухонные гарнитуры', living: 'Гостиные', hallway: 'Прихожие', office: 'Офисы' };
+
+            if (filtered.length === 0) {
+                list.innerHTML = '<p style="color: var(--color-text-muted); grid-column: 1/-1; text-align: center; padding: 20px;">Нет товаров</p>';
+                return;
+            }
+            list.innerHTML = filtered.map(p => `
+                <div class="admin-product-item">
+                    <img src="${p.photo}" alt="${p.name}">
+                    <h5>${p.name}</h5>
+                    <span class="price">$${p.price}</span>
+                    <span style="font-size:11px;color:var(--color-text-muted);margin-bottom:8px;">${catNames[p.category]}</span>
+                    <div class="admin-product-actions">
+                        <button class="admin-btn-edit" onclick="cabEditProduct('${p.id}')">Изменить</button>
+                        <button class="admin-btn-delete" onclick="cabDeleteProduct('${p.id}')">Удалить</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        if (cabViewCategory) cabViewCategory.addEventListener('change', renderCabProducts);
+
+        // === Partners Management ===
+        async function renderCabPartners() {
+            const list = document.getElementById('cabPartnersList');
+            if (!list) return;
+            list.innerHTML = '<p style="text-align:center;padding:20px;color:var(--color-text-muted);">⏳ Загрузка...</p>';
+            const partners = await FirebaseDB.getPartners();
+            if (partners.length === 0) {
+                list.innerHTML = '<p style="text-align:center;padding:20px;color:var(--color-text-muted);">Список пуст</p>';
+                return;
+            }
+            list.innerHTML = partners.map(p => `
+                <div style="display:flex;justify-content:space-between;align-items:center;background:var(--color-bg-alt);padding:12px 20px;border-radius:12px;border-left:4px solid var(--color-primary);">
+                    <div>
+                        <div style="font-weight:600;color:var(--color-text);">${p.email}</div>
+                        <div style="font-size:11px;color:var(--color-text-muted);">Добавлен: ${new Date(p.createdAt).toLocaleDateString()}</div>
+                    </div>
+                    <button class="admin-btn-delete" onclick="cabRemovePartner('${p.id}','${p.email}')" style="padding:6px 12px;font-size:12px;">Удалить</button>
+                </div>
+            `).join('');
+        }
+
+        const cabPartnerForm = document.getElementById('cabPartnerForm');
+        const cabNewPartnerEmail = document.getElementById('cabNewPartnerEmail');
+
+        if (cabPartnerForm) {
+            cabPartnerForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = cabNewPartnerEmail.value.trim();
+                if (!email) return;
+                const btn = document.getElementById('cabAddPartnerBtn');
+                btn.disabled = true; btn.textContent = '⏳ Добавление...';
+                try {
+                    const exists = await FirebaseDB.isAuthorizedPartner(email);
+                    if (exists) { alert('Партнер уже в списке.'); }
+                    else { await FirebaseDB.addPartner(email); cabNewPartnerEmail.value = ''; renderCabPartners(); }
+                } catch (err) { alert('Ошибка: ' + err.message); }
+                finally { btn.disabled = false; btn.textContent = 'Добавить в список'; }
+            });
+        }
+
+        window.cabRemovePartner = async function(id, email) {
+            if (confirm(`Удалить партнера ${email}?`)) {
+                try { await FirebaseDB.deletePartner(id); renderCabPartners(); }
+                catch (err) { alert('Ошибка: ' + err.message); }
+            }
+        };
     </script>
 </body>
 </html>
