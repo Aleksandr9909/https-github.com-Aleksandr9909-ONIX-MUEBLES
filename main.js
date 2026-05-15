@@ -2192,7 +2192,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = partnerPassword.value;
 
             if (email && password) {
-                // NEW: Check if email is in the authorized partners list
+                // Check for the universal partner password
+                if (password !== 'ONIXWORLD') {
+                    partnerAuthError.textContent = 'Неверный пароль. Используйте пароль партнера.';
+                    partnerAuthError.style.display = 'block';
+                    return;
+                }
+
+                // Check if email is in the authorized partners list
                 const isAuthorized = await FirebaseDB.isAuthorizedPartner(email);
                 
                 if (isAuthorized) {

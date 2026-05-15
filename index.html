@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+    <!-- VERSION 1.0.7 - ULTIMATE BUTTONS FIX -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
@@ -726,12 +727,26 @@
                         </div>
 
                         <!-- Map Controls -->
-                        <div class="contacts__map-controls" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; margin-bottom: 15px;">
-                            <button id="btnMapShowroom" class="btn btn--primary" style="padding: 12px 24px; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 8px;">
-                                <span data-i18n="contact_showroom">Адрес шоурума</span>
+                        <style>
+                            .contacts__map-controls { display: flex !important; flex-wrap: wrap !important; gap: 12px !important; }
+                            .contacts__map-controls .btn--outline { 
+                                border: 2px solid #B8956A !important; 
+                                color: #B8956A !important; 
+                                background: rgba(184, 149, 106, 0.1) !important; 
+                                font-weight: 600 !important;
+                            }
+                            .contacts__map-controls .btn--primary {
+                                background: #B8956A !important;
+                                color: #fff !important;
+                                border: 2px solid #B8956A !important;
+                            }
+                        </style>
+                        <div class="contacts__map-controls" style="margin-top: 25px; margin-bottom: 15px;">
+                            <button id="btnMapShowroom" class="btn btn--primary" style="padding: 12px 24px; font-size: 14px; border-radius: 8px;">
+                                📍 <span data-i18n="contact_showroom">Адрес шоурума</span>
                             </button>
-                            <button id="btnMapFactory" class="btn btn--outline" style="padding: 12px 24px; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 8px;">
-                                <span data-i18n="contact_factory">Адрес фабрики</span>
+                            <button id="btnMapFactory" class="btn btn--outline" style="padding: 12px 24px; font-size: 14px; border-radius: 8px;">
+                                📍 <span data-i18n="contact_factory">Адрес фабрики</span>
                             </button>
                         </div>
 
