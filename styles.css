@@ -232,16 +232,30 @@ ul, ol {
 }
 
 /* Contacts map buttons overrides for dark background */
+.contacts__map-controls {
+    flex-wrap: wrap;
+}
+
+.contacts__map-controls .btn {
+    min-width: 160px;
+}
+
 .contacts__map-controls .btn--outline {
     border: 1.5px solid var(--color-primary);
     color: var(--color-primary);
-    background: transparent;
+    background: rgba(184, 149, 106, 0.1);
 }
 
 .contacts__map-controls .btn--outline:hover {
     border-color: var(--color-primary-light);
     color: var(--color-primary-light);
-    background: rgba(184, 149, 106, 0.15);
+    background: rgba(184, 149, 106, 0.2);
+}
+
+.contacts__map-controls .btn--primary {
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(184, 149, 106, 0.3);
 }
 
 .btn--glow {
