@@ -233,9 +233,9 @@ ul, ol {
 
 /* Contacts map buttons overrides for dark background */
 .contacts__map-controls .btn--outline {
-    border-color: rgba(255, 255, 255, 0.2);
-    color: #FAFAF8;
-    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid var(--color-primary);
+    color: var(--color-primary);
+    background: transparent;
 }
 
 .contacts__map-controls .btn--outline:hover {
