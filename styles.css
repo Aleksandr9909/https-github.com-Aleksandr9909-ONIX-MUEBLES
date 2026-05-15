@@ -231,6 +231,19 @@ ul, ol {
     background: var(--color-primary-bg);
 }
 
+/* Contacts map buttons overrides for dark background */
+.contacts__map-controls .btn--outline {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #FAFAF8;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.contacts__map-controls .btn--outline:hover {
+    border-color: var(--color-primary-light);
+    color: var(--color-primary-light);
+    background: rgba(184, 149, 106, 0.15);
+}
+
 .btn--glow {
     background: var(--color-primary);
     color: #fff;
