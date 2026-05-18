@@ -225,6 +225,46 @@ const FirebaseDB = {
         }
     },
 
+    /** Verify partner credentials */
+    async verifyPartnerLogin(email, password) {
+        try {
+            const partners = await this.getPartners();
+            const partner = partners.find(p => p.email === email.toLowerCase().trim());
+            if (!partner) return { success: false, error: 'email_not_found' };
+            
+            // If they have a custom password, check it. Otherwise, check against default "ONYXWORLD"
+            const correctPassword = partner.password || 'ONYXWORLD';
+            if (password === correctPassword) {
+                return { success: true, partner };
+            } else {
+                return { success: false, error: 'wrong_password' };
+            }
+        } catch (error) {
+            console.error('❌ Error verifying partner login:', error);
+            return { success: false, error: 'db_error' };
+        }
+    },
+
+    /** Update a partner's password */
+    async updatePartnerPassword(email, newPassword) {
+        try {
+            const partners = await this.getPartners();
+            const partner = partners.find(p => p.email === email.toLowerCase().trim());
+            if (!partner) {
+                throw new Error('Partner not found');
+            }
+            await updateDoc(doc(db, 'partners', partner.id), {
+                password: newPassword,
+                updatedAt: Date.now()
+            });
+            console.log('✅ Partner password updated:', email);
+            return true;
+        } catch (error) {
+            console.error('❌ Error updating partner password:', error);
+            throw error;
+        }
+    },
+
     // --- Migration Helper ---
 
     /** Migrate products from localStorage to Firestore (one-time) */

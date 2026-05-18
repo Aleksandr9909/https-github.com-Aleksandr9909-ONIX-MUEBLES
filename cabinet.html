@@ -351,6 +351,14 @@
                             <button data-lang="ru" style="display: block; width: 100%; padding: 8px; text-align: left; background: none; border: none; cursor: pointer; border-radius: 4px; font-weight: 500; color: var(--color-text);">RU</button>
                         </div>
                     </div>
+                    <!-- Password Change Button -->
+                    <button class="lang-switcher__btn" id="btnOpenChangePassword" style="background: none; border: 1px solid rgba(0,0,0,0.1); padding: 8px 12px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--color-text);">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <span data-i18n="cab_change_password">Сменить пароль</span>
+                    </button>
                     <div class="header__divider" style="width: 1px; height: 24px; background: rgba(0,0,0,0.1);"></div>
                     <div class="cabinet-user">
                         <div style="display: flex; flex-direction: column; text-align: right;">
@@ -566,6 +574,22 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- ====== MODAL SYSTEM ====== -->
+    <div class="modal" id="genericModal">
+        <div class="modal__overlay" id="modalOverlay"></div>
+        <div class="modal__content">
+            <button class="modal__close" id="modalClose">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal__body" id="modalBody">
+                <!-- Dynamic Content Here -->
+            </div>
+        </div>
     </div>
 
     <!-- Include main.js for Firebase and PlanPlace initialization -->
@@ -975,6 +999,138 @@
                 catch (err) { alert('Ошибка: ' + err.message); }
             }
         };
+
+        // === Change Password Feature ===
+        window.openChangePasswordModal = function() {
+            const lang = document.documentElement.lang || 'es';
+            const t = window.translations ? (window.translations[lang] || window.translations['es']) : {};
+
+            const title = t['cab_change_password_title'] || 'Смена пароля';
+            const desc = t['cab_change_password_desc'] || 'Введите текущий пароль, новый пароль и повторите его для изменения пароля партнера.';
+            const lblOld = t['cab_old_password'] || 'Текущий (старый) пароль';
+            const lblNew = t['cab_new_password'] || 'Новый пароль';
+            const lblConfirm = t['cab_confirm_new_password'] || 'Повторите новый пароль';
+            const btnSave = t['cab_save_password'] || 'Сохранить';
+            const btnCancel = t['cab_cancel'] || 'Отмена';
+
+            const content = `
+                <div class="password-change-modal" style="max-width: 400px; margin: 0 auto; padding: 10px;">
+                    <div style="text-align: center; margin-bottom: 24px;">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5" style="margin-bottom: 16px;">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <h3 style="font-size: 24px; color: var(--color-text); margin-bottom: 8px;">${title}</h3>
+                        <p style="font-size: 14px; color: var(--color-text-muted); line-height: 1.4;">${desc}</p>
+                    </div>
+                    <form id="passwordChangeForm" style="display: flex; flex-direction: column; gap: 16px;">
+                        <div class="admin-form__group" style="margin-bottom: 0;">
+                            <label style="font-weight: 500; font-size: 14px; color: var(--color-text); margin-bottom: 6px; display: block;">${lblOld}</label>
+                            <input type="password" id="oldPasswordInput" required class="admin-auth__input" style="width: 100%;" placeholder="••••••••">
+                        </div>
+                        <div class="admin-form__group" style="margin-bottom: 0;">
+                            <label style="font-weight: 500; font-size: 14px; color: var(--color-text); margin-bottom: 6px; display: block;">${lblNew}</label>
+                            <input type="password" id="newPasswordInput" required class="admin-auth__input" style="width: 100%;" placeholder="••••••••">
+                        </div>
+                        <div class="admin-form__group" style="margin-bottom: 0;">
+                            <label style="font-weight: 500; font-size: 14px; color: var(--color-text); margin-bottom: 6px; display: block;">${lblConfirm}</label>
+                            <input type="password" id="confirmPasswordInput" required class="admin-auth__input" style="width: 100%;" placeholder="••••••••">
+                        </div>
+                        <div id="passwordChangeError" style="color: #ff4d4f; font-size: 14px; display: none; text-align: center;"></div>
+                        <div id="passwordChangeSuccess" style="color: #52c41a; font-size: 14px; display: none; text-align: center;"></div>
+                        <div style="display: flex; gap: 12px; margin-top: 10px;">
+                            <button type="submit" class="btn btn--primary" id="btnSubmitPasswordChange" style="flex: 1; padding: 12px;">${btnSave}</button>
+                            <button type="button" class="btn btn--outline" id="btnCancelPasswordChange" style="flex: 1; padding: 12px;">${btnCancel}</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            window.openModal(content);
+
+            const cancelBtn = document.getElementById('btnCancelPasswordChange');
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', () => {
+                    window.closeModal();
+                });
+            }
+
+            const form = document.getElementById('passwordChangeForm');
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const oldPass = document.getElementById('oldPasswordInput').value;
+                    const newPass = document.getElementById('newPasswordInput').value;
+                    const confirmPass = document.getElementById('confirmPasswordInput').value;
+                    
+                    const errEl = document.getElementById('passwordChangeError');
+                    const succEl = document.getElementById('passwordChangeSuccess');
+                    const submitBtn = document.getElementById('btnSubmitPasswordChange');
+                    
+                    errEl.style.display = 'none';
+                    succEl.style.display = 'none';
+
+                    if (!oldPass || !newPass || !confirmPass) {
+                        errEl.textContent = t['cab_password_error_empty'] || 'Пожалуйста, заполните все поля.';
+                        errEl.style.display = 'block';
+                        return;
+                    }
+
+                    if (newPass !== confirmPass) {
+                        errEl.textContent = t['cab_password_error_match'] || 'Новые пароли не совпадают.';
+                        errEl.style.display = 'block';
+                        return;
+                    }
+
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = '⏳...';
+
+                    try {
+                        const email = sessionStorage.getItem('partner_email');
+                        // Verify old password
+                        const verifyResult = await FirebaseDB.verifyPartnerLogin(email, oldPass);
+                        
+                        if (!verifyResult.success) {
+                            errEl.textContent = t['cab_password_error_old'] || 'Неверный старый пароль.';
+                            errEl.style.display = 'block';
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = btnSave;
+                            return;
+                        }
+
+                        // Update to new password
+                        await FirebaseDB.updatePartnerPassword(email, newPass);
+                        
+                        succEl.textContent = t['cab_password_success'] || 'Пароль успешно изменен!';
+                        succEl.style.display = 'block';
+                        
+                        // Disable form inputs
+                        form.querySelectorAll('input').forEach(input => input.disabled = true);
+                        submitBtn.style.display = 'none';
+                        if (cancelBtn) cancelBtn.style.display = 'none';
+                        
+                        // Auto close modal after a brief delay
+                        setTimeout(() => {
+                            window.closeModal();
+                        }, 2000);
+                        
+                    } catch (err) {
+                        console.error('Password change error:', err);
+                        errEl.textContent = 'Ошибка сервера. Попробуйте еще раз.';
+                        errEl.style.display = 'block';
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = btnSave;
+                    }
+                });
+            }
+        };
+
+        const btnOpenChangePassword = document.getElementById('btnOpenChangePassword');
+        if (btnOpenChangePassword) {
+            btnOpenChangePassword.addEventListener('click', () => {
+                window.openChangePasswordModal();
+            });
+        }
     </script>
 </body>
 </html>

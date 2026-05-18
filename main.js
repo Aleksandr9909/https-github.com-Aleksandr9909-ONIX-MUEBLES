@@ -270,7 +270,19 @@ document.addEventListener('DOMContentLoaded', () => {
             'cab_admin_price': 'Precio ($)',
             'cab_admin_photo': 'Foto principal',
             'cab_admin_extra_photos': 'Fotos adicionales (hasta 9)',
-            'cab_admin_desc': 'Descripción (RU)'
+            'cab_admin_desc': 'Descripción (RU)',
+            'cab_change_password': 'Cambiar contraseña',
+            'cab_change_password_title': 'Cambio de contraseña',
+            'cab_change_password_desc': 'Ingrese la contraseña actual, la nueva contraseña y confírmela para cambiar la contraseña del socio.',
+            'cab_old_password': 'Contraseña actual',
+            'cab_new_password': 'Nueva contraseña',
+            'cab_confirm_new_password': 'Confirmar nueva contraseña',
+            'cab_save_password': 'Guardar',
+            'cab_cancel': 'Cancelar',
+            'cab_password_success': '¡Contraseña cambiada con éxito!',
+            'cab_password_error_old': 'La contraseña actual es incorrecta.',
+            'cab_password_error_match': 'Las nuevas contraseñas no coinciden.',
+            'cab_password_error_empty': 'Por favor, rellene todos los campos.'
         },
         'en': {
             // — Nav —
@@ -533,7 +545,19 @@ document.addEventListener('DOMContentLoaded', () => {
             'cab_admin_price': 'Price ($)',
             'cab_admin_photo': 'Main photo',
             'cab_admin_extra_photos': 'Additional photos (up to 9)',
-            'cab_admin_desc': 'Description (RU)'
+            'cab_admin_desc': 'Description (RU)',
+            'cab_change_password': 'Change Password',
+            'cab_change_password_title': 'Change Password',
+            'cab_change_password_desc': 'Enter the current password, a new password, and repeat it to change your partner password.',
+            'cab_old_password': 'Current Password',
+            'cab_new_password': 'New Password',
+            'cab_confirm_new_password': 'Repeat New Password',
+            'cab_save_password': 'Save',
+            'cab_cancel': 'Cancel',
+            'cab_password_success': 'Password changed successfully!',
+            'cab_password_error_old': 'Current password is incorrect.',
+            'cab_password_error_match': 'New passwords do not match.',
+            'cab_password_error_empty': 'Please fill in all fields.'
         },
         'ru': {
             // — Nav —
@@ -796,9 +820,23 @@ document.addEventListener('DOMContentLoaded', () => {
             'cab_admin_price': 'Цена ($)',
             'cab_admin_photo': 'Главная фотография',
             'cab_admin_extra_photos': 'Дополнительные фото (до 9 шт.)',
-            'cab_admin_desc': 'Описание (RU)'
+            'cab_admin_desc': 'Описание (RU)',
+            'cab_change_password': 'Сменить пароль',
+            'cab_change_password_title': 'Смена пароля',
+            'cab_change_password_desc': 'Введите текущий пароль, новый пароль и повторите его для изменения пароля партнера.',
+            'cab_old_password': 'Текущий (старый) пароль',
+            'cab_new_password': 'Новый пароль',
+            'cab_confirm_new_password': 'Повторите новый пароль',
+            'cab_save_password': 'Сохранить',
+            'cab_cancel': 'Отмена',
+            'cab_password_success': 'Пароль успешно изменен!',
+            'cab_password_error_old': 'Неверный старый пароль.',
+            'cab_password_error_match': 'Новые пароли не совпадают.',
+            'cab_password_error_empty': 'Пожалуйста, заполните все поля.'
         }
     };
+
+    window.translations = translations;
 
     // ====== PRODUCT NAME/DESC TRANSLATION MAP (legacy fallback) ======
     const productTranslationsLegacy = {
@@ -2192,24 +2230,37 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = partnerPassword.value;
 
             if (email && password) {
-                // Check for the universal partner password
-                if (password !== 'ONIXWORLD') {
-                    partnerAuthError.textContent = 'Неверный пароль. Используйте пароль партнера.';
-                    partnerAuthError.style.display = 'block';
-                    return;
-                }
+                // Disable login button during check
+                partnerLoginSubmit.disabled = true;
+                const originalText = partnerLoginSubmit.textContent;
+                partnerLoginSubmit.textContent = '⏳...';
 
-                // Check if email is in the authorized partners list
-                const isAuthorized = await FirebaseDB.isAuthorizedPartner(email);
-                
-                if (isAuthorized) {
-                    // Store authorized email in session
-                    sessionStorage.setItem('partner_auth', 'true');
-                    sessionStorage.setItem('partner_email', email);
-                    window.location.href = 'cabinet.html';
-                } else {
-                    partnerAuthError.textContent = 'Доступ запрещен. Ваш Email не найден в списке партнеров.';
+                try {
+                    // Verify partner credentials using the new custom/universal mechanism
+                    const result = await FirebaseDB.verifyPartnerLogin(email, password);
+                    
+                    if (result.success) {
+                        // Store authorized email in session
+                        sessionStorage.setItem('partner_auth', 'true');
+                        sessionStorage.setItem('partner_email', email);
+                        window.location.href = 'cabinet.html';
+                    } else {
+                        if (result.error === 'email_not_found') {
+                            partnerAuthError.textContent = 'Доступ запрещен. Ваш Email не найден в списке партнеров.';
+                        } else if (result.error === 'wrong_password') {
+                            partnerAuthError.textContent = 'Неверный пароль. Используйте пароль партнера.';
+                        } else {
+                            partnerAuthError.textContent = 'Ошибка при входе. Попробуйте позже.';
+                        }
+                        partnerAuthError.style.display = 'block';
+                    }
+                } catch (err) {
+                    console.error('Login error:', err);
+                    partnerAuthError.textContent = 'Ошибка сети. Попробуйте еще раз.';
                     partnerAuthError.style.display = 'block';
+                } finally {
+                    partnerLoginSubmit.disabled = false;
+                    partnerLoginSubmit.textContent = originalText;
                 }
             } else {
                 partnerAuthError.textContent = 'Пожалуйста, введите Email и пароль.';
